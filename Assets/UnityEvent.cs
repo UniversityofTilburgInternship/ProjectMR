@@ -1,0 +1,100 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Casanova.Prelude;
+using UnityEngine;
+
+
+public class UnityEvent
+{
+    private EventObject _eventObject;
+
+    public bool IsDestroyed
+    {
+        get { return _eventObject == null; }
+    }
+
+    public int AmountOfParticipants
+    {
+        get { return _eventObject.AmountOfParticipants; }
+        set { _eventObject.AmountOfParticipants = value; }
+    }
+
+    public int Completeness
+    {
+        get { return _eventObject.Completeness; }
+        set { _eventObject.Completeness = value; }
+    }
+
+    public float Radius
+    {
+        get { return _eventObject.Radius; }
+        set { _eventObject.Radius = value; }
+    }
+
+    public Vector3 Position
+    {
+        get { return _eventObject.Position; }
+        set { _eventObject.Position = value; }
+    }
+
+    public List<Tuple<int, int>> PersonalityMinimums
+    {
+        get { return _eventObject.PersonalityMinimums; }
+        set { _eventObject.PersonalityMinimums = value; }
+    }
+
+    public int InterestLevel
+    {
+        get { return _eventObject.InterestLevel; }
+        set { _eventObject.InterestLevel = value; }
+    }
+
+    public bool IsPlayerControlled
+    {
+        get { return _eventObject.IsPlayerControlled; }
+        set { _eventObject.IsPlayerControlled = value; }
+    }
+
+    public int MaxAmountOfParticipants
+    {
+        get { return _eventObject.MaxAmountOfParticipants; }
+        set { _eventObject.MaxAmountOfParticipants = value; }
+    }
+
+    public GameObject GameObject
+    {
+        get { return _eventObject.gameObject; }
+    }
+
+    public int Id
+    {
+        get { return _eventObject.Id; }
+        set { _eventObject.Id = value; }
+    }
+
+    public static int AmountOfEvents
+    {
+        get { return ActionsParser.EventActions.Count; }
+        set { }
+    }
+
+    public static int AmountOfPlayerEvents
+    {
+        get { return ActionsParser.Events.Count(x => x.Value.IsPlayerControlled); }
+        set { }
+    }
+
+
+    public static UnityEvent SpawnRandomEvent()
+    {
+        var unityEvent = new UnityEvent {_eventObject = EventController.SpawnRandomEvent()};
+
+        return unityEvent;
+    }
+
+    public void Destroy()
+    {
+        _eventObject.Destroy();
+    }
+}
+                                                                                                  

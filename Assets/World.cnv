@@ -1,0 +1,180 @@
+module Games
+
+open "UnityEngine.dll"
+open UnityEngine
+
+worldEntity World = {
+AvatarGen : AvatarGenerator
+MainPlayer : Player
+Persons : [Person]
+eventController : EventController
+
+  rule Persons =
+    for x in[0..AvatarGen.Amount - 1] do
+      yield(Person.Create(
+        [for characteristic in AvatarGen.SettingsList do
+          select(characteristic.Item1,
+            Random.Range(characteristic.Item2.Item1,
+            characteristic.Item2.Item2))])) :: Persons
+    wait false
+
+  Create() =
+    let avaGen = AvatarGenerator.Find()
+    UnityAction.SpawnActions()
+    UnityEventController.SpawnAllPlayerEvents()
+    {
+      Persons = []
+      AvatarGen = avaGen
+      eventController = new EventController()
+      MainPlayer = new Player(eventController)
+    }
+}
+
+entity Player = {
+inherit UnityPlayer
+ref eventController : EventController
+isTriggeringEvent : bool
+
+  rule isTriggeringEvent =
+    yield isTriggeringEvent
+    for event in eventController.PlayerEventsList do
+      if (Input.GetKey(KeyCode.F)) then
+        if (UnityPlayer.IsLookingAt(event.gameObject)) then
+          HelperFunctions.Log("Player triggered event")
+          UnityPlayer.TriggerEvent(event)
+          yield true
+          wait 1.0fe
+        else
+          yield false
+
+  Create(controller:EventController) =
+  let unity_player = UnityPlayer.Spawn()
+  {
+    UnityPlayer = unity_player
+    eventController = controller
+    isTriggeringEvent = false
+  }
+}
+
+entity Event = {
+inherit UnityEvent
+
+  //Maybe make this a bit more random?
+  rule Completeness =
+      wait 1.0f
+      HelperFunctions.Log(Completeness)
+      yield Completeness + 10
+      if(Completeness >= 100) then
+        UnityEvent.Destroy()
+
+  Create() =
+  let unity_event = UnityEvent.SpawnRandomEvent()
+  {
+    UnityEvent = unity_event
+  }
+}
+
+
+entity EventController = {
+inherit UnityEventController
+CurrentEvents : [Event]
+
+  rule CurrentEvents =
+    wait (20.0f)
+    HelperFunctions.Log("Spawned event!")
+    wait UnityEventController.IsEventAvailable()
+    yield new Event() :: CurrentEvents
+
+  rule CurrentEvents =
+    wait (CurrentEvents.Count > 0)
+    yield [for event in CurrentEvents do
+            where(not event.IsDestroyed)
+            select(event)]
+
+  Create() =
+  {
+    CurrentEvents = []
+  }
+}
+
+entity Person = {
+    inherit UnityNpc
+    settings : [(int * int)]
+    actionIds : [int]
+    PositionAvailable : bool
+
+
+    //if not(IsInEvent) then
+    //  UnityNpc.UpdateAccumulatedValues(actionToExecute)
+    //  wait UnityNpc.PlayAnimation("wave")
+    //  UnityNpc.RemoveClaimToPosition(actionToExecute)     
+    //  yield [for id in actionIds do
+    //         where (not (id = actionToExecute))
+    //         select id], false
+
+
+    rule actionIds, PositionAvailable =
+      wait PositionAvailable
+      wait actionIds.Count > 0
+      let actionToExecute = actionIds.[0]
+      let destination = UnityNpc.GetClaimedPosition(actionToExecute)
+      UnityNpc.MoveTo(actionToExecute)
+      let distanceToDestination = Vector3.Distance(Position, destination)
+      //Execute action animation, then remove action that was just executed from actionIds
+      if (distanceToDestination < 2.2f) then
+        UnityNpc.StopMovement()
+        UnityNpc.UpdateAccumulatedValues(actionToExecute)
+        wait UnityNpc.PlayAnimation(actionToExecute)
+        //Cant remove if currentNodesCollection updated.
+        UnityNpc.RemoveClaimToPosition(actionToExecute)
+        yield [for id in actionIds do
+                where (not (id = actionToExecute))
+                select id], false     
+
+
+    rule actionIds, PositionAvailable =
+      wait not PositionAvailable
+      wait actionIds.Count > 0
+      let actionToExecute = actionIds.[0]
+      if(UnityNpc.IsPositionAvailable(actionToExecute)) then
+        UnityNpc.ClaimPosition(actionToExecute)  
+        yield actionIds, true
+      else
+        //If we cannot get a position, skip this action.    
+        yield [for id in actionIds do
+               where (not (id = actionToExecute))
+               select id], false
+
+    rule actionIds, PositionAvailable =
+      yield actionIds, false
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+      wait 25.0f
+      wait not IsInEvent
+
+
+    rule actionIds, PositionAvailable =
+      wait IsInEvent
+      wait not IsInEvent
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+
+    rule actionIds, PositionAvailable =
+      wait IsInEvent
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+      wait 2.0f
+
+    rule IsInEvent =
+        wait 1.0f
+        yield UnityNpc.IsInterestedInEvent()
+
+    Create(Settings : [(int * int)]) =
+    let unity_npc = UnityNpc.Spawn(Settings)
+    {
+        settings = Settings
+        UnityNpc = unity_npc
+        PositionAvailable = false
+        actionIds = []
+    }
+}
