@@ -1,0 +1,23 @@
+Temp/
+obj/
+/Assets/Models*
+Library/
+/Library*
+/Assets/Materials*
+/Assets/Textures*
+/Assets/Arkham Interactive*
+/Assets/Models/
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
+# User-specific files
+*.sln
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# JetBrains Rider
+.idea/
+*.sln.iml
