@@ -80,7 +80,7 @@ inherit UnityEventController
 CurrentEvents : [Event]
 
   rule CurrentEvents =
-    wait (20.0f)
+    wait (50.0f)
     HelperFunctions.Log("Spawned event!")
     wait UnityEventController.IsEventAvailable()
     yield new Event() :: CurrentEvents

@@ -19,4 +19,4 @@ public class Event
     public List<Tuple<int, int>> PersonalityMinimums = new List<Tuple<int, int>>();
 }
 
-                                                                                                  
+                                                                                                                                 

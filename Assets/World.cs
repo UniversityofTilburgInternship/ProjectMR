@@ -418,7 +418,7 @@ return;
 	{
 
 	case -1:
-	count_down3 = 20f;
+	count_down3 = 50f;
 	goto case 4;
 	case 4:
 	if(((count_down3) > (0f)))
@@ -786,4 +786,4 @@ return;
 
 
 }
-}                                                                  
+}    

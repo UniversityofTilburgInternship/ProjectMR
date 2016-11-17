@@ -7,7 +7,7 @@
             <y>0</y>
             <z>50</z>
         </position>
-        <animationname>Ignore Animation</animationname>
+        <animationname>wave</animationname>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -51,7 +51,7 @@
             <y>0</y>
             <z>20</z>
         </position>
-        <animationname>Fall Down Animation</animationname>
+        <animationname>salute</animationname>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -95,7 +95,7 @@
             <y>0</y>
             <z>50</z>
         </position>
-        <animationname>Scream Animation</animationname>
+        <animationname>talking_1</animationname>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -139,7 +139,7 @@
             <y>0</y>
             <z>50</z>
         </position>
-        <animationname>Run Away Animation</animationname>
+        <animationname>talking_2</animationname>
         <modifiers>
             <modifier>
                 <id>0</id>

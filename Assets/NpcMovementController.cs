@@ -18,12 +18,13 @@ public class NpcMovementController : MonoBehaviour
         return npcMovementController;
     }
 
-    public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
+    public void OnPathFound(Vector3[] newPath, bool pathSuccessful, Vector3 target)
     {
         //if the path is found and is succesfull
         if (pathSuccessful)
         {
             _waypoints = newPath.ToList();
+            _waypoints.Add(target);
             _targetIndex = 0;
 
             StopCoroutine("FollowPath");
@@ -106,4 +107,4 @@ public class NpcMovementController : MonoBehaviour
     }
 }
 
-                                                                                                  
+                                                                                                                                 

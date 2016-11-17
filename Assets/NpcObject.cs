@@ -56,7 +56,6 @@ public class NpcObject : MonoBehaviour
         Debug.Log(action.ToString());
         var animationName = action.AnimationName;
         var time = 0.0f;
-//        Debug.Log(animationName  +  "  =  animationName ");
         //Get Animator controller
         var ac = Animator.runtimeAnimatorController;
 
@@ -123,7 +122,7 @@ public class NpcObject : MonoBehaviour
             CurrentActionPosition = position;
             //then we request a new path
             PathRequestManager.RequestPath(transform.position, CurrentActionPosition,
-                MovementController.OnPathFound);
+                (newPath, pathSuccessful, target) => MovementController.OnPathFound(newPath, pathSuccessful, target));
         }
     }
 
@@ -177,4 +176,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                  
+                                                                                                                                 
