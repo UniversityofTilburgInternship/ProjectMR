@@ -176,8 +176,8 @@ public class NpcObject : MonoBehaviour
             send request to npc
             get response (one call?)
 
-            If reponse = good
-              Call moveTo etc
+        If reponse = good
+            Call moveTo etc
 
         If received request -> how?
             determine how well it fits
@@ -202,8 +202,10 @@ public class NpcObject : MonoBehaviour
             }
         }
 
-        if(nearbyNpcs.Count > 1)
-            return nearbyNpcs.
+        if (nearbyNpcs.Count > 1)
+            return nearbyNpcs.FirstOrDefault(x => x.Key == nearbyNpcs.Keys.Max()).Value.Id;
+        else
+            return -1;
     }
 
     public int TryInteraction()
@@ -265,3 +267,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
+       

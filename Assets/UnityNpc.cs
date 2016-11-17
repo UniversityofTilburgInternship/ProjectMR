@@ -7,7 +7,10 @@ public class UnityNpc : MonoBehaviour
 {
     private NpcObject _npcObject;
 
-    public int Id => _npcObject.Id;
+    public int Id
+    {
+        get { return _npcObject.Id; }
+    }
 
     public bool IsInEventRadius
     {
@@ -36,7 +39,10 @@ public class UnityNpc : MonoBehaviour
         set { _npcObject.CurrentInteractionTarget = value; }
     }
 
-    public int InteractionId => _npcObject.TryInteraction();
+    public int InteractionId
+    {
+        get { _npcObject.TryInteraction(); }
+    }
 
     public bool IsInEvent
     {
@@ -44,7 +50,10 @@ public class UnityNpc : MonoBehaviour
         set { _npcObject.IsInEvent = value; }
     }
 
-    public Vector3 CurrentActionPosition => _npcObject.CurrentActionPosition;
+    public Vector3 CurrentActionPosition
+    {
+        get { return _npcObject.CurrentActionPosition; }
+    }
 
     public bool IsInterestedInEvent()
     {
@@ -121,4 +130,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                                                                                                                          
+                                                                                                                                                 

@@ -102,10 +102,15 @@ entity Person = {
     settings : [(int * int)]
     actionIds : [int]
     PositionAvailable : bool
+    CurrentInteractionTarget : int
 
     rule CurrentInteractionTarget =
       wait Random.Range(5.0f, 10.0f)
-      if(this.
+      if(this.GetNearbyIdleNpcId() != -1)
+       HelperFunctions.Log("Nearby npc id: " + this.GetNearbyIdleNpcId())
+       yield 1
+      else
+       yield 2
 
     rule actionIds, PositionAvailable =
       wait PositionAvailable
