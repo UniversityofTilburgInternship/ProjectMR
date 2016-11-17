@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using Assets;
 using Casanova.Prelude;
 
 
 public static class ActionsParser
 {
+    private const string INTERACTIONS = "interactions";
     private const string ACTIONS = "actions";
     private const string EVENTACTIONS = "eventActions";
     private const string EVENTS = "events";
@@ -12,30 +16,28 @@ public static class ActionsParser
     public static Dictionary<int, Event> Events = new Dictionary<int, Event>();
     public static Dictionary<int, GameAction> EventActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> NormalActions = new Dictionary<int, GameAction>();
+    public static Dictionary<int, Interaction> Interactions  = new Dictionary<int, Interaction>();
 
-    public static void ParseEventsActions()
+    public static void ParseInteractions()
     {
-        var eventActionsNodule = XmlNodule.Load(EVENTACTIONS);
-
-        foreach (var eventAction in eventActionsNodule)
+        var interactions = XmlNodule.Load(INTERACTIONS);
+        foreach (var interaction in interactions)
         {
-            var eventActionObject = new EventAction
+            var actionInstance = new Interaction
             {
-                Id = eventAction.Get("id").ToInt(),
-                ActionName = eventAction.Get("name").ToString(),
-                AnimationName = eventAction.Get("animationname").ToString(),
-                Position = eventAction.Get("position").ToVector3(),
-                PersonalityModifiers = GetNodePersonalityModifiers(eventAction)
+                Id = interaction.Get("id").ToInt(),
+                Position = interaction.Get("position").ToVector3(),
+                ActionName = interaction.Get("actionname").ToString(),
+                AnimationName = interaction.Get("animationname").ToString(),
+                PersonalityModifiers = GetNodePersonalityModifiers(interaction)
             };
-
-            EventActions.Add(eventActionObject.Id, eventActionObject);
+            Interactions.Add(actionInstance.Id, actionInstance);
         }
     }
 
     public static void ParseNormalActions()
     {
         var actions = XmlNodule.Load(ACTIONS);
-
         foreach (var action in actions)
         {
             var actionInstance = new NormalAction
@@ -53,6 +55,25 @@ public static class ActionsParser
                     actionInstance.NeighbourIds.Add(neighbour.ToInt());
             }
             NormalActions.Add(actionInstance.Id, actionInstance);
+        }
+    }
+
+    public static void ParseEventsActions()
+    {
+        var eventActionsNodule = XmlNodule.Load(EVENTACTIONS);
+
+        foreach (var eventAction in eventActionsNodule)
+        {
+            var eventActionObject = new EventAction
+            {
+                Id = eventAction.Get("id").ToInt(),
+                ActionName = eventAction.Get("name").ToString(),
+                AnimationName = eventAction.Get("animationname").ToString(),
+                Position = eventAction.Get("position").ToVector3(),
+                PersonalityModifiers = GetNodePersonalityModifiers(eventAction)
+            };
+
+            EventActions.Add(eventActionObject.Id, eventActionObject);
         }
     }
 
@@ -98,4 +119,4 @@ public static class ActionsParser
         return nodule.Get("modifiers")
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
-}                                                                                                                                 
+}                                                                                                                                          

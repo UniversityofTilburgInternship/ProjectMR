@@ -8,6 +8,8 @@
             <z>50</z>
         </position>
         <animationname>wave</animationname>
+        <neighbours>
+        </neighbours>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -52,6 +54,8 @@
             <z>20</z>
         </position>
         <animationname>salute</animationname>
+        <neighbours>
+        </neighbours>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -96,6 +100,8 @@
             <z>50</z>
         </position>
         <animationname>talking_1</animationname>
+        <neighbours>
+        </neighbours>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -140,6 +146,8 @@
             <z>50</z>
         </position>
         <animationname>talking_2</animationname>
+        <neighbours>
+        </neighbours>
         <modifiers>
             <modifier>
                 <id>0</id>

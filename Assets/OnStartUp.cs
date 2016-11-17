@@ -6,6 +6,7 @@ public class OnStartUp : MonoBehaviour
   void Awake()
   {
     ActionsParser.ParseEventsActions();
+    ActionsParser.ParseInteractions();
     ActionsParser.ParseNormalActions();
     ActionsParser.ParseEvents();
 
@@ -15,4 +16,4 @@ public class OnStartUp : MonoBehaviour
 
 }
 
-                                                                                                                                 
+                                                                                                                                          

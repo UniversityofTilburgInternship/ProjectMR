@@ -66,6 +66,10 @@ public class GenericVector
         return Points.Where((p, i) => p > v.Points[i]).Count() > Points.Count;
     }
 
+    public float BiggestPoint()
+    {
+        return Points.Max();
+    }
 
     //STATIC GENERICVECTOR METHODS
     public static float DotProduct(GenericVector vectorA, GenericVector vectorB)
@@ -94,4 +98,4 @@ public class GenericVector
     }
 }
 
-                                                                                                                                 
+                                                                                                                                          
