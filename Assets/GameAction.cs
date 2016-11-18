@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class GameAction
@@ -56,4 +55,4 @@ public class GameAction
 
 }
 
-                                                                                                                                                  
+                                                                                                                                                               

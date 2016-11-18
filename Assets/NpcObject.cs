@@ -69,7 +69,7 @@ public class NpcObject : MonoBehaviour
         }
         Animator.SetBool(animationName, true);
         StartCoroutine(StopAnimation(animationName, time));
-        return time + 2;
+        return time + 0.2f;
     }
 
     public bool IsInterestedInEvent()
@@ -176,4 +176,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                                  
+                                                                                                                                                               

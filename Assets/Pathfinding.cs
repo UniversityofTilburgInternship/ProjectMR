@@ -76,7 +76,6 @@ public class Pathfinding : MonoBehaviour
             waypoints = RetracePath(startNode, targetNode);
 
         }
-
         _requestManager.FinishedProcessingPath(waypoints, pathSuccess, targetPos);
     }
 
@@ -112,4 +111,4 @@ public class Pathfinding : MonoBehaviour
         return waypoints.ToArray();
     }
 }
-                                                                                                                                                  
+                                                                                                                                                               
