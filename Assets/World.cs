@@ -21,12 +21,10 @@ public void Start()
 		Persons = (
 
 Enumerable.Empty<Person>()).ToList<Person>();
-		MainPlayer = new Player(eventController);
 		AvatarGen = ___avaGen00;
 		
 }
 		public AvatarGenerator AvatarGen;
-	public Player MainPlayer;
 	public List<Person> __Persons;
 	public List<Person> Persons{  get { return  __Persons; }
   set{ __Persons = value;
@@ -49,7 +47,6 @@ System.DateTime init_time = System.DateTime.Now;
 	public void Update(float dt, World world) {
 var t = System.DateTime.Now;
 
-		MainPlayer.Update(dt, world);
 		for(int x0 = 0; x0 < Persons.Count; x0++) { 
 			Persons[x0].Update(dt, world);
 		}
@@ -786,4 +783,4 @@ return;
 
 
 }
-}    
+}                                          

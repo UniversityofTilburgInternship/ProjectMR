@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Casanova.Prelude;
-using UnityEditor;
 using UnityEngine;
 
 public static class HelperFunctions
@@ -76,4 +75,4 @@ public static class HelperFunctions
         return singlePersonalities;
     }
 }
-                                                                                                                                 
+                                                                                                                                                                                                                                                                    
