@@ -34,6 +34,14 @@ public class UnityNpc : MonoBehaviour
         }
     }
 
+
+
+
+    public int GetNearbyIdleNpcId()
+    {
+        return _npcObject.GetNearbyIdleNpcId();
+    }
+
     public int InteractionTarget
     {
         set { _npcObject.CurrentInteractionTarget = value; }
@@ -41,8 +49,10 @@ public class UnityNpc : MonoBehaviour
 
     public int InteractionId
     {
-        get { _npcObject.TryInteraction(); }
+        get { return _npcObject.TrySendInteraction(); }
     }
+
+
 
     public bool IsInEvent
     {
@@ -130,4 +140,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                                                                                                                                 
+                                                                                                                                                                                         

@@ -102,12 +102,12 @@ entity Person = {
     settings : [(int * int)]
     actionIds : [int]
     PositionAvailable : bool
-    CurrentInteractionTarget : int
+    InteractionTargetId : int
 
-    rule CurrentInteractionTarget =
+    rule InteractionTargetId =
       wait Random.Range(5.0f, 10.0f)
-      if(this.GetNearbyIdleNpcId() != -1)
-       HelperFunctions.Log("Nearby npc id: " + this.GetNearbyIdleNpcId())
+      if (UnityNpc.GetNearbyIdleNpcId() = -1) then
+       HelperFunctions.Log("Nearby npc id: " + UnityNpc.GetNearbyIdleNpcId())
        yield 1
       else
        yield 2
@@ -173,6 +173,7 @@ entity Person = {
         settings = Settings
         UnityNpc = unity_npc
         PositionAvailable = false
+        InteractionTargetId = -1
         actionIds = []
     }
 }

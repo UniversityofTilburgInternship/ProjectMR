@@ -32,6 +32,7 @@ public class GameAction
         var randomZ = Position.z + Random.Range(-1.5f, 1.5f);
         var returnVector = new Vector3(randomX, 0.0f, randomZ);
 
+        Debug.Log("grid.IsVectorWalkable = " + grid.IsVectorWalkable(returnVector));
 
         if (grid.IsVectorWalkable(returnVector))
         {
@@ -56,4 +57,4 @@ public class GameAction
 
 }
 
-                                                                                                                                                 
+                                                                                                                                                                                         

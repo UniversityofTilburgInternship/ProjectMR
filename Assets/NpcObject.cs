@@ -208,7 +208,7 @@ public class NpcObject : MonoBehaviour
             return -1;
     }
 
-    public int TryInteraction()
+    public int TrySendInteraction()
     {
         if (IsExtravert())
         {
@@ -267,4 +267,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-       
+                                               

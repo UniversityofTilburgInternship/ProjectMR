@@ -23,15 +23,15 @@ public static class ActionsParser
         var interactions = XmlNodule.Load(INTERACTIONS);
         foreach (var interaction in interactions)
         {
-            var actionInstance = new Interaction
+            var interactionInstance = new Interaction
             {
                 Id = interaction.Get("id").ToInt(),
                 Position = interaction.Get("position").ToVector3(),
-                ActionName = interaction.Get("actionname").ToString(),
+                ActionName = interaction.Get("name").ToString(),
                 AnimationName = interaction.Get("animationname").ToString(),
                 PersonalityModifiers = GetNodePersonalityModifiers(interaction)
             };
-            Interactions.Add(actionInstance.Id, actionInstance);
+            Interactions.Add(interactionInstance.Id, interactionInstance);
         }
     }
 
@@ -119,4 +119,4 @@ public static class ActionsParser
         return nodule.Get("modifiers")
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
-}                                                                                                                                                 
+}                                                                                                                                                                                         
