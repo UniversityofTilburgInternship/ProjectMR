@@ -1,41 +1,76 @@
 <actions>
     <action>
+        <neighbours>
+            <neighbour>3</neighbour>
+            <neighbour>5</neighbour>
+            <neighbour>6</neighbour>
+            <neighbour>2</neighbour>
+        </neighbours>
+        <modifiers>
+            <modifier>
+                <id>1</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>5</id>
+                <value>5</value>
+            </modifier>
+            <modifier>
+                <id>0</id>
+                <value>2</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>6</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
+                <id>7</id>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
+            </modifier>
+        </modifiers>
+        <position>
+            <x>18</x>
+            <y>0</y>
+            <z>0</z>
+        </position>
         <actionId>0</actionId>
-        <position>
-            <x>30</x>
-            <y>0</y>
-            <z>40</z>
-        </position>
-        <actionname>Egoistic</actionname>
+        <actionname>wave</actionname>
         <animationname>wave</animationname>
+    </action>
+    <action>
         <neighbours>
-            <neighbour>1</neighbour>
-            <neighbour>2</neighbour>
             <neighbour>3</neighbour>
+            <neighbour>6</neighbour>
+            <neighbour>5</neighbour>
+            <neighbour>4</neighbour>
         </neighbours>
         <modifiers>
             <modifier>
-                <id>0</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
                 <id>1</id>
-                <value>20</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
                 <value>0</value>
             </modifier>
             <modifier>
                 <id>5</id>
+                <value>5</value>
+            </modifier>
+            <modifier>
+                <id>0</id>
+                <value>2</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
                 <value>0</value>
             </modifier>
             <modifier>
@@ -43,340 +78,302 @@
                 <value>0</value>
             </modifier>
             <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
                 <id>7</id>
-                <value>0</value>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
             </modifier>
         </modifiers>
-    </action>
-    <action>
+        <position>
+            <x>14</x>
+            <y>0</y>
+            <z>5</z>
+        </position>
         <actionId>1</actionId>
-        <position>
-            <x>25</x>
-            <y>0</y>
-            <z>10</z>
-        </position>
-        <actionname>extraversion</actionname>
-        <animationname>yawn</animationname>
-        <neighbours>
-            <neighbour>0</neighbour>
-            <neighbour>4</neighbour>
-            <neighbour>5</neighbour>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>20</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>6</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>7</id>
-                <value>0</value>
-            </modifier>
-        </modifiers>
-    </action>
-    <action>
-        <actionId>2</actionId>
-        <position>
-            <x>13</x>
-            <y>0</y>
-            <z>28</z>
-        </position>
-        <actionname>Thoroughness</actionname>
-        <animationname>pointing</animationname>
-        <neighbours>
-            <neighbour>0</neighbour>
-            <neighbour>4</neighbour>
-            <neighbour>5</neighbour>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>20</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>6</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>7</id>
-                <value>0</value>
-            </modifier>
-        </modifiers>
-    </action>
-    <action>
-        <actionId>3</actionId>
-        <position>
-            <x>25</x>
-            <y>0</y>
-            <z>25</z>
-        </position>
-        <actionname>EmotionalStability</actionname>
-        <animationname>talking</animationname>
-        <neighbours>
-            <neighbour>0</neighbour>
-            <neighbour>5</neighbour>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
-                <value>20</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>6</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>7</id>
-                <value>0</value>
-            </modifier>
-        </modifiers>
-    </action>
-    <action>
-        <actionId>4</actionId>
-        <position>
-            <x>31</x>
-            <y>0</y>
-            <z>12</z>
-        </position>
-        <actionname>Introversion</actionname>
-        <animationname>looking</animationname>
-        <neighbours>
-            <neighbour>1</neighbour>
-            <neighbour>2</neighbour>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
-                <value>20</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>6</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>7</id>
-                <value>0</value>
-            </modifier>
-        </modifiers>
-    </action>
-    <action>
-        <actionId>5</actionId>
-        <position>
-            <x>18</x>
-            <y>0</y>
-            <z>3</z>
-        </position>
-        <actionname>Altrouistic</actionname>
+        <actionname>zit</actionname>
         <animationname>salute</animationname>
+    </action>
+    <action>
         <neighbours>
             <neighbour>1</neighbour>
-            <neighbour>2</neighbour>
-            <neighbour>3</neighbour>
+            <neighbour>0</neighbour>
+            <neighbour>7</neighbour>
+            <neighbour>6</neighbour>
         </neighbours>
         <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>0</value>
-            </modifier>
             <modifier>
                 <id>1</id>
                 <value>0</value>
             </modifier>
             <modifier>
-                <id>2</id>
-                <value>0</value>
+                <id>5</id>
+                <value>5</value>
             </modifier>
             <modifier>
-                <id>3</id>
-                <value>0</value>
+                <id>0</id>
+                <value>2</value>
             </modifier>
             <modifier>
                 <id>4</id>
                 <value>0</value>
             </modifier>
             <modifier>
+                <id>6</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
+                <id>7</id>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
+            </modifier>
+        </modifiers>
+        <position>
+            <x>-9</x>
+            <y>0</y>
+            <z>-3</z>
+        </position>
+        <actionId>2</actionId>
+        <actionname>lijk</actionname>
+        <animationname>pointing</animationname>
+    </action>
+    <action>
+        <neighbours>
+            <neighbour>0</neighbour>
+            <neighbour>1</neighbour>
+            <neighbour>7</neighbour>
+            <neighbour>8</neighbour>
+        </neighbours>
+        <modifiers>
+            <modifier>
+                <id>1</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
                 <id>5</id>
-                <value>20</value>
+                <value>5</value>
+            </modifier>
+            <modifier>
+                <id>0</id>
+                <value>2</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
+                <value>0</value>
             </modifier>
             <modifier>
                 <id>6</id>
                 <value>0</value>
             </modifier>
             <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
                 <id>7</id>
-                <value>0</value>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
             </modifier>
         </modifiers>
+        <position>
+            <x>-7</x>
+            <y>0</y>
+            <z>4</z>
+        </position>
+        <actionId>3</actionId>
+        <actionname>presentatie</actionname>
+        <animationname>talking</animationname>
     </action>
     <action>
+        <neighbours>
+            <neighbour>0</neighbour>
+            <neighbour>1</neighbour>
+            <neighbour>7</neighbour>
+            <neighbour>3</neighbour>
+            <neighbour>8</neighbour>
+            <neighbour>2</neighbour>
+        </neighbours>
+        <modifiers>
+            <modifier>
+                <id>1</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>5</id>
+                <value>5</value>
+            </modifier>
+            <modifier>
+                <id>0</id>
+                <value>2</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>6</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
+                <id>7</id>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
+            </modifier>
+        </modifiers>
+        <position>
+            <x>7</x>
+            <y>0</y>
+            <z>-5</z>
+        </position>
+        <actionId>4</actionId>
+        <actionname>aanrecht</actionname>
+        <animationname>looking</animationname>
+    </action>
+    <action>
+        <neighbours>
+            <neighbour>0</neighbour>
+            <neighbour>1</neighbour>
+            <neighbour>2</neighbour>
+            <neighbour>7</neighbour>
+            <neighbour>4</neighbour>
+        </neighbours>
+        <modifiers>
+            <modifier>
+                <id>1</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>5</id>
+                <value>5</value>
+            </modifier>
+            <modifier>
+                <id>0</id>
+                <value>2</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>6</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
+                <id>7</id>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
+            </modifier>
+        </modifiers>
+        <position>
+            <x>-2</x>
+            <y>0</y>
+            <z>-7</z>
+        </position>
+        <actionId>5</actionId>
+        <actionname>whiteboard</actionname>
+        <animationname>salute</animationname>
+    </action>
+    <action>
+        <neighbours>
+            <neighbour>0</neighbour>
+            <neighbour>1</neighbour>
+            <neighbour>7</neighbour>
+            <neighbour>4</neighbour>
+        </neighbours>
+        <modifiers>
+            <modifier>
+                <id>1</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>5</id>
+                <value>5</value>
+            </modifier>
+            <modifier>
+                <id>0</id>
+                <value>2</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>6</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
+                <id>7</id>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
+            </modifier>
+        </modifiers>
+        <position>
+            <x>-5</x>
+            <y>0</y>
+            <z>13</z>
+        </position>
         <actionId>6</actionId>
-        <position>
-            <x>18</x>
-            <y>0</y>
-            <z>35</z>
-        </position>
-        <actionname>chaotic</actionname>
+        <actionname>hoektafels</actionname>
         <animationname>thinking</animationname>
-        <neighbours>
-            <neighbour>1</neighbour>
-            <neighbour>2</neighbour>
-            <neighbour>3</neighbour>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>6</id>
-                <value>20</value>
-            </modifier>
-            <modifier>
-                <id>7</id>
-                <value>0</value>
-            </modifier>
-        </modifiers>
     </action>
     <action>
-        <actionId>7</actionId>
-        <position>
-            <x>18</x>
-            <y>0</y>
-            <z>3</z>
-        </position>
-        <actionname>Neurotistic</actionname>
-        <animationname>lifting</animationname>
         <neighbours>
+            <neighbour>0</neighbour>
             <neighbour>1</neighbour>
-            <neighbour>2</neighbour>
             <neighbour>3</neighbour>
+            <neighbour>8</neighbour>
         </neighbours>
         <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>0</value>
-            </modifier>
             <modifier>
                 <id>1</id>
                 <value>0</value>
             </modifier>
             <modifier>
-                <id>2</id>
-                <value>0</value>
+                <id>5</id>
+                <value>5</value>
             </modifier>
             <modifier>
-                <id>3</id>
-                <value>0</value>
+                <id>0</id>
+                <value>2</value>
             </modifier>
             <modifier>
                 <id>4</id>
-                <value>0</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
                 <value>0</value>
             </modifier>
             <modifier>
@@ -384,9 +381,76 @@
                 <value>0</value>
             </modifier>
             <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
                 <id>7</id>
-                <value>20</value>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
             </modifier>
         </modifiers>
+        <position>
+            <x>0</x>
+            <y>0</y>
+            <z>2</z>
+        </position>
+        <actionId>7</actionId>
+        <actionname>middenkamer</actionname>
+        <animationname>lifting</animationname>
+    </action>
+    <action>
+        <neighbours>
+            <neighbour>0</neighbour>
+            <neighbour>1</neighbour>
+            <neighbour>7</neighbour>
+            <neighbour>3</neighbour>
+            <neighbour>2</neighbour>
+        </neighbours>
+        <modifiers>
+            <modifier>
+                <id>1</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>5</id>
+                <value>5</value>
+            </modifier>
+            <modifier>
+                <id>0</id>
+                <value>2</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>6</id>
+                <value>0</value>
+            </modifier>
+            <modifier>
+                <id>2</id>
+                <value>1</value>
+            </modifier>
+            <modifier>
+                <id>7</id>
+                <value>6</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>3</value>
+            </modifier>
+        </modifiers>
+        <position>
+            <x>6</x>
+            <y>0</y>
+            <z>8</z>
+        </position>
+        <actionId>8</actionId>
+        <actionname>tafels</actionname>
+        <animationname>talking_2</animationname>
     </action>
 </actions>
