@@ -67,7 +67,7 @@ public class Grid : MonoBehaviour
         {
             foreach (var node in _grid)
             {
-                Gizmos.color = (node.IsWalkable) ? Color.white : Color.red;
+                Gizmos.color = node.IsWalkable ? Color.white : Color.red;
                 Gizmos.DrawCube(node.WorldPosition, Vector3.one * (_nodeDiameter - .1f));
             }
         }
@@ -95,6 +95,9 @@ public class Grid : MonoBehaviour
     {
         return !(Physics.CheckSphere(vector, NodeRadius, UnwalkableMask));
     }
-}                                                                                                                                                                                                                                                                                                           
 
-                                                                                                                                                                                         
+    public bool IsWalkable(Vector3 vector)
+    {
+        return NodeFromWorldPoint(vector).IsWalkable;
+    }
+}                                                                                                                                                                            

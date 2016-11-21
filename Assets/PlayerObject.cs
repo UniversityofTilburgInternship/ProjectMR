@@ -25,6 +25,8 @@ namespace Assets
             var charCtrl = GetComponent<CharacterController>();
             var origin = transform.position + charCtrl.center;
 
+            Debug.Log("IsLookingAt()");
+
             if (Physics.SphereCast(origin, 1, transform.forward, out hit, 5))
             {
                 return anotherGameObject.gameObject == hit.collider.gameObject;
@@ -42,4 +44,4 @@ namespace Assets
         }
     }
 }
-                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                     

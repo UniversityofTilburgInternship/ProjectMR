@@ -3,7 +3,6 @@ using Casanova.Prelude;
 using UnityEngine;
 
 public class EventObject : MonoBehaviour
-
 {
     public int AmountOfParticipants;
     public int Completeness;
@@ -23,7 +22,7 @@ public class EventObject : MonoBehaviour
 
     public static EventObject Instantiate(Event sourceEvent)
     {
-        var gameObjectModelName = sourceEvent.ModelName.Equals("") ? "Person1" : sourceEvent.ModelName;
+        var gameObjectModelName = sourceEvent.ModelName;
      
         var eventObject = (Instantiate(
                 Resources.Load(gameObjectModelName),
@@ -37,7 +36,7 @@ public class EventObject : MonoBehaviour
         eventObject.AnimationName = sourceEvent.AnimationName;
         eventObject.ModelName = sourceEvent.ModelName;
         eventObject.Name = sourceEvent.Name;
-        eventObject.Sound = sourceEvent.Sound;
+        eventObject.Sound = sourceEvent.Sound;  
         eventObject.Radius = sourceEvent.Radius;
         eventObject.IsPlayerControlled = sourceEvent.IsPlayerControlled;
         eventObject.AssociatedActions = sourceEvent.AssociatedActions;
@@ -53,4 +52,4 @@ public class EventObject : MonoBehaviour
     }
 }
 
-                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                     

@@ -42,59 +42,18 @@
   </event>
   <event>
     <id>1</id>
-    <name>Guitar</name>
+    <name>light_switch</name>
     <playercontrolled>true</playercontrolled>
     <radius>500</radius>
     <position>
-      <x>30</x>
+      <x>0</x>
       <y>1</y>
-      <z>20</z>
+      <z>2</z>
     </position>
-    <modelname>PlayerEvent</modelname>
-    <animationname></animationname>
-    <sound>Guitar.mp3</sound>
-    <interestlevel>0</interestlevel>
-    <maxamountofparticipants>3</maxamountofparticipants>
-    <associatedactions>
-      <id>1</id>
-    </associatedactions>
-    <personalityMinimums>
-      <minimum>
-        <id>0</id>
-        <value>0</value>
-      </minimum>
-      <minimum>
-        <id>1</id>
-        <value>0</value>
-      </minimum>
-      <minimum>
-        <id>2</id>
-        <value>0</value>
-      </minimum>
-      <minimum>
-        <id>3</id>
-        <value>0</value>
-      </minimum>
-      <minimum>
-        <id>4</id>
-        <value>0</value>
-      </minimum>
-    </personalityMinimums>
-  </event>
-  <event>
-    <id>2</id>
-    <name>Guitar</name>
-    <playercontrolled>true</playercontrolled>
-    <radius>500</radius>
-    <position>
-      <x>30</x>
-      <y>1</y>
-      <z>50</z>
-    </position>
-    <modelname>PlayerEvent</modelname>
-    <animationname></animationname>
-    <sound>Guitar.mp3</sound>
-    <interestlevel>0</interestlevel>
+    <modelname>light_switch</modelname>
+    <animationname>light_switch</animationname>
+    <sound>light_switch.mp3</sound>
+    <interestlevel>1</interestlevel>
     <maxamountofparticipants>3</maxamountofparticipants>
     <associatedactions>
       <id>1</id>

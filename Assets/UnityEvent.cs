@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using Casanova.Prelude;
 using UnityEngine;
 
 
 public class UnityEvent
 {
-    private EventObject _eventObject;
+    public EventObject _eventObject;
 
     public bool IsDestroyed
     {
@@ -85,11 +86,15 @@ public class UnityEvent
     }
 
 
-    public static UnityEvent SpawnRandomEvent()
+    public static UnityEvent SpawnRandomEvent(string type)
     {
-        var unityEvent = new UnityEvent {_eventObject = EventController.SpawnRandomEvent()};
-
-        return unityEvent;
+        if (type.Equals("playerEvent"))
+            return new UnityEvent {_eventObject = EventController.GetPlayerEvent()};
+        else
+        {
+            var unityEvent = new UnityEvent {_eventObject = EventController.SpawnRandomEvent()};
+            return unityEvent;
+        }
     }
 
     public void Destroy()
@@ -97,4 +102,4 @@ public class UnityEvent
         _eventObject.Destroy();
     }
 }
-                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                    

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public static class EventController
@@ -7,9 +9,26 @@ public static class EventController
     private static readonly HashSet<int> PreviouslyUsedIndexes = new HashSet<int>();
     private static readonly HashSet<int> ActiveEventIds = new HashSet<int>();
     public static Dictionary<int, EventObject> ActiveEvents = new Dictionary<int, EventObject>();
+    public static Dictionary<int, EventObject> SpawnedPlayerEvents = new Dictionary<int, EventObject>();
     public static readonly Dictionary<int, EventObject> PlayerEvents = new Dictionary<int, EventObject>();
 
+    public static EventObject GetPlayerEvent()
+    {
+        while (true)
+        {
+            var randomIndex = Random.Range(0, PlayerEvents.Count - 1);
+            Debug.Log("randomIndex = " + randomIndex);
+            Debug.Log("playerEvent key = " + PlayerEvents.Select(x => x.Key).ElementAt(0));
+            var potentialPlayerEvent = PlayerEvents.ElementAt(randomIndex).Value;
 
+            //might run out
+            if (!SpawnedPlayerEvents.ContainsValue(potentialPlayerEvent))
+            {
+                SpawnedPlayerEvents.Add(randomIndex, potentialPlayerEvent);
+                return potentialPlayerEvent;
+            }
+        }
+    }
 
     public static EventObject SpawnRandomEvent()
     {
@@ -28,12 +47,16 @@ public static class EventController
 
     public static void SpawnAllPlayerEvents()
     {
-        var playerEvents = ActionsParser.Events.Values.Where(x => x.IsPlayerControlled).ToList();
-        foreach (var playerEvent in playerEvents)
+        foreach (var playerEvent in ActionsParser.PlayerEvents.Values)
         {
             var eventObject = EventObject.Instantiate(playerEvent);
             PlayerEvents.Add(eventObject.Id, eventObject);
         }
+    }
+
+    public static void RemoveFromActiveEvents(int eventId)
+    {
+        ActiveEvents.Remove(eventId);
     }
 
     public static bool IsEventAvailable()
@@ -59,6 +82,4 @@ public static class EventController
 
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
-}
-
-                                                                                                                                                                                         
+}                                     

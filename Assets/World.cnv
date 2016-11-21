@@ -35,17 +35,14 @@ inherit UnityPlayer
 ref eventController : EventController
 isTriggeringEvent : bool
 
-  rule isTriggeringEvent =
-    yield isTriggeringEvent
-    for event in eventController.PlayerEventsList do
+  rule eventController.CurrentEvents =
+    for event in eventController.AllPlayerEvents do
       if (Input.GetKey(KeyCode.F)) then
-        if (UnityPlayer.IsLookingAt(event.gameObject)) then
+        if (UnityPlayer.IsLookingAt(event._eventObject.gameObject)) then
           HelperFunctions.Log("Player triggered event")
-          UnityPlayer.TriggerEvent(event)
-          yield true
+          UnityPlayer.TriggerEvent(event._eventObject)
+          yield event :: eventController.CurrentEvents
           wait 1.0fe
-        else
-          yield false
 
   Create(controller:EventController) =
   let unity_player = UnityPlayer.Spawn()
@@ -58,19 +55,31 @@ isTriggeringEvent : bool
 
 entity Event = {
 inherit UnityEvent
+ref eventController : EventController
 
-  //Maybe make this a bit more random?
+  rule eventController.CurrentEvents =
+    yield eventController.CurrentEvents
+
+  //wait until event is also in currentEvents (for playerEvents)
   rule Completeness =
-      wait 1.0f
+      wait 3.0f
+      wait eventController.CurrentEvents.Contains(this)
       HelperFunctions.Log(Completeness)
       yield Completeness + 10
       if(Completeness >= 100) then
-        UnityEvent.Destroy()
+        //we do not completely destroy the prefab if it is a player event; then it needs to be re-accessible.
+        if(UnityEvent.IsPlayerControlled) then
+          UnityEventController.RemoveFromActiveEvents(this.Id)
+          yield Completeness
+        else
+          UnityEvent.Destroy()
+          yield Completeness
 
-  Create() =
-  let unity_event = UnityEvent.SpawnRandomEvent()
+  Create(Type : string, controller:EventController) =
+  let unity_event = UnityEvent.SpawnRandomEvent(Type)
   {
     UnityEvent = unity_event
+    eventController = controller
   }
 }
 
@@ -78,12 +87,18 @@ inherit UnityEvent
 entity EventController = {
 inherit UnityEventController
 CurrentEvents : [Event]
+AllPlayerEvents : [Event]
+
+  rule AllPlayerEvents =
+    for x in[0..PlayerEventsList.Count - 1] do
+      yield new Event("playerEvent", this) :: AllPlayerEvents
+    wait false
 
   rule CurrentEvents =
     wait (50.0f)
     HelperFunctions.Log("Spawned event!")
     wait UnityEventController.IsEventAvailable()
-    yield new Event() :: CurrentEvents
+    yield new Event("normalEvent", this) :: CurrentEvents
 
   rule CurrentEvents =
     wait (CurrentEvents.Count > 0)
@@ -93,6 +108,7 @@ CurrentEvents : [Event]
 
   Create() =
   {
+    AllPlayerEvents = []
     CurrentEvents = []
   }
 }
@@ -106,7 +122,7 @@ entity Person = {
 
     rule InteractionTargetId =
       wait Random.Range(5.0f, 10.0f)
-      if (UnityNpc.GetNearbyIdleNpcId() = -1) then
+      if not (UnityNpc.GetNearbyIdleNpcId() = -1) then
        HelperFunctions.Log("Nearby npc id: " + UnityNpc.GetNearbyIdleNpcId())
        yield 1
       else
@@ -128,7 +144,7 @@ entity Person = {
         UnityNpc.RemoveClaimToPosition(actionToExecute)
         yield [for id in actionIds do
                 where (not (id = actionToExecute))
-                select id], false     
+                select id], false
 
 
     rule actionIds, PositionAvailable =

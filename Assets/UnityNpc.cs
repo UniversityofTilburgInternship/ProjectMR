@@ -134,10 +134,16 @@ public class UnityNpc : MonoBehaviour
 
     private static Dictionary<int, GameAction> GetAssociatedActionsForEventId(int eventId)
     {
-        var currentEvent = ActionsParser.Events[eventId];
 
+        Event currentEvent;
+
+        if (ActionsParser.Events.ContainsKey(eventId))
+            currentEvent = ActionsParser.Events[eventId];
+        else
+            currentEvent = ActionsParser.PlayerEvents[eventId];
+        
         return
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                    

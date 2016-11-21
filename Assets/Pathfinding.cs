@@ -28,19 +28,17 @@ public class Pathfinding : MonoBehaviour
         var targetNode = _grid.NodeFromWorldPoint(targetPos);
 
 
-        //targetNode.IsWalkable sometimes becomes false so it fucks up.
-        if (startNode.IsWalkable && targetNode.IsWalkable)
+        if (targetNode.IsWalkable)
         {
             var openSet = new Heap<Node>(_grid.MaxSize);
             var closedSet = new HashSet<Node>();
             openSet.Add(startNode);
 
             while (openSet.Count > 0)
-            {
+            {  
                 var currentNode = openSet.RemoveFirst();
                 closedSet.Add(currentNode);
 
-                //This is probably the problem.
                 if (currentNode == targetNode)
                 {
                     pathSuccess = true;
@@ -112,4 +110,4 @@ public class Pathfinding : MonoBehaviour
         return waypoints.ToArray();
     }
 }
-                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                     

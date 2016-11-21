@@ -14,6 +14,7 @@ public static class ActionsParser
     private const string EVENTS = "events";
 
     public static Dictionary<int, Event> Events = new Dictionary<int, Event>();
+    public static Dictionary<int, Event> PlayerEvents = new Dictionary<int, Event>();
     public static Dictionary<int, GameAction> EventActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> NormalActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, Interaction> Interactions  = new Dictionary<int, Interaction>();
@@ -110,7 +111,10 @@ public static class ActionsParser
             var associatedActionIds = Event.Get("associatedactions").Select(actionId => actionId.ToInt()).ToList();
             eventObject.AssociatedActions = associatedActionIds;
 
-            Events.Add(eventObject.Id, eventObject);
+            if (eventObject.IsPlayerControlled)
+                PlayerEvents.Add(eventObject.Id, eventObject);
+            else
+                Events.Add(eventObject.Id, eventObject);
         }
     }
 
@@ -119,4 +123,4 @@ public static class ActionsParser
         return nodule.Get("modifiers")
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
-}                                                                                                                                                                                         
+}                                                                                                                                                                                                                                                                                                                                                                     

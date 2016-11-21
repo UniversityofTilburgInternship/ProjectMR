@@ -155,7 +155,7 @@ public Player(EventController controller)
 	public System.Boolean useGUILayout{  get { return UnityPlayer.useGUILayout; }
   set{UnityPlayer.useGUILayout = value; }
  }
-	public EventObject ___event00;
+	public Event ___event00;
 	public System.Int32 counter10;
 	public System.Single count_down1;
 	public void Update(float dt, World world) {
@@ -174,31 +174,27 @@ frame = World.frame;
 	{
 
 	case -1:
-	isTriggeringEvent = isTriggeringEvent;
-	s0 = 0;
-return;
-	case 0:
 	
 	counter10 = -1;
-	if((((eventController.PlayerEventsList).Count) == (0)))
+	if((((eventController.AllPlayerEvents).Count) == (0)))
 	{
 
 	s0 = -1;
 return;	}else
 	{
 
-	___event00 = (eventController.PlayerEventsList)[0];
+	___event00 = (eventController.AllPlayerEvents)[0];
 	goto case 1;	}
 	case 1:
 	counter10 = ((counter10) + (1));
-	if((((((eventController.PlayerEventsList).Count) == (counter10))) || (((counter10) > ((eventController.PlayerEventsList).Count)))))
+	if((((((eventController.AllPlayerEvents).Count) == (counter10))) || (((counter10) > ((eventController.AllPlayerEvents).Count)))))
 	{
 
 	s0 = -1;
 return;	}else
 	{
 
-	___event00 = (eventController.PlayerEventsList)[counter10];
+	___event00 = (eventController.AllPlayerEvents)[counter10];
 	goto case 2;	}
 	case 2:
 	if(UnityEngine.Input.GetKey(KeyCode.F))
@@ -210,37 +206,34 @@ return;	}else
 	s0 = 1;
 return;	}
 	case 4:
-	if(UnityPlayer.IsLookingAt(___event00.gameObject))
+	if(UnityPlayer.IsLookingAt(___event00._eventObject.gameObject))
 	{
 
-	goto case 5;	}else
-	{
-
-	goto case 6;	}
-	case 5:
-	HelperFunctions.Log("Player triggered event");
-	UnityPlayer.TriggerEvent(___event00);
-	isTriggeringEvent = true;
-	s0 = 8;
-return;
-	case 8:
-	count_down1 = 0;
-	goto case 9;
-	case 9:
-	if(((count_down1) > (0f)))
-	{
-
-	count_down1 = ((count_down1) - (dt));
-	s0 = 9;
-return;	}else
+	goto case 6;	}else
 	{
 
 	s0 = 1;
 return;	}
 	case 6:
-	isTriggeringEvent = false;
+	HelperFunctions.Log("Player triggered event");
+	UnityPlayer.TriggerEvent(___event00._eventObject);
+	eventController.CurrentEvents = new Cons<Event>(___event00, (eventController.CurrentEvents)).ToList<Event>();
+	s0 = 7;
+return;
+	case 7:
+	count_down1 = 0;
+	goto case 8;
+	case 8:
+	if(((count_down1) > (0f)))
+	{
+
+	count_down1 = ((count_down1) - (dt));
+	s0 = 8;
+return;	}else
+	{
+
 	s0 = 1;
-return;	
+return;	}	
 	default: return;}}
 	
 
@@ -253,12 +246,15 @@ return;
 public class Event{
 public int frame;
 public bool JustEntered = true;
+private System.String Type;
+private EventController controller;
 	public int ID;
-public Event()
+public Event(System.String Type, EventController controller)
 	{JustEntered = false;
  frame = World.frame;
 		UnityEvent ___unity_event00;
-		___unity_event00 = UnityEvent.SpawnRandomEvent();
+		___unity_event00 = UnityEvent.SpawnRandomEvent(Type);
+		eventController = controller;
 		UnityEvent = ___unity_event00;
 		
 }
@@ -300,12 +296,16 @@ public Event()
   set{UnityEvent.Radius = value; }
  }
 	public UnityEvent UnityEvent;
+	public EventObject _eventObject{  get { return UnityEvent._eventObject; }
+  set{UnityEvent._eventObject = value; }
+ }
+	public EventController eventController;
 	public System.Single count_down2;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
 		this.Rule0(dt, world);
-
+		this.Rule1(dt, world);
 	}
 
 
@@ -317,19 +317,28 @@ frame = World.frame;
 	{
 
 	case -1:
-	count_down2 = 1f;
-	goto case 6;
-	case 6:
+	count_down2 = 3f;
+	goto case 13;
+	case 13:
 	if(((count_down2) > (0f)))
 	{
 
 	count_down2 = ((count_down2) - (dt));
-	s0 = 6;
+	s0 = 13;
 return;	}else
 	{
 
-	goto case 4;	}
-	case 4:
+	goto case 11;	}
+	case 11:
+	if(!(eventController.CurrentEvents.Contains(this)))
+	{
+
+	s0 = 11;
+return;	}else
+	{
+
+	goto case 10;	}
+	case 10:
 	HelperFunctions.Log(Completeness);
 	Completeness = ((Completeness) + (10));
 	s0 = 0;
@@ -344,12 +353,36 @@ return;
 	s0 = -1;
 return;	}
 	case 1:
+	if(UnityEvent.IsPlayerControlled)
+	{
+
+	goto case 2;	}else
+	{
+
+	goto case 3;	}
+	case 2:
+	UnityEventController.RemoveFromActiveEvents(this.Id);
+	Completeness = Completeness;
+	s0 = -1;
+return;
+	case 3:
 	UnityEvent.Destroy();
+	Completeness = Completeness;
 	s0 = -1;
 return;	
 	default: return;}}
 	
 
+	int s1=-1;
+	public void Rule1(float dt, World world){ switch (s1)
+	{
+
+	case -1:
+	eventController.CurrentEvents = eventController.CurrentEvents;
+	s1 = -1;
+return;	
+	default: return;}}
+	
 
 
 
@@ -367,18 +400,28 @@ public EventController()
 		CurrentEvents = (
 
 Enumerable.Empty<Event>()).ToList<Event>();
+		AllPlayerEvents = (
+
+Enumerable.Empty<Event>()).ToList<Event>();
 		
 }
-		public List<Event> CurrentEvents;
+		public List<Event> AllPlayerEvents;
+	public List<Event> CurrentEvents;
 	public System.Collections.Generic.List<EventObject> PlayerEventsList{  get { return UnityEventController.PlayerEventsList; }
  }
 	public UnityEventController UnityEventController;
 	public System.Single count_down3;
+	public System.Int32 ___x21;
+	public System.Int32 counter22;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
 		this.Rule0(dt, world);
 		this.Rule1(dt, world);
+		this.Rule2(dt, world);
+		for(int x0 = 0; x0 < AllPlayerEvents.Count; x0++) { 
+			AllPlayerEvents[x0].Update(dt, world);
+		}
 		for(int x0 = 0; x0 < CurrentEvents.Count; x0++) { 
 			CurrentEvents[x0].Update(dt, world);
 		}
@@ -404,9 +447,9 @@ return;	}else
 	case 0:
 	CurrentEvents = (
 
-(CurrentEvents).Select(__ContextSymbol5 => new { ___event01 = __ContextSymbol5 })
-.Where(__ContextSymbol6 => !(__ContextSymbol6.___event01.IsDestroyed))
-.Select(__ContextSymbol7 => __ContextSymbol7.___event01)
+(CurrentEvents).Select(__ContextSymbol7 => new { ___event01 = __ContextSymbol7 })
+.Where(__ContextSymbol8 => !(__ContextSymbol8.___event01.IsDestroyed))
+.Select(__ContextSymbol9 => __ContextSymbol9.___event01)
 .ToList<Event>()).ToList<Event>();
 	s0 = -1;
 return;	
@@ -443,9 +486,51 @@ return;	}else
 
 	goto case 0;	}
 	case 0:
-	CurrentEvents = new Cons<Event>(new Event(), (CurrentEvents)).ToList<Event>();
+	CurrentEvents = new Cons<Event>(new Event("normalEvent",this), (CurrentEvents)).ToList<Event>();
 	s1 = -1;
 return;	
+	default: return;}}
+	
+
+	int s2=-1;
+	public void Rule2(float dt, World world){ switch (s2)
+	{
+
+	case -1:
+	
+	counter22 = -1;
+	if((((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count) == (0)))
+	{
+
+	goto case 0;	}else
+	{
+
+	___x21 = (Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>())[0];
+	goto case 2;	}
+	case 2:
+	counter22 = ((counter22) + (1));
+	if((((((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count) == (counter22))) || (((counter22) > ((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count)))))
+	{
+
+	goto case 0;	}else
+	{
+
+	___x21 = (Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>())[counter22];
+	goto case 3;	}
+	case 3:
+	AllPlayerEvents = new Cons<Event>(new Event("playerEvent",this), (AllPlayerEvents)).ToList<Event>();
+	s2 = 2;
+return;
+	case 0:
+	if(!(false))
+	{
+
+	s2 = 0;
+return;	}else
+	{
+
+	s2 = -1;
+return;	}	
 	default: return;}}
 	
 
@@ -715,9 +800,9 @@ return;
 	case 1:
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol10 => new { ___id40 = __ContextSymbol10 })
-.Where(__ContextSymbol11 => !(((__ContextSymbol11.___id40) == (___actionToExecute40))))
-.Select(__ContextSymbol12 => __ContextSymbol12.___id40)
+(actionIds).Select(__ContextSymbol12 => new { ___id40 = __ContextSymbol12 })
+.Where(__ContextSymbol13 => !(((__ContextSymbol13.___id40) == (___actionToExecute40))))
+.Select(__ContextSymbol14 => __ContextSymbol14.___id40)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s4 = -1;
@@ -779,9 +864,9 @@ return;	}else
 	UnityNpc.RemoveClaimToPosition(___actionToExecute51);
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol13 => new { ___id51 = __ContextSymbol13 })
-.Where(__ContextSymbol14 => !(((__ContextSymbol14.___id51) == (___actionToExecute51))))
-.Select(__ContextSymbol15 => __ContextSymbol15.___id51)
+(actionIds).Select(__ContextSymbol15 => new { ___id51 = __ContextSymbol15 })
+.Where(__ContextSymbol16 => !(((__ContextSymbol16.___id51) == (___actionToExecute51))))
+.Select(__ContextSymbol17 => __ContextSymbol17.___id51)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s5 = -1;
@@ -807,7 +892,7 @@ return;	}else
 
 	goto case 2;	}
 	case 2:
-	if(((UnityNpc.GetNearbyIdleNpcId()) == (-1)))
+	if(!(((UnityNpc.GetNearbyIdleNpcId()) == (-1))))
 	{
 
 	goto case 0;	}else
@@ -831,4 +916,4 @@ return;
 
 
 }
-}                
+} 

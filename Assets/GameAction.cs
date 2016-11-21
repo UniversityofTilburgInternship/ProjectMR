@@ -27,21 +27,19 @@ public class GameAction
 
     public Vector3 CreatePosition(int npcId)
     {
-        var grid = getGrid();
-        var randomX = Position.x + Random.Range(-1.5f, 1.5f);
-        var randomZ = Position.z + Random.Range(-1.5f, 1.5f);
-        var returnVector = new Vector3(randomX, 0.0f, randomZ);
-
-        Debug.Log("grid.IsVectorWalkable = " + grid.IsVectorWalkable(returnVector));
-
-        if (grid.IsVectorWalkable(returnVector))
+        while (true)
         {
-            ClaimablePositions.Add(npcId, returnVector);
-            return returnVector;
-        }
-        else
-            return CreatePosition(npcId);
+            var grid = getGrid();
+            var randomX = Position.x + Random.Range(-1.5f, 1.5f);
+            var randomZ = Position.z + Random.Range(-1.5f, 1.5f);
+            var returnVector = new Vector3(randomX, 0.0f, randomZ);
 
+            if (grid.IsWalkable(returnVector))
+            {
+                ClaimablePositions.Add(npcId, returnVector);
+                return returnVector;
+            }
+        }
     }
 
     public override string ToString()
@@ -57,4 +55,4 @@ public class GameAction
 
 }
 
-                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                     
