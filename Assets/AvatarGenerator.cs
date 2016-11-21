@@ -8,6 +8,8 @@ public class AvatarGenerator : MonoBehaviour
     public static int TotalAmountOfEvents = ActionsParser.Events.Count;
 
     //              Inspector values                //
+    [Header("Automatically generate chacarcters")]  public bool AutoGenerateCharacters;
+    
     [Header("Amount of characters")] [Range(1, 100)] public int Amount;
 
     [Header("Use default (stored) values")] public bool DefaultValue = true;
@@ -50,4 +52,4 @@ public class AvatarGenerator : MonoBehaviour
     }
 }
 
-                                                                                                                                                                   
+                                                                                                                                                                         

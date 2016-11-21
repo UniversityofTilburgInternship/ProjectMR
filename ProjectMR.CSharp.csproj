@@ -183,6 +183,7 @@
     <None Include="Assets\Resources\eventActions.xml" />
     <None Include="Assets\Resources\events.xml" />
     <None Include="Assets\Resources\playerEvents.xml" />
+    <None Include="Assets\Resources\players.xml" />
     <None Include="Assets\Resources\settings.xml" />
     <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
