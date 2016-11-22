@@ -44,6 +44,9 @@ Enumerable.Empty<Person>()).ToList<Person>();
  }
 	public System.Int32 ___x00;
 	public System.Int32 counter20;
+	public Casanova.Prelude.Tuple<System.String,System.Collections.Generic.List<Casanova.Prelude.Tuple<System.Int32,System.Int32>>> ___parsedperson10;
+	public System.Int32 counter21;
+	public System.Collections.Generic.List<Casanova.Prelude.Tuple<System.Int32,System.Int32>> ___personalities10;
 
 System.DateTime init_time = System.DateTime.Now;
 	public void Update(float dt, World world) {
@@ -55,7 +58,7 @@ var t = System.DateTime.Now;
 		}
 		eventController.Update(dt, world);
 		this.Rule0(dt, world);
-
+		this.Rule1(dt, world);
 	}
 
 
@@ -67,6 +70,15 @@ var t = System.DateTime.Now;
 	{
 
 	case -1:
+	if(!(!(AvatarGen.AutoGenerateCharacters)))
+	{
+
+	s0 = -1;
+return;	}else
+	{
+
+	goto case 1;	}
+	case 1:
 	
 	counter20 = -1;
 	if((((Enumerable.Range(0,((1) + (((((AvatarGen.Amount) - (1))) - (0))))).ToList<System.Int32>()).Count) == (0)))
@@ -92,7 +104,7 @@ var t = System.DateTime.Now;
 
 (AvatarGen.SettingsList).Select(__ContextSymbol1 => new { ___characteristic00 = __ContextSymbol1 })
 .Select(__ContextSymbol2 => new Casanova.Prelude.Tuple<System.Int32, System.Int32>(__ContextSymbol2.___characteristic00.Item1,UnityEngine.Random.Range(__ContextSymbol2.___characteristic00.Item2.Item1,__ContextSymbol2.___characteristic00.Item2.Item2)))
-.ToList<Casanova.Prelude.Tuple<System.Int32, System.Int32>>()).ToList<Casanova.Prelude.Tuple<System.Int32, System.Int32>>()), (Persons)).ToList<Person>();
+.ToList<Casanova.Prelude.Tuple<System.Int32, System.Int32>>()).ToList<Casanova.Prelude.Tuple<System.Int32, System.Int32>>(),"random"), (Persons)).ToList<Person>();
 	s0 = 2;
 return;
 	case 0:
@@ -108,6 +120,61 @@ return;	}
 	default: return;}}
 	
 
+	int s1=-1;
+	public void Rule1(float dt, World world){ switch (s1)
+	{
+
+	case -1:
+	if(!(AvatarGen.AutoGenerateCharacters))
+	{
+
+	s1 = -1;
+return;	}else
+	{
+
+	goto case 1;	}
+	case 1:
+	
+	counter21 = -1;
+	if((((PlayerParser.ParsedPersons).Count) == (0)))
+	{
+
+	goto case 0;	}else
+	{
+
+	___parsedperson10 = (PlayerParser.ParsedPersons)[0];
+	goto case 2;	}
+	case 2:
+	counter21 = ((counter21) + (1));
+	if((((((PlayerParser.ParsedPersons).Count) == (counter21))) || (((counter21) > ((PlayerParser.ParsedPersons).Count)))))
+	{
+
+	goto case 0;	}else
+	{
+
+	___parsedperson10 = (PlayerParser.ParsedPersons)[counter21];
+	goto case 3;	}
+	case 3:
+	___personalities10 = ___parsedperson10.Item2;
+	Persons = new Cons<Person>(new Person((
+
+(___personalities10).Select(__ContextSymbol3 => new { ___personality10 = __ContextSymbol3 })
+.Select(__ContextSymbol4 => new Casanova.Prelude.Tuple<System.Int32, System.Int32>(__ContextSymbol4.___personality10.Item1,__ContextSymbol4.___personality10.Item2))
+.ToList<Casanova.Prelude.Tuple<System.Int32, System.Int32>>()).ToList<Casanova.Prelude.Tuple<System.Int32, System.Int32>>(),___parsedperson10.Item1), (Persons)).ToList<Person>();
+	s1 = 2;
+return;
+	case 0:
+	if(!(false))
+	{
+
+	s1 = 0;
+return;	}else
+	{
+
+	s1 = -1;
+return;	}	
+	default: return;}}
+	
 
 
 
@@ -404,9 +471,9 @@ return;	}else
 	case 0:
 	CurrentEvents = (
 
-(CurrentEvents).Select(__ContextSymbol5 => new { ___event01 = __ContextSymbol5 })
-.Where(__ContextSymbol6 => !(__ContextSymbol6.___event01.IsDestroyed))
-.Select(__ContextSymbol7 => __ContextSymbol7.___event01)
+(CurrentEvents).Select(__ContextSymbol7 => new { ___event01 = __ContextSymbol7 })
+.Where(__ContextSymbol8 => !(__ContextSymbol8.___event01.IsDestroyed))
+.Select(__ContextSymbol9 => __ContextSymbol9.___event01)
 .ToList<Event>()).ToList<Event>();
 	s0 = -1;
 return;	
@@ -458,12 +525,13 @@ public class Person{
 public int frame;
 public bool JustEntered = true;
 private List<Casanova.Prelude.Tuple<System.Int32, System.Int32>> Settings;
+private System.String modelName;
 	public int ID;
-public Person(List<Casanova.Prelude.Tuple<System.Int32, System.Int32>> Settings)
+public Person(List<Casanova.Prelude.Tuple<System.Int32, System.Int32>> Settings, System.String modelName)
 	{JustEntered = false;
  frame = World.frame;
 		UnityNpc ___unity_npc00;
-		___unity_npc00 = UnityNpc.Spawn(Settings);
+		___unity_npc00 = UnityNpc.Spawn(Settings,modelName);
 		settings = Settings;
 		actionIds = (
 
@@ -707,9 +775,9 @@ return;
 	case 1:
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol10 => new { ___id40 = __ContextSymbol10 })
-.Where(__ContextSymbol11 => !(((__ContextSymbol11.___id40) == (___actionToExecute40))))
-.Select(__ContextSymbol12 => __ContextSymbol12.___id40)
+(actionIds).Select(__ContextSymbol12 => new { ___id40 = __ContextSymbol12 })
+.Where(__ContextSymbol13 => !(((__ContextSymbol13.___id40) == (___actionToExecute40))))
+.Select(__ContextSymbol14 => __ContextSymbol14.___id40)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s4 = -1;
@@ -771,9 +839,9 @@ return;	}else
 	UnityNpc.RemoveClaimToPosition(___actionToExecute51);
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol13 => new { ___id51 = __ContextSymbol13 })
-.Where(__ContextSymbol14 => !(((__ContextSymbol14.___id51) == (___actionToExecute51))))
-.Select(__ContextSymbol15 => __ContextSymbol15.___id51)
+(actionIds).Select(__ContextSymbol15 => new { ___id51 = __ContextSymbol15 })
+.Where(__ContextSymbol16 => !(((__ContextSymbol16.___id51) == (___actionToExecute51))))
+.Select(__ContextSymbol17 => __ContextSymbol17.___id51)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s5 = -1;
@@ -786,4 +854,4 @@ return;
 
 
 }
-}                                    
+}                       

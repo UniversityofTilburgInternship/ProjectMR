@@ -23,17 +23,19 @@ public class NpcObject : MonoBehaviour
 
     public static List<NpcObject> AllPersons = new List<NpcObject>();
 
-    public static NpcObject Instantiate(List<Tuple<int, int>> personalityValues)
+    public static NpcObject Instantiate(List<Tuple<int, int>> personalityValues, string modelName)
     {
-        var randomIndexForModelName = Random.Range(0, SettingsParser.ModelNames.Count);
-        var randomModelname = SettingsParser.ModelNames[randomIndexForModelName];
-
+        if (modelName.Equals("random"))
+        {   
+            var randomIndexForModelName = Random.Range(0, SettingsParser.ModelNames.Count);
+            modelName = SettingsParser.ModelNames[randomIndexForModelName];
+        }
         var randomIndexForPosition = Random.Range(0, SettingsParser.Spawnpoints.Count);
         var randomPosition = SettingsParser.Spawnpoints[randomIndexForPosition];
 
         var npcObject = (Instantiate(
-                Resources.Load(randomModelname),
-                randomPosition,
+                Resources.Load(modelName),
+                randomPosition,  
                 Quaternion.identity)
             as GameObject).GetComponent<NpcObject>();
 
@@ -176,4 +178,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                                                   
+                                                                                                                                                                                                                                  

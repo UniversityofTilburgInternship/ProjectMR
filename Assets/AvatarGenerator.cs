@@ -8,14 +8,16 @@ public class AvatarGenerator : MonoBehaviour
     public static int TotalAmountOfEvents = ActionsParser.Events.Count;
 
     //              Inspector values                //
-    [Header("Amount of characters")] [Range(1, 100)] public int Amount;
+    [Header("Automatically generate chacarcters")] public bool AutoGenerateCharacters  = true ;
+
+    [Header("Amount of characters")] [Range(1, 10)] public int Amount;
 
     [Header("Use default (stored) values")] public bool DefaultValue = true;
 
     [Header("Personalities")] public List<Personality> Personalities;
 
     //              Properties & behaviour          //
-    private const string SETTINGS = "settings";
+    private const string SETTINGS = "settings";   
 
     public List<Tuple<int, Tuple<int, int>>> SettingsList
     {
@@ -25,21 +27,24 @@ public class AvatarGenerator : MonoBehaviour
                 let minMaxValues = new Tuple<int, int>(personality.MinValue, personality.MaxValue)
                 select new Tuple<int, Tuple<int, int>>(personality.Id, minMaxValues)).ToList();
         }
-    }
+    }  
 
     public static AvatarGenerator Find()
     {
         var avatarGenerator = GameObject.Find("AvatarGenerator").GetComponent<AvatarGenerator>();
-        SettingsParser.ParsePersonalitiesXml(avatarGenerator.DefaultValue, avatarGenerator.Personalities);
+        if (!avatarGenerator.AutoGenerateCharacters)
+        {
+            SettingsParser.ParsePersonalitiesXml(avatarGenerator.DefaultValue, avatarGenerator.Personalities);
+        }
         return avatarGenerator;
     }
-
 
     [System.Serializable]
     public class Personality
     {
         public string Name;
         public int Id;
+        public int Value;
         [Range(1, 100)] public int MinValue;
         [Range(1, 100)] public int MaxValue;
 
@@ -48,6 +53,4 @@ public class AvatarGenerator : MonoBehaviour
             return new Tuple<int, int>(MinValue, MaxValue);
         }
     }
-}
-
-                                                                                                                                                                   
+}                                                          
