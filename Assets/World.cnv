@@ -10,12 +10,23 @@ Persons : [Person]
 eventController : EventController
 
   rule Persons =
+    wait AvatarGen.AutoGenerateCharacters
+    for parsedperson in PlayerParser.ParsedPersons do
+      let personalities = parsedperson.Item2
+      yield(Person.Create(
+        [for personality in personalities do
+           select (personality.Item1, personality.Item2)],
+        parsedperson.Item1)) :: Persons
+    wait false
+
+  rule Persons =
+    wait not AvatarGen.AutoGenerateCharacters
     for x in[0..AvatarGen.Amount - 1] do
       yield(Person.Create(
         [for characteristic in AvatarGen.SettingsList do
-          select(characteristic.Item1,
+          select (characteristic.Item1,
             Random.Range(characteristic.Item2.Item1,
-            characteristic.Item2.Item2))])) :: Persons
+            characteristic.Item2.Item2))], "random")) :: Persons
     wait false
 
   Create() =
@@ -152,7 +163,6 @@ entity Person = {
       wait 25.0f
       wait not IsInEvent
 
-
     rule actionIds, PositionAvailable =
       wait IsInEvent
       wait not IsInEvent
@@ -169,8 +179,8 @@ entity Person = {
         wait 1.0f
         yield UnityNpc.IsInterestedInEvent()
 
-    Create(Settings : [(int * int)]) =
-    let unity_npc = UnityNpc.Spawn(Settings)
+    Create(Settings : [(int * int)], modelName : string) =
+    let unity_npc = UnityNpc.Spawn(Settings, modelName)
     {
         settings = Settings
         UnityNpc = unity_npc

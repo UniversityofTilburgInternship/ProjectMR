@@ -93,6 +93,7 @@
     <Compile Include="Assets\PathRequestManager.cs" />
     <Compile Include="Assets\Pathfinding.cs" />
     <Compile Include="Assets\PlayerObject.cs" />
+    <Compile Include="Assets\PlayerParser.cs" />
     <Compile Include="Assets\Prelude.cs" />
     <Compile Include="Assets\Scripts\AudioOffset.cs" />
     <Compile Include="Assets\Scripts\CaptureNormals.cs" />
