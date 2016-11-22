@@ -21,10 +21,10 @@ public class UnityPlayer : MonoBehaviour
         return _playerObject.IsLookingAt(Object);
     }
 
-    public void TriggerEvent(EventObject eventObject)
+    public void TriggerPlayerEvent(EventObject eventObject)
     {
-        _playerObject.TriggerEvent(eventObject);
+        _playerObject.TriggerPlayerEvent(eventObject);
 
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                

@@ -17,8 +17,6 @@ public static class EventController
         while (true)
         {
             var randomIndex = Random.Range(0, PlayerEvents.Count - 1);
-            Debug.Log("randomIndex = " + randomIndex);
-            Debug.Log("playerEvent key = " + PlayerEvents.Select(x => x.Key).ElementAt(0));
             var potentialPlayerEvent = PlayerEvents.ElementAt(randomIndex).Value;
 
             //might run out
@@ -54,9 +52,11 @@ public static class EventController
         }
     }
 
-    public static void RemoveFromActiveEvents(int eventId)
+    //PlayerEvents are only ready for having their completion level upped when they are activated by the player.
+    public static bool IsEventReady(int eventId)
     {
-        ActiveEvents.Remove(eventId);
+        if (SpawnedPlayerEvents.ContainsKey(eventId))
+            return SpawnedPlayerEvents[eventId].IsReady;
     }
 
     public static bool IsEventAvailable()
@@ -82,4 +82,4 @@ public static class EventController
 
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
-}                                     
+}                                                  

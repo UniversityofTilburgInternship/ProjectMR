@@ -6,6 +6,7 @@ public class EventObject : MonoBehaviour
 {
     public int AmountOfParticipants;
     public int Completeness;
+    public bool IsReady;
     public int Id;
     public int InterestLevel;
     public int MaxAmountOfParticipants;
@@ -48,8 +49,11 @@ public class EventObject : MonoBehaviour
     public void Destroy()
     {
         EventController.ActiveEvents.Remove(Id);
-        Destroy(gameObject);
+
+        if(!IsPlayerControlled)
+            Destroy(gameObject);
     }
+
 }
 
-                                                                                                                                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                                                                                                                  

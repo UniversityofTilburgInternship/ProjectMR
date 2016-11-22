@@ -40,7 +40,7 @@ isTriggeringEvent : bool
       if (Input.GetKey(KeyCode.F)) then
         if (UnityPlayer.IsLookingAt(event._eventObject.gameObject)) then
           HelperFunctions.Log("Player triggered event")
-          UnityPlayer.TriggerEvent(event._eventObject)
+          UnityPlayer.TriggerPlayerEvent(event._eventObject)
           yield event :: eventController.CurrentEvents
           wait 1.0fe
 
@@ -55,29 +55,26 @@ isTriggeringEvent : bool
 
 entity Event = {
 inherit UnityEvent
+NpcInterested : bool
 ref eventController : EventController
-
-  rule eventController.CurrentEvents =
-    yield eventController.CurrentEvents
 
   //wait until event is also in currentEvents (for playerEvents)
   rule Completeness =
-      wait 3.0f
-      wait eventController.CurrentEvents.Contains(this)
+    wait 3.0f
+    if(UnityEventController.IsEventReady(this.Id)) then
       HelperFunctions.Log(Completeness)
       yield Completeness + 10
       if(Completeness >= 100) then
-        //we do not completely destroy the prefab if it is a player event; then it needs to be re-accessible.
-        if(UnityEvent.IsPlayerControlled) then
-          UnityEventController.RemoveFromActiveEvents(this.Id)
-          yield Completeness
-        else
-          UnityEvent.Destroy()
-          yield Completeness
+        UnityEvent.Destroy()
+        yield Completeness
+    else
+      yield 0
+
 
   Create(Type : string, controller:EventController) =
   let unity_event = UnityEvent.SpawnRandomEvent(Type)
   {
+    NpcInterested = false
     UnityEvent = unity_event
     eventController = controller
   }

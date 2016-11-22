@@ -34,14 +34,20 @@ namespace Assets
             return false;
         }
 
-        public void TriggerEvent(EventObject eventObject)
+        public void TriggerPlayerEvent(EventObject eventObject)
         {
-            if (!EventController.ActiveEvents.ContainsKey(eventObject.Id))
+            if (!(EventController.ActiveEvents.ContainsKey(eventObject.Id)))
+            {
                 EventController.ActiveEvents.Add(eventObject.Id, eventObject);
+                eventObject.IsReady = true;
+            }
             else
+            {
                 EventController.ActiveEvents.Remove(eventObject.Id);
+                eventObject.IsReady = false;
+            }
 
         }
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                                                                                                                  

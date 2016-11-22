@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class UnityEventController
 {
+    public static bool IsEventReady(int eventId)
+    {
+        return EventController.IsEventReady(eventId);
+    }
 
     public static bool IsEventAvailable()
     {
@@ -15,14 +19,9 @@ public class UnityEventController
         EventController.SpawnAllPlayerEvents();
     }
 
-    public static void RemoveFromActiveEvents(int eventId)
-    {
-        EventController.RemoveFromActiveEvents(eventId);
-    }
-
     public List<EventObject> PlayerEventsList
     {
         get { return EventController.PlayerEvents.Values.ToList(); }
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                 
