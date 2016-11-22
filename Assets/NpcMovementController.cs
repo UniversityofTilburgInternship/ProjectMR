@@ -47,4 +47,4 @@ public class NpcMovementController : MonoBehaviour
             _walking = true;
         }
     }
-}                            
+}                                
