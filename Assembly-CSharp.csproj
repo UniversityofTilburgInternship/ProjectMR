@@ -73,6 +73,8 @@
      <Compile Include="Assets\Prelude.cs" />
      <Compile Include="Assets\Scripts\AudioOffset.cs" />
      <Compile Include="Assets\Scripts\CaptureNormals.cs" />
+     <Compile Include="Assets\Scripts\ClusterRenderer\CameraRig.cs" />
+     <Compile Include="Assets\Scripts\ClusterRenderer\ClusterRenderer.cs" />
      <Compile Include="Assets\Scripts\Punch.cs" />
      <Compile Include="Assets\Scripts\RandomFloorBotMovement.cs" />
      <Compile Include="Assets\Scripts\Rotator.cs" />
