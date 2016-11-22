@@ -67,9 +67,8 @@
      <Compile Include="Assets\NpcMovementController.cs" />
      <Compile Include="Assets\NpcObject.cs" />
      <Compile Include="Assets\OnStartUp.cs" />
-     <Compile Include="Assets\PathRequestManager.cs" />
-     <Compile Include="Assets\Pathfinding.cs" />
      <Compile Include="Assets\PlayerObject.cs" />
+     <Compile Include="Assets\PlayerParser.cs" />
      <Compile Include="Assets\Prelude.cs" />
      <Compile Include="Assets\Scripts\AudioOffset.cs" />
      <Compile Include="Assets\Scripts\CaptureNormals.cs" />
@@ -87,6 +86,7 @@
      <Compile Include="Assets\UnityEventController.cs" />
      <Compile Include="Assets\UnityNpc.cs" />
      <Compile Include="Assets\UnityPlayer.cs" />
+     <Compile Include="Assets\WeightCalculator.cs" />
      <Compile Include="Assets\World.cs" />
      <Compile Include="Assets\XmlNodule.cs" />
      <None Include="Assets\Image Effects\_Sources\Shaders\NoiseAndGrainDX11.shader" />
@@ -131,6 +131,7 @@
      <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Luminance.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\GlowCompose.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\VortexEffect.shader" />
+     <None Include="Assets\Resources\players.xml" />
      <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />

@@ -99,6 +99,4 @@ public class XmlNodule : IEnumerable<XmlNodule>
     {
         return GetEnumerator();
     }
-}
-
-                        
+}                     

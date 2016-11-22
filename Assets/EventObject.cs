@@ -52,5 +52,4 @@ public class EventObject : MonoBehaviour
         Destroy(gameObject);
     }
 }
-
-                        
+                     

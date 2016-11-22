@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class Grid : MonoBehaviour
@@ -95,7 +95,6 @@ public class Grid : MonoBehaviour
     {
         return !(Physics.CheckSphere(vector, NodeRadius, UnwalkableMask));
     }
-}                                                                                                                                                                                                                                                                                                           
+}
 
-
-                        
+                                                                                                                                                                                                                                               

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class FPSmovement : MonoBehaviour
 {
@@ -45,4 +44,4 @@ public class FPSmovement : MonoBehaviour
     }
 }
 
-                                                 
+                                                                      

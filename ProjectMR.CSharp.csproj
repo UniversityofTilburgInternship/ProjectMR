@@ -93,6 +93,7 @@
     <Compile Include="Assets\PathRequestManager.cs" />
     <Compile Include="Assets\Pathfinding.cs" />
     <Compile Include="Assets\PlayerObject.cs" />
+    <Compile Include="Assets\PlayerParser.cs" />
     <Compile Include="Assets\Prelude.cs" />
     <Compile Include="Assets\Scripts\AudioOffset.cs" />
     <Compile Include="Assets\Scripts\CaptureNormals.cs" />
@@ -183,6 +184,7 @@
     <None Include="Assets\Resources\eventActions.xml" />
     <None Include="Assets\Resources\events.xml" />
     <None Include="Assets\Resources\playerEvents.xml" />
+    <None Include="Assets\Resources\players.xml" />
     <None Include="Assets\Resources\settings.xml" />
     <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />

@@ -45,4 +45,5 @@ public class Node : IHeapItem<Node>
         return 14 * distanceX + 10 * (distanceY - distanceX);
     }
 }
-                        
+
+                     

@@ -56,9 +56,9 @@ public class UnityNpc : MonoBehaviour
         //_npcObject.MovementController.Stop();
     }
 
-    public static UnityNpc Spawn(List<Tuple<int, int>> personalityValues)
+    public static UnityNpc Spawn(List<Tuple<int, int>> personalityValues, string prefabname)
     {
-        var unityNpc = new UnityNpc {_npcObject = NpcObject.Instantiate(personalityValues)};
+        var unityNpc = new UnityNpc {_npcObject = NpcObject.Instantiate(personalityValues, prefabname)};
         return unityNpc;
     }
 
@@ -120,6 +120,4 @@ public class UnityNpc : MonoBehaviour
         return
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
-}
-
-                        
+}                     

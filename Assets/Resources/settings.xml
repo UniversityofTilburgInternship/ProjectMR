@@ -13,8 +13,9 @@
       <name>
         Egoism
       </name>
-      <minvalue>100</minvalue>`
-      <maxvalue>100</maxvalue></personality>
+      <minvalue>100</minvalue>
+      <maxvalue>100</maxvalue>
+      </personality>
     <personality>
       <id>2</id>
       <name>

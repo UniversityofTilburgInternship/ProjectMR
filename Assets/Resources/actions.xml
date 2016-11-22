@@ -8,42 +8,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>35</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>75</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>75</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>60</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>35</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>25</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>40</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>18</x>
-            <y>0</y>
             <z>0</z>
+            <y>0</y>
+            <x>18</x>
         </position>
         <actionId>0</actionId>
         <actionname>wave</actionname>
@@ -58,42 +58,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>60</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>25</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>25</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>25</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>60</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>14</x>
-            <y>0</y>
             <z>5</z>
+            <y>0</y>
+            <x>14</x>
         </position>
         <actionId>1</actionId>
         <actionname>zit</actionname>
@@ -108,42 +108,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>30</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>35</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>75</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>75</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>75</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>-9</x>
-            <y>0</y>
             <z>-3</z>
+            <y>0</y>
+            <x>-9</x>
         </position>
         <actionId>2</actionId>
         <actionname>lijk</actionname>
@@ -158,42 +158,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>70</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>40</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>20</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>60</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>60</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>-7</x>
-            <y>0</y>
             <z>4</z>
+            <y>0</y>
+            <x>-7</x>
         </position>
         <actionId>3</actionId>
         <actionname>presentatie</actionname>
@@ -210,42 +210,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>30</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>60</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>30</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>80</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>80</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>60</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>7</x>
-            <y>0</y>
             <z>-5</z>
+            <y>0</y>
+            <x>7</x>
         </position>
         <actionId>4</actionId>
         <actionname>aanrecht</actionname>
@@ -261,42 +261,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>70</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>35</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>35</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>60</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>55</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>35</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>-2</x>
-            <y>0</y>
             <z>-7</z>
+            <y>0</y>
+            <x>-2</x>
         </position>
         <actionId>5</actionId>
         <actionname>whiteboard</actionname>
@@ -311,42 +311,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>40</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>30</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>30</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>20</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>20</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>-5</x>
-            <y>0</y>
             <z>13</z>
+            <y>0</y>
+            <x>-5</x>
         </position>
         <actionId>6</actionId>
         <actionname>hoektafels</actionname>
@@ -361,42 +361,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>50</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>30</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>80</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>80</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>70</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>10</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>0</x>
-            <y>0</y>
             <z>2</z>
+            <y>0</y>
+            <x>0</x>
         </position>
         <actionId>7</actionId>
         <actionname>middenkamer</actionname>
@@ -412,42 +412,42 @@
         </neighbours>
         <modifiers>
             <modifier>
+                <value>40</value>
                 <id>1</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>35</value>
                 <id>5</id>
-                <value>5</value>
             </modifier>
             <modifier>
+                <value>40</value>
                 <id>0</id>
-                <value>2</value>
             </modifier>
             <modifier>
+                <value>0</value>
                 <id>4</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>50</value>
                 <id>6</id>
-                <value>0</value>
             </modifier>
             <modifier>
+                <value>40</value>
                 <id>2</id>
-                <value>1</value>
             </modifier>
             <modifier>
+                <value>40</value>
                 <id>7</id>
-                <value>6</value>
             </modifier>
             <modifier>
+                <value>35</value>
                 <id>3</id>
-                <value>3</value>
             </modifier>
         </modifiers>
         <position>
-            <x>6</x>
-            <y>0</y>
             <z>8</z>
+            <y>0</y>
+            <x>6</x>
         </position>
         <actionId>8</actionId>
         <actionname>tafels</actionname>
