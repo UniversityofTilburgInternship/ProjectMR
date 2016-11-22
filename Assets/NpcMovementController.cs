@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -18,76 +19,17 @@ public class NpcMovementController : MonoBehaviour
         return npcMovementController;
     }
 
-    public void OnPathFound(Vector3[] newPath, bool pathSuccessful, Vector3 target)
+    void Update()
     {
-        //if the path is found and is succesfull
-        if (pathSuccessful)
+        if (Vector3.Distance(_npcObject.gameObject.GetComponent<NavMeshAgent>().destination, transform.position) <= 2.2)
         {
-            _waypoints = newPath.ToList();
-            _waypoints.Add(target);
-            _targetIndex = 0;
-
-            StopCoroutine("FollowPath");
-            StartCoroutine("FollowPath");
+            StopWalking();
+            Debug.Log("stop walking");
         }
-    }
-  
-    public void Stop()
-    {
-        StopWalking();
-        StopCoroutine("FollowPath");
-    }
-
-    private IEnumerator FollowPath()
-    {
-        var moveSpeed = Time.deltaTime * 2.75f;
-        const float rotationSpeed = 20.0f;
-        if (_waypoints.Count == 0)
+        else
         {
-            StopCoroutine("FollowPath");
-            yield break;
-        }
-        var currentWaypoint = _waypoints[0];
-        while (true)
-        {
-            if (_npcObject.transform.position == currentWaypoint)
-            {
-                StopWalking();
-                _targetIndex++;
-                if (_targetIndex >= _waypoints.Count)
-                {
-                    StopCoroutine("FollowPath");
-                    yield break;
-                }
-                currentWaypoint = _waypoints[_targetIndex];
-            }
-
-            const float angle = 10;
-            if (
-                Vector3.Angle(_npcObject.transform.forward,
-                    currentWaypoint - _npcObject.transform.position) < angle)
-            {
-                StartWalking();
-            }
-            else
-            {
-                StopWalking();
-                //check if walking animation stopped. To prevent from ugly movement
-                if (!_npcObject.Animator.GetCurrentAnimatorStateInfo(0).IsName("walking"))
-                {
-                    var direction = currentWaypoint - _npcObject.transform.position;
-                    _npcObject.transform.rotation =
-                        Quaternion.LookRotation(
-                            Vector3.RotateTowards(_npcObject.transform.forward, direction, rotationSpeed, 0)
-                        );
-                }
-            }
-
-            //walk towards the next waypoint
-            _npcObject.transform.position = Vector3.MoveTowards(_npcObject.transform.position,
-                currentWaypoint,
-                moveSpeed);
-            yield return null;
+            Debug.Log("start walking");
+            StartWalking();
         }
     }
 
@@ -107,4 +49,4 @@ public class NpcMovementController : MonoBehaviour
     }
 }
 
-          
+                              

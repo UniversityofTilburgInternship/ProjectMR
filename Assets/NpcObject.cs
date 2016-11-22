@@ -44,6 +44,8 @@ public class NpcObject : MonoBehaviour
         npcObject.GraphTraveler = new GraphTraveler(npcObject);
         npcObject.MovementController = NpcMovementController.CreateComponent(npcObject.gameObject, npcObject);
         npcObject.Animator = npcObject.gameObject.GetComponent<Animator>();
+        npcObject.gameObject.AddComponent<NavMeshAgent>();
+        npcObject.gameObject.GetComponent<NavMeshAgent>().stoppingDistance = 2.2f;
 
         AllPersons.Add(npcObject);
 
@@ -119,10 +121,8 @@ public class NpcObject : MonoBehaviour
         //if the action is different from the currentaction
         if (CurrentActionPosition != position)
         {
-            CurrentActionPosition = position;
-            //then we request a new path
-            PathRequestManager.RequestPath(transform.position, CurrentActionPosition,
-                (newPath, pathSuccessful, target) => MovementController.OnPathFound(newPath, pathSuccessful, target));
+            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            agent.destination = position;
         }
     }
 
@@ -176,4 +176,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                   

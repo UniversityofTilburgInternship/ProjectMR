@@ -52,7 +52,8 @@ public class UnityNpc : MonoBehaviour
 
     public void StopMovement()
     {
-        _npcObject.MovementController.Stop();
+       // _npcObject.gameObject.GetComponent<NavMeshAgent>().Stop();
+        //_npcObject.MovementController.Stop();
     }
 
     public static UnityNpc Spawn(List<Tuple<int, int>> personalityValues)
@@ -120,4 +121,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                 
