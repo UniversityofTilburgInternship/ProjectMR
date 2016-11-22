@@ -55,8 +55,11 @@ public static class EventController
     //PlayerEvents are only ready for having their completion level upped when they are activated by the player.
     public static bool IsEventReady(int eventId)
     {
-        if (SpawnedPlayerEvents.ContainsKey(eventId))
-            return SpawnedPlayerEvents[eventId].IsReady;
+        if (ActiveEvents.ContainsKey(eventId))
+            return ActiveEvents[eventId].IsReady;
+        else  
+            Debug.Log("aint in spawnedplayers, cunt");
+            return false;
     }
 
     public static bool IsEventAvailable()
@@ -82,4 +85,4 @@ public static class EventController
 
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
-}                                                  
+}                                                                

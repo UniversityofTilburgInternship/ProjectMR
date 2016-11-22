@@ -107,4 +107,4 @@ public class Heap<T> where T : IHeapItem<T>
 public interface IHeapItem<T> : IComparable<T>
 {
     int HeapIndex { get; set; }
-}                                                                                                                                                                                                                                                                                                                                                                                  
+}                                                                                                                                                                                                                                                                                                                                                                                                

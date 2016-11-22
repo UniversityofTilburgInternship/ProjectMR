@@ -123,4 +123,4 @@ public static class ActionsParser
         return nodule.Get("modifiers")
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
-}                                                                                                                                                                                                                                                                                                                                                                                  
+}                                                                                                                                                                                                                                                                                                                                                                                                

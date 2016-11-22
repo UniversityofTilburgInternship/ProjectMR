@@ -55,12 +55,12 @@ isTriggeringEvent : bool
 
 entity Event = {
 inherit UnityEvent
-NpcInterested : bool
 ref eventController : EventController
 
   //wait until event is also in currentEvents (for playerEvents)
   rule Completeness =
     wait 3.0f
+    HelperFunctions.Log("IsEventReady for id " + this.Id + " result: " + UnityEventController.IsEventReady(this.Id))
     if(UnityEventController.IsEventReady(this.Id)) then
       HelperFunctions.Log(Completeness)
       yield Completeness + 10
@@ -74,7 +74,6 @@ ref eventController : EventController
   Create(Type : string, controller:EventController) =
   let unity_event = UnityEvent.SpawnRandomEvent(Type)
   {
-    NpcInterested = false
     UnityEvent = unity_event
     eventController = controller
   }
