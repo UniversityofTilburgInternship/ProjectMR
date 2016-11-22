@@ -36,7 +36,10 @@ public static class EventController
         var eventObject = EventObject.Instantiate(Event);
 
         if (!ActiveEvents.ContainsKey(eventObject.Id))
+        {
             ActiveEvents.Add(eventObject.Id, eventObject);
+            ActiveEvents[eventObject.Id].IsReady = true;
+        }
 
         ActiveEventIds.Add(eventObject.Id);
 
@@ -55,11 +58,7 @@ public static class EventController
     //PlayerEvents are only ready for having their completion level upped when they are activated by the player.
     public static bool IsEventReady(int eventId)
     {
-        if (ActiveEvents.ContainsKey(eventId))
-            return ActiveEvents[eventId].IsReady;
-        else  
-            Debug.Log("aint in spawnedplayers, cunt");
-            return false;
+        return ActiveEvents.ContainsKey(eventId) && ActiveEvents[eventId].IsReady;
     }
 
     public static bool IsEventAvailable()
@@ -85,4 +84,4 @@ public static class EventController
 
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
-}                                                                
+}                                                                 

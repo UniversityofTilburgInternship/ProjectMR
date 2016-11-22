@@ -9,7 +9,7 @@
       <y>1</y>
       <z>30</z>
     </position>
-    <modelname></modelname>
+    <modelname>Person1</modelname>
     <animationname></animationname>
     <sound>alarmbell.mp3</sound>
     <interestlevel>0</interestlevel>

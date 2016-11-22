@@ -59,7 +59,7 @@ ref eventController : EventController
 
   //wait until event is also in currentEvents (for playerEvents)
   rule Completeness =
-    wait 3.0f
+    wait 2.5f
     HelperFunctions.Log("IsEventReady for id " + this.Id + " result: " + UnityEventController.IsEventReady(this.Id))
     if(UnityEventController.IsEventReady(this.Id)) then
       HelperFunctions.Log(Completeness)
@@ -91,7 +91,7 @@ AllPlayerEvents : [Event]
     wait false
 
   rule CurrentEvents =
-    wait (50.0f)
+    wait (30.0f)
     HelperFunctions.Log("Spawned event!")
     wait UnityEventController.IsEventAvailable()
     yield new Event("normalEvent", this) :: CurrentEvents

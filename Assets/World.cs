@@ -317,7 +317,7 @@ frame = World.frame;
 	{
 
 	case -1:
-	count_down2 = 3f;
+	count_down2 = 2.5f;
 	goto case 12;
 	case 12:
 	if(((count_down2) > (0f)))
@@ -442,7 +442,7 @@ return;
 	{
 
 	case -1:
-	count_down3 = 50f;
+	count_down3 = 20f;
 	goto case 4;
 	case 4:
 	if(((count_down3) > (0f)))
@@ -897,4 +897,4 @@ return;
 
 
 }
-} 
+}  
