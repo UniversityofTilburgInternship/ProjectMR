@@ -27,7 +27,7 @@ public class AvatarGenerator : MonoBehaviour
                 let minMaxValues = new Tuple<int, int>(personality.MinValue, personality.MaxValue)
                 select new Tuple<int, Tuple<int, int>>(personality.Id, minMaxValues)).ToList();
         }
-    }
+    }  
 
     public static AvatarGenerator Find()
     {
@@ -39,12 +39,12 @@ public class AvatarGenerator : MonoBehaviour
         return avatarGenerator;
     }
 
-
     [System.Serializable]
     public class Personality
     {
         public string Name;
         public int Id;
+        public int Value;
         [Range(1, 100)] public int MinValue;
         [Range(1, 100)] public int MaxValue;
 
@@ -53,4 +53,4 @@ public class AvatarGenerator : MonoBehaviour
             return new Tuple<int, int>(MinValue, MaxValue);
         }
     }
-}                                                
+}                                                          

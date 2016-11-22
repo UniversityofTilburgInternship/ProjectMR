@@ -26,7 +26,7 @@ public class NpcObject : MonoBehaviour
     public static NpcObject Instantiate(List<Tuple<int, int>> personalityValues, string modelName)
     {
         if (modelName.Equals("random"))
-        {
+        {   
             var randomIndexForModelName = Random.Range(0, SettingsParser.ModelNames.Count);
             modelName = SettingsParser.ModelNames[randomIndexForModelName];
         }
@@ -178,4 +178,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                  
