@@ -49,4 +49,4 @@ public class NpcMovementController : MonoBehaviour
     }
 }
 
-                              
+

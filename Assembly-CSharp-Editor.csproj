@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\CasanovaAssetsImporter.cs" />
+     <Compile Include="Assets\Editor\ClusterRenderer\CameraRigEditor.cs" />
+     <Compile Include="Assets\Editor\ClusterRenderer\ClusterRendererEditor.cs" />
      <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
      <Compile Include="Assets\Editor\ImageEffects\AntialiasingEditor.cs" />
      <Compile Include="Assets\Editor\ImageEffects\BloomAndFlaresEditor.cs" />
@@ -242,6 +244,9 @@
  </Reference>
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="Ionic.Zip">
+ <HintPath>C:/Users/steve/Documents/Projects/Casanova template and binaries/Samples/ProjectMR/Assets/Editor/ClusterRenderer/Ionic.Zip.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

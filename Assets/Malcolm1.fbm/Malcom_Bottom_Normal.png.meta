@@ -1,7 +1,12 @@
 fileFormatVersion: 2
 guid: 0f6c32d6c3cf251488e664e3eaa0fc0a
+<<<<<<< HEAD
 timeCreated: 1479808684
 licenseType: Pro
+=======
+timeCreated: 1479382054
+licenseType: Free
+>>>>>>> feature-clusterrendering-1.0
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2

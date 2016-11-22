@@ -60,5 +60,3 @@ public static class EventController
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
 }
-
-                                                                                                                                                                                                                                                                                                   

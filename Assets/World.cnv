@@ -5,7 +5,7 @@ open UnityEngine
 
 worldEntity World = {
 AvatarGen : AvatarGenerator
-MainPlayer : Player
+//MainPlayer : Player
 Persons : [Person]
 eventController : EventController
 
@@ -26,7 +26,7 @@ eventController : EventController
       Persons = []
       AvatarGen = avaGen
       eventController = new EventController()
-      MainPlayer = new Player(eventController)
+      //MainPlayer = new Player(eventController)
     }
 }
 

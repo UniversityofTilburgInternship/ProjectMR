@@ -2,4 +2,3 @@
 {
     public bool IsEvent = true;
 }
-                                                                                                                                                                                                                                                                                                   
