@@ -17,7 +17,7 @@ public static class ActionsParser
     public static Dictionary<int, Event> PlayerEvents = new Dictionary<int, Event>();
     public static Dictionary<int, GameAction> EventActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> NormalActions = new Dictionary<int, GameAction>();
-    public static Dictionary<int, Interaction> Interactions  = new Dictionary<int, Interaction>();
+    public static Dictionary<int, Interaction> Interactions = new Dictionary<int, Interaction>();
 
     public static void ParseInteractions()
     {
@@ -122,4 +122,5 @@ public static class ActionsParser
         return nodule.Get("modifiers")
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+}
+    

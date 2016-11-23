@@ -256,7 +256,6 @@ public Event(System.String Type, EventController controller)
 		___unity_event00 = UnityEvent.SpawnRandomEvent(Type);
 		eventController = controller;
 		UnityEvent = ___unity_event00;
-		NpcInterested = false;
 		
 }
 		public System.Int32 AmountOfEvents{  get { return UnityEvent.AmountOfEvents; }
@@ -287,7 +286,6 @@ public Event(System.String Type, EventController controller)
 	public System.Int32 MaxAmountOfParticipants{  get { return UnityEvent.MaxAmountOfParticipants; }
   set{UnityEvent.MaxAmountOfParticipants = value; }
  }
-	public System.Boolean NpcInterested;
 	public System.Collections.Generic.List<Casanova.Prelude.Tuple<System.Int32,System.Int32>> PersonalityMinimums{  get { return UnityEvent.PersonalityMinimums; }
   set{UnityEvent.PersonalityMinimums = value; }
  }
@@ -319,7 +317,7 @@ frame = World.frame;
 	{
 
 	case -1:
-	count_down2 = 3f;
+	count_down2 = 2.5f;
 	goto case 11;
 	case 11:
 	if(((count_down2) > (0f)))

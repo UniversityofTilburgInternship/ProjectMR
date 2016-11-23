@@ -6,4 +6,5 @@
         public float Weight;
         public NpcObject Sender;
     }
-}                                                                                                                                                                                                                                                                                                                                 
+}
+    

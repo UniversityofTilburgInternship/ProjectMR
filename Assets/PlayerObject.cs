@@ -25,8 +25,6 @@ namespace Assets
             var charCtrl = GetComponent<CharacterController>();
             var origin = transform.position + charCtrl.center;
 
-            Debug.Log("IsLookingAt()");
-
             if (Physics.SphereCast(origin, 1, transform.forward, out hit, 5))
             {
                 return anotherGameObject.gameObject == hit.collider.gameObject;
@@ -36,8 +34,9 @@ namespace Assets
 
         public void TriggerPlayerEvent(EventObject eventObject)
         {
-            if (!(EventController.ActiveEvents.ContainsKey(eventObject.Id)))
+            if (!EventController.ActiveEvents.ContainsKey(eventObject.Id))
             {
+                Debug.Log("Added player event with id " + eventObject.Id + " to zhe list");
                 EventController.ActiveEvents.Add(eventObject.Id, eventObject);
                 EventPlayer.PlayEventAmbience(eventObject);
                 eventObject.IsReady = true;
@@ -51,4 +50,5 @@ namespace Assets
         }
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+    
