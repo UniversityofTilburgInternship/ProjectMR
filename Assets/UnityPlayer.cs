@@ -24,7 +24,6 @@ public class UnityPlayer : MonoBehaviour
     public void TriggerPlayerEvent(EventObject eventObject)
     {
         _playerObject.TriggerPlayerEvent(eventObject);
-
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        

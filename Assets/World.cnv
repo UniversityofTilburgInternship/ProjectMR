@@ -42,7 +42,7 @@ isTriggeringEvent : bool
           HelperFunctions.Log("Player triggered event")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)
           yield event :: eventController.CurrentEvents
-          wait 1.0fe
+          wait 1.0f
 
   Create(controller:EventController) =
   let unity_player = UnityPlayer.Spawn()
@@ -60,7 +60,7 @@ ref eventController : EventController
 
   //wait until event is also in currentEvents (for playerEvents)
   rule Completeness =
-    wait 3.0f
+    wait 2.5f
     if(UnityEventController.IsEventReady(this.Id)) then
       HelperFunctions.Log(Completeness)
       yield Completeness + 10
@@ -92,7 +92,7 @@ AllPlayerEvents : [Event]
     wait false
 
   rule CurrentEvents =
-    wait (50.0f)
+    wait Random.Range(30.0f, 50.0f)
     HelperFunctions.Log("Spawned event!")
     wait UnityEventController.IsEventAvailable()
     yield new Event("normalEvent", this) :: CurrentEvents

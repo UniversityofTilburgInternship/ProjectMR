@@ -1,6 +1,7 @@
 ﻿using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using Assets;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -36,8 +37,11 @@ public static class EventController
         var eventObject = EventObject.Instantiate(Event);
 
         if (!ActiveEvents.ContainsKey(eventObject.Id))
+        {
             ActiveEvents.Add(eventObject.Id, eventObject);
-
+            ActiveEvents[eventObject.Id].IsReady = true;
+            EventPlayer.PlayEventAmbience(eventObject);
+        }
         ActiveEventIds.Add(eventObject.Id);
 
         return eventObject;
@@ -53,10 +57,10 @@ public static class EventController
     }
 
     //PlayerEvents are only ready for having their completion level upped when they are activated by the player.
+    //!!!!!!Activeevents event id not ready on normal event
     public static bool IsEventReady(int eventId)
     {
-        if (SpawnedPlayerEvents.ContainsKey(eventId))
-            return SpawnedPlayerEvents[eventId].IsReady;
+        return ActiveEvents.ContainsKey(eventId) && ActiveEvents[eventId].IsReady;
     }
 
     public static bool IsEventAvailable()
@@ -82,4 +86,4 @@ public static class EventController
 
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
-}                                                  
+}       

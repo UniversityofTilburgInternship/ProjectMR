@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets;
 using Casanova.Prelude;
 using UnityEngine;
 
@@ -13,7 +14,6 @@ public class EventObject : MonoBehaviour
     public string AnimationName;
     public string ModelName;
     public string Name;
-    public string Sound;
     public float Radius;
     public bool IsPlayerControlled;
     public Vector3 Position;
@@ -37,7 +37,6 @@ public class EventObject : MonoBehaviour
         eventObject.AnimationName = sourceEvent.AnimationName;
         eventObject.ModelName = sourceEvent.ModelName;
         eventObject.Name = sourceEvent.Name;
-        eventObject.Sound = sourceEvent.Sound;  
         eventObject.Radius = sourceEvent.Radius;
         eventObject.IsPlayerControlled = sourceEvent.IsPlayerControlled;
         eventObject.AssociatedActions = sourceEvent.AssociatedActions;
@@ -48,6 +47,8 @@ public class EventObject : MonoBehaviour
 
     public void Destroy()
     {
+        Debug.Log("Destroyed event");
+        EventPlayer.RemoveAmbience(EventController.ActiveEvents[Id]);
         EventController.ActiveEvents.Remove(Id);
 
         if(!IsPlayerControlled)
@@ -56,4 +57,4 @@ public class EventObject : MonoBehaviour
 
 }
 
-                                                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           

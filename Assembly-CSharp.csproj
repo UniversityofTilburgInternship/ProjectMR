@@ -53,6 +53,7 @@
      <Compile Include="Assets\EventAction.cs" />
      <Compile Include="Assets\EventController.cs" />
      <Compile Include="Assets\EventObject.cs" />
+     <Compile Include="Assets\EventPlayer.cs" />
      <Compile Include="Assets\GameAction.cs" />
      <Compile Include="Assets\GenericVector.cs" />
      <Compile Include="Assets\GraphTraveler.cs" />

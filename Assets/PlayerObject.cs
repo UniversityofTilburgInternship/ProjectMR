@@ -39,6 +39,7 @@ namespace Assets
             if (!(EventController.ActiveEvents.ContainsKey(eventObject.Id)))
             {
                 EventController.ActiveEvents.Add(eventObject.Id, eventObject);
+                EventPlayer.PlayEventAmbience(eventObject);
                 eventObject.IsReady = true;
             }
             else
@@ -50,4 +51,4 @@ namespace Assets
         }
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
