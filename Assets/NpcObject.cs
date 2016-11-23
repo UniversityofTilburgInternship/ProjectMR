@@ -178,4 +178,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                            
+                                                                                     
