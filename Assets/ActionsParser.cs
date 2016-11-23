@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 using System.Linq;
 using Casanova.Prelude;
 
@@ -99,4 +99,4 @@ public static class ActionsParser
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
 }
-                                
+                                                                                     

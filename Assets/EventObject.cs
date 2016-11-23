@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 using Casanova.Prelude;
 using UnityEngine;
 
@@ -52,4 +52,4 @@ public class EventObject : MonoBehaviour
         Destroy(gameObject);
     }
 }
-                                
+                                                                                     

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 
 public class FPSmovement : MonoBehaviour
 {
@@ -44,4 +44,4 @@ public class FPSmovement : MonoBehaviour
     }
 }
 
-                                                                                 
+                                                                                                                                      

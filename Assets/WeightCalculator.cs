@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿﻿using System.Collections.Generic;
 
 public class WeightCalculator
 {
@@ -44,4 +44,4 @@ public class WeightCalculator
         }
     }
 }
-                                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                      
