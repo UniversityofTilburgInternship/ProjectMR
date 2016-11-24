@@ -706,27 +706,28 @@ return;
 	case -1:
 	actionIds = actionIds;
 	PositionAvailable = false;
-	s3 = 4;
+	s3 = 5;
 return;
-	case 4:
+	case 5:
 	UnityNpc.UpdateCurrentNodesCollection();
-	actionIds = UnityNpc.ActionsToPerform;
-	PositionAvailable = false;
-	s3 = 1;
-return;
-	case 1:
-	count_down6 = 10f;
-	goto case 2;
-	case 2:
+	HelperFunctions.Log("Updated actions");
+	count_down6 = 8f;
+	goto case 3;
+	case 3:
 	if(((count_down6) > (0f)))
 	{
 
 	count_down6 = ((count_down6) - (dt));
-	s3 = 2;
+	s3 = 3;
 return;	}else
 	{
 
-	goto case 0;	}
+	goto case 1;	}
+	case 1:
+	actionIds = UnityNpc.ActionsToPerform;
+	PositionAvailable = false;
+	s3 = 0;
+return;
 	case 0:
 	if(!(!(IsInEvent)))
 	{
@@ -870,8 +871,9 @@ return;
 return;	}else
 	{
 
-	goto case 2;	}
-	case 2:
+	goto case 5;	}
+	case 5:
+	HelperFunctions.Log(((("My Id: ") + (Id)) + ("Nearby npc id: ")) + (UnityNpc.GetNearbyIdleNpcId()));
 	if(!(((UnityNpc.GetNearbyIdleNpcId()) == (-1))))
 	{
 
@@ -880,7 +882,6 @@ return;	}else
 
 	goto case 1;	}
 	case 0:
-	HelperFunctions.Log(("Nearby npc id: ") + (UnityNpc.GetNearbyIdleNpcId()));
 	InteractionTargetId = 1;
 	s6 = -1;
 return;

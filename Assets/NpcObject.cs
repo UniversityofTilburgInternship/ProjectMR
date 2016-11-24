@@ -171,16 +171,18 @@ public class NpcObject : MonoBehaviour
     CNV: If near and not reacting or acting: Do Routine
 
     C#:
-        If extravert and not reacting:
+        If extravert and not receipient:
             get the Npc that is near from cnv
             send request to npc
             get response (one call?)
+            do interact anim
+            remove interaction request
 
         If reponse = good
             Call moveTo etc
 
-        If received request -> how?
-            determine how well it fits
+        If received request
+            get best request via genetic algorithm, only one best request.
             set response / do these 2 in one method: getresponse
     */
 
@@ -235,7 +237,12 @@ public class NpcObject : MonoBehaviour
         return requestWithBiggestWeight.Sender.Id == senderId;
     }
 
-    public bool IsExtravert()
+    //private bool HasInteractionRequest()
+    //{
+
+    //}
+
+    private bool IsExtravert()
     {
         const int EXTRAVERSION_INDEX = 0;
         var biggestPoint = AccumulatedValues.BiggestPoint();
@@ -268,4 +275,4 @@ public class NpcObject : MonoBehaviour
     }
 }
 
-                  
+                                             
