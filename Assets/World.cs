@@ -441,7 +441,7 @@ return;
 	{
 
 	case -1:
-	count_down3 = UnityEngine.Random.Range(30f,50f);
+	count_down3 = 50f;
 	goto case 4;
 	case 4:
 	if(((count_down3) > (0f)))
@@ -715,7 +715,7 @@ return;
 	s3 = 1;
 return;
 	case 1:
-	count_down6 = 25f;
+	count_down6 = 10f;
 	goto case 2;
 	case 2:
 	if(((count_down6) > (0f)))

@@ -90,7 +90,7 @@ AllPlayerEvents : [Event]
     wait false
 
   rule CurrentEvents =
-    wait Random.Range(30.0f, 50.0f)
+    wait 50.0f
     HelperFunctions.Log("Spawned event!")
     wait UnityEventController.IsEventAvailable()
     yield new Event("normalEvent", this) :: CurrentEvents
@@ -159,7 +159,7 @@ entity Person = {
       yield actionIds, false
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
-      wait 25.0f
+      wait 10.0f
       wait not IsInEvent
 
     rule actionIds, PositionAvailable =
