@@ -224,6 +224,7 @@ public Player(EventController controller)
  }
 	public Event ___event00;
 	public System.Int32 counter10;
+	public System.Int32 ___key00;
 	public System.Single count_down1;
 	public void Update(float dt, World world) {
 frame = World.frame;
@@ -264,6 +265,7 @@ return;	}else
 	___event00 = (eventController.AllPlayerEvents)[counter10];
 	goto case 2;	}
 	case 2:
+	___key00 = ___event00.Id;
 	if(UnityEngine.Input.GetKey(KeyCode.F))
 	{
 
@@ -352,6 +354,9 @@ public Event(System.String Type, EventController controller)
  }
 	public System.Single Radius{  get { return UnityEvent.Radius; }
   set{UnityEvent.Radius = value; }
+ }
+	public System.String TriggerKey{  get { return UnityEvent.TriggerKey; }
+  set{UnityEvent.TriggerKey = value; }
  }
 	public UnityEvent UnityEvent;
 	public EventObject _eventObject{  get { return UnityEvent._eventObject; }
@@ -499,7 +504,7 @@ return;
 	{
 
 	case -1:
-	count_down3 = 5000f;
+	count_down3 = 50f;
 	goto case 4;
 	case 4:
 	if(((count_down3) > (0f)))

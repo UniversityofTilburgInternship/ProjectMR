@@ -50,10 +50,17 @@ public class UnityEvent
         set { _eventObject.InterestLevel = value; }
     }
 
+
     public bool IsPlayerControlled
     {
         get { return _eventObject.IsPlayerControlled; }
         set { _eventObject.IsPlayerControlled = value; }
+    }
+
+    public string TriggerKey
+    {
+        get { return _eventObject.TriggerKey;  }
+        set { _eventObject.TriggerKey = value;  }
     }
 
     public int MaxAmountOfParticipants
@@ -102,4 +109,4 @@ public class UnityEvent
         _eventObject.Destroy();
     }
 }
-                                                                                      
+                                                                                                                    

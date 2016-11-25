@@ -3,13 +3,14 @@
     <id>0</id>
     <name>AlarmBell</name>
     <playercontrolled>false</playercontrolled>
+    <triggerkey></triggerkey>
     <radius>500</radius>
     <position>
       <x>30</x>
       <y>1</y>
       <z>30</z>
     </position>
-    <modelname>Person1</modelname>
+    <modelname>AlarmBell</modelname>
     <animationname>AlarmBell</animationname>
     <interestlevel>0</interestlevel>
     <maxamountofparticipants>10</maxamountofparticipants>
@@ -43,6 +44,7 @@
     <id>1</id>
     <name>light_switch</name>
     <playercontrolled>true</playercontrolled>
+    <triggerkey>F1</triggerkey>
     <radius>500</radius>
     <position>
       <x>0</x>

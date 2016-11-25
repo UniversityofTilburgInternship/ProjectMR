@@ -7,13 +7,10 @@ namespace Assets
     {
         public static void PlayEventAmbience(EventObject eventObject)
         {
-            //we always play the event's sound
-            HelperFunctions.PlaySound(eventObject.gameObject);
-
+            GetAudioSource(eventObject.gameObject).Play();
             switch (eventObject.AnimationName)
             {
                   case "light_switch":
-                    Debug.Log("Case light_switch");
                     SwitchLights();
                     break;
                   case "AlarmBell":
@@ -24,6 +21,7 @@ namespace Assets
 
         public static void RemoveAmbience(EventObject eventObject)
         {
+            GetAudioSource(eventObject.gameObject).Stop();
             switch (eventObject.AnimationName)
             {
                 //no case for lightswitching since those can be, well, switched
@@ -31,6 +29,12 @@ namespace Assets
                     SetLightColor(Color.white);
                     break;
             }
+        }
+
+        //NOTE: You do need to set the audiosource to loop or not loop in the unity editor yourself.
+        private static AudioSource GetAudioSource(GameObject gameObject)
+        {
+            return gameObject.GetComponent<AudioSource>();
         }
 
         private static void SwitchLights()
@@ -55,4 +59,4 @@ namespace Assets
             return GameObject.FindGameObjectsWithTag("ceiling_light");
         }
     }
-}                                                                                                                                                                                        
+}                   

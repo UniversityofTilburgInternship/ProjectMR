@@ -16,6 +16,7 @@ public class EventObject : MonoBehaviour
     public string Name;
     public float Radius;
     public bool IsPlayerControlled;
+    public string TriggerKey;
     public Vector3 Position;
 
     public List<int> AssociatedActions = new List<int>();
@@ -24,7 +25,9 @@ public class EventObject : MonoBehaviour
     public static EventObject Instantiate(Event sourceEvent)
     {
         var gameObjectModelName = sourceEvent.ModelName;
-     
+
+        Debug.Log("GAMEOBJECTMODLENAME = " + gameObjectModelName);
+
         var eventObject = (Instantiate(
                 Resources.Load(gameObjectModelName),
                 sourceEvent.Position,
@@ -39,6 +42,7 @@ public class EventObject : MonoBehaviour
         eventObject.Name = sourceEvent.Name;
         eventObject.Radius = sourceEvent.Radius;
         eventObject.IsPlayerControlled = sourceEvent.IsPlayerControlled;
+        eventObject.TriggerKey = sourceEvent.TriggerKey;
         eventObject.AssociatedActions = sourceEvent.AssociatedActions;
         eventObject.PersonalityMinimums = sourceEvent.PersonalityMinimums;
 
@@ -57,4 +61,4 @@ public class EventObject : MonoBehaviour
 
 }
 
-                                                                                        
+                                                                                                                      

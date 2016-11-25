@@ -90,6 +90,7 @@ public static class ActionsParser
                 Name = Event.Get("name").ToString(),
                 ModelName = Event.Get("modelname").ToString(),
                 IsPlayerControlled = Event.Get("playercontrolled").ToBool(),
+                TriggerKey = Event.Get("triggerkey").ToString(),
                 Radius = Event.Get("radius").ToInt(),
                 AnimationName = Event.Get("animationname").ToString(),
                 Position = Event.Get("position").ToVector3(),
@@ -124,4 +125,4 @@ public static class ActionsParser
     }
 }
 
-                                                                                        
+                                                                                                                      

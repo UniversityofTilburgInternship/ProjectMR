@@ -49,6 +49,7 @@ isTriggeringEvent : bool
 
   rule eventController.CurrentEvents =
     for event in eventController.AllPlayerEvents do
+      let key = event.Id
       if (Input.GetKey(KeyCode.F)) then
           HelperFunctions.Log("Player triggered event")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)
@@ -86,7 +87,7 @@ ref eventController : EventController
     UnityEvent = unity_event
     eventController = controller
   }
-}
+}  
 
 
 entity EventController = {
@@ -100,7 +101,7 @@ AllPlayerEvents : [Event]
     wait false
 
   rule CurrentEvents =
-    wait 5000.0f
+    wait 50.0f
     HelperFunctions.Log("Spawned event!")
     wait UnityEventController.IsEventAvailable()
     yield new Event("normalEvent", this) :: CurrentEvents
