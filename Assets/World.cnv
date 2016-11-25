@@ -87,7 +87,7 @@ ref eventController : EventController
     UnityEvent = unity_event
     eventController = controller
   }
-}  
+}
 
 
 entity EventController = {
@@ -124,15 +124,15 @@ entity Person = {
     settings : [(int * int)]
     actionIds : [int]
     PositionAvailable : bool
-    InteractionTargetId : int
 
-    rule InteractionTargetId =
-      wait Random.Range(5.0f, 10.0f)
-      HelperFunctions.Log("My Id: " + Id + "Nearby npc id: " + UnityNpc.GetNearbyIdleNpcId())
-      if not (UnityNpc.GetNearbyIdleNpcId() = -1) then
-       yield 1
-      else
-       yield 2
+    //rule InteractionId =
+      //wait Random.Range(5.0f, 10.0f)
+      //yield InteractionId
+      //if not (UnityNpc.GetNearbyIdleNpcId() = -1) then
+       //HelperFunctions.Log("My Id: " + Id + "Nearby npc id: " + UnityNpc.GetNearbyIdleNpcId())
+       //yield 1
+      //else
+       //yield 2
 
     rule actionIds, PositionAvailable =
       wait PositionAvailable
@@ -195,7 +195,6 @@ entity Person = {
         settings = Settings
         UnityNpc = unity_npc
         PositionAvailable = false
-        InteractionTargetId = -1
         actionIds = []
     }
 }

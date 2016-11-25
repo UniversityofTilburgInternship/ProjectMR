@@ -13,7 +13,6 @@ public class NpcObject : MonoBehaviour
     public bool IsInEvent;
     public bool FirstAction;
     public Animator Animator;
-    //this value is set in cnv
     public int CurrentInteractionTarget;
     public Dictionary<int, Interaction> RequestedInteractions;
     public Dictionary<int, Interaction> InteractionActions;
@@ -175,24 +174,22 @@ public class NpcObject : MonoBehaviour
     C#:
         If extravert and not receipient:
             get the Npc that is near from cnv
-            send request to npc
-            get response (one call?)
-            do interact anim
-            remove interaction request
+                  send request to npc
+                  get response (one call?)
+                  do interact anim
+                  remove interaction request
 
-        If reponse = good
-            Call moveTo etc
+              If reponse = good
+                  Call moveTo etc
 
-        If received request
-            get best request via genetic algorithm, only one best request.
-            set response / do these 2 in one method: getresponse
+              If received request
+                  get best request via genetic algorithm, only one best request.
+                  set response / do these 2 in one method: getresponse
     */
 
-    //Change this to get it using the genetic algorithm (?)
-    private Interaction GetInteraction()
-    {
-        return InteractionActions[0];
-    }
+    /*
+        INTERACTION SENDING
+    */
 
     public int GetNearbyIdleNpcId()
     {
@@ -214,9 +211,13 @@ public class NpcObject : MonoBehaviour
 
     public int TrySendInteraction()
     {
-        if (IsExtravert())
+        Debug.Log("SENT INTERACTION");
+        //CurrentInteractionTarget is set in the UnityNpc proxy
+        var receiver = AllPersons[CurrentInteractionTarget];
+
+        if (IsExtravert() && !AlreadySentRequest(receiver))
         {
-            var receiver = AllPersons[CurrentInteractionTarget];
+
             var receiverAccumulatedValues = receiver.AccumulatedValues;
 
             var interaction = GetInteraction();
@@ -233,22 +234,34 @@ public class NpcObject : MonoBehaviour
             return -1;
     }
 
-    public bool WantsToInteract(int senderId)
-    {
-        var requestWithBiggestWeight = GetRequestWithBiggestWeight();
-        return requestWithBiggestWeight.Sender.Id == senderId;
-    }
-
-    //private bool HasInteractionRequest()
-    //{
-
-    //}
-
     private bool IsExtravert()
     {
         const int EXTRAVERSION_INDEX = 0;
         var biggestPoint = AccumulatedValues.BiggestPoint();
+        Debug.Log("Extraversion AccValues = " + AccumulatedValues.Points[AccumulatedValues.Points.IndexOf(biggestPoint)]);
         return AccumulatedValues.Points.IndexOf(biggestPoint) == EXTRAVERSION_INDEX;
+    }
+
+    private bool AlreadySentRequest(NpcObject receiver)
+    {
+        return receiver.RequestedInteractions.ContainsKey(this.Id);
+    }
+
+
+    /*
+        INTERACTION RECEIVING
+    */
+
+    //Change this to get it using the genetic algorithm (?)
+    private Interaction GetInteraction()
+    {
+        return InteractionActions[0];
+    }
+
+    public bool WantsToInteract(int senderId)
+    {
+        var requestWithBiggestWeight = GetRequestWithBiggestWeight();
+        return requestWithBiggestWeight.Sender.Id == senderId;
     }
 
     private Interaction GetRequestWithBiggestWeight()
@@ -258,6 +271,8 @@ public class NpcObject : MonoBehaviour
         return RequestedInteractions[allRequestWeights.IndexOf(biggestWeight)];
     }
 
+
+    /* HELPERS */
 
     private GameAction _GetAction(int actionId)
     {
@@ -277,4 +292,4 @@ public class NpcObject : MonoBehaviour
     }
 }
 
-                                                                                                                      
+                                                                                                                                          
