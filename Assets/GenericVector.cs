@@ -66,6 +66,10 @@ public class GenericVector
         return Points.Where((p, i) => p > v.Points[i]).Count() > Points.Count;
     }
 
+    public float BiggestPoint()
+    {
+        return Points.Max();
+    }
 
     //STATIC GENERICVECTOR METHODS
     public static float DotProduct(GenericVector vectorA, GenericVector vectorB)
@@ -85,7 +89,6 @@ public class GenericVector
         return (float) Math.Acos(x);
     }
 
-
     public static double Distance(GenericVector a, GenericVector b)
     {
         var aMinusBpoints = a.Points.Select((t, i) => t - b.Points[i]).ToList();
@@ -94,4 +97,4 @@ public class GenericVector
     }
 }
 
-                                                                                                                                                          
+                                                                                        

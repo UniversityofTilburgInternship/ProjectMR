@@ -238,32 +238,33 @@ public class FastStack
 
 public class RuleTable
 {
-  public RuleTable(int elems)
-  {
-    ActiveIndices = new FastStack(elems);
-    SupportStack = new FastStack(elems);
-    ActiveSlots = new bool[elems];
-    SupportSlots = new bool[elems];
-  }
-
-  public FastStack ActiveIndices;
-  public FastStack SupportStack;
-  public bool[] ActiveSlots;
-  public bool[] SupportSlots;
-
-  public void Clear()
-  {
-    for (int i = 0; i < ActiveSlots.Length; i++)
+    public RuleTable(int elems)
     {
-      ActiveSlots[i] = false;
+        ActiveIndices = new FastStack(elems);
+        SupportStack = new FastStack(elems);
+        ActiveSlots = new bool[elems];
+        SupportSlots = new bool[elems];
     }
-  }
-  public void Add(int i)
-  {
-    if (!ActiveSlots[i])
+
+    public FastStack ActiveIndices;
+    public FastStack SupportStack;
+    public bool[] ActiveSlots;
+    public bool[] SupportSlots;
+
+    public void Clear()
     {
-      ActiveSlots[i] = true;
-      ActiveIndices.Push(i);
+        for (int i = 0; i < ActiveSlots.Length; i++)
+        {
+            ActiveSlots[i] = false;
+        }
     }
-  }
-}                                                                                                                                                          
+
+    public void Add(int i)
+    {
+        if (!ActiveSlots[i])
+        {
+            ActiveSlots[i] = true;
+            ActiveIndices.Push(i);
+        }
+    }
+}                                                                                      

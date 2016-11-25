@@ -48,6 +48,12 @@ public static class HelperFunctions
 
     //end casanova functions
 
+    public static void PlaySound(GameObject gameObject)
+    {
+        var audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.Play();
+    }
+
     public static GenericVector SetUpGenericVector(this List<Tuple<int, int>> personalityvalues)
     {
         return personalityvalues
@@ -75,4 +81,5 @@ public static class HelperFunctions
         return singlePersonalities;
     }
 }
-                                                                                                                                                          
+
+                                                                                        

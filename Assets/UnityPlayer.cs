@@ -10,20 +10,19 @@ public class UnityPlayer : MonoBehaviour
         get { return _playerObject.transform.position; }
     }
 
-    public static UnityPlayer Spawn()
+    public static UnityPlayer Initialize()
     {
-        var unityPlayer = new UnityPlayer {_playerObject = PlayerObject.Instantiate()};
+        var playerGameObject = GameObject.Find("Player");
+
+        var unityPlayer = playerGameObject.GetComponent<UnityPlayer>();
+        unityPlayer._playerObject = PlayerObject.Instantiate();
+
         return unityPlayer;
     }
 
-    public bool IsLookingAt(GameObject Object)
+    public void TriggerPlayerEvent(EventObject eventObject)
     {
-        return _playerObject.IsLookingAt(Object);
+        _playerObject.TriggerPlayerEvent(eventObject);
     }
-
-    public void TriggerEvent(EventObject eventObject)
-    {
-        _playerObject.TriggerEvent(eventObject);
-
-    }
-}                                                                                                                                                          
+}
+                                                                                      

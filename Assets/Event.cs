@@ -12,10 +12,9 @@ public class Event
     public string AnimationName;
     public string ModelName;
     public string Name;
-    public string Sound;
     public Vector3 Position;
 
     public List<int> AssociatedActions = new List<int>();
     public List<Tuple<int, int>> PersonalityMinimums = new List<Tuple<int, int>>();
 }
-                                                                                                                                                          
+                                                                                        

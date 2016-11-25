@@ -34,6 +34,21 @@ public class UnityNpc : MonoBehaviour
         }
     }
 
+    public int GetNearbyIdleNpcId()
+    {
+        return _npcObject.GetNearbyIdleNpcId();
+    }
+
+    public int InteractionTarget
+    {
+        set { _npcObject.CurrentInteractionTarget = value; }
+    }
+
+    public int InteractionId
+    {
+        get { return _npcObject.TrySendInteraction(); }
+    }
+
     public bool IsInEvent
     {
         get { return _npcObject.IsInEvent; }
@@ -52,7 +67,7 @@ public class UnityNpc : MonoBehaviour
 
     public void StopMovement()
     {
-       // _npcObject.gameObject.GetComponent<NavMeshAgent>().Stop();
+        // _npcObject.gameObject.GetComponent<NavMeshAgent>().Stop();
         //_npcObject.MovementController.Stop();
     }
 
@@ -90,7 +105,7 @@ public class UnityNpc : MonoBehaviour
 
     public void UpdateAccumulatedValues(int actionId)
     {
-        _npcObject.UpdateAccumulatedValues(actionId);  
+        _npcObject.UpdateAccumulatedValues(actionId);
     }
 
     public float PlayAnimation(int actionId)
@@ -115,9 +130,16 @@ public class UnityNpc : MonoBehaviour
 
     private static Dictionary<int, GameAction> GetAssociatedActionsForEventId(int eventId)
     {
-        var currentEvent = ActionsParser.Events[eventId];
+
+        Event currentEvent;
+
+        if (ActionsParser.Events.ContainsKey(eventId))
+            currentEvent = ActionsParser.Events[eventId];
+        else
+            currentEvent = ActionsParser.PlayerEvents[eventId];
 
         return
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
-}                                                                                                                                                          
+}
+                                                                                      

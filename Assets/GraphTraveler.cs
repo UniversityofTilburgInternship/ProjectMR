@@ -1,6 +1,7 @@
 ﻿﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class GraphTraveler
@@ -92,8 +93,6 @@ public class GraphTraveler
 
             currentAction = Actions[randomNeighbour];
         }
-
-
         return randomPath.ToList();
     }
 
@@ -127,4 +126,4 @@ public class GraphTraveler
     }
 }
 
-                                                                                                                                                          
+                                                                                        
