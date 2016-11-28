@@ -61,7 +61,7 @@
      <Compile Include="Assets\Grid.cs" />
      <Compile Include="Assets\Heap.cs" />
      <Compile Include="Assets\HelperFunctions.cs" />
-     <Compile Include="Assets\Interaction.cs" />
+     <Compile Include="Assets\InteractionAction.cs" />
      <Compile Include="Assets\ListExtensions.cs" />
      <Compile Include="Assets\LoopExtensions.cs" />
      <Compile Include="Assets\Node.cs" />

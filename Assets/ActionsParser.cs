@@ -17,14 +17,14 @@ public static class ActionsParser
     public static Dictionary<int, Event> PlayerEvents = new Dictionary<int, Event>();
     public static Dictionary<int, GameAction> EventActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> NormalActions = new Dictionary<int, GameAction>();
-    public static Dictionary<int, Interaction> Interactions = new Dictionary<int, Interaction>();
+    public static Dictionary<int, GameAction> Interactions = new Dictionary<int, GameAction>();
 
     public static void ParseInteractions()
     {
         var interactions = XmlNodule.Load(INTERACTIONS);
         foreach (var interaction in interactions)
         {
-            var interactionInstance = new Interaction
+            var interactionInstance = new InteractionAction
             {
                 Id = interaction.Get("id").ToInt(),
                 Position = interaction.Get("position").ToVector3(),
@@ -125,4 +125,4 @@ public static class ActionsParser
     }
 }
 
-                                                                                                                                          
+                                                                                                                                                                                                                                               

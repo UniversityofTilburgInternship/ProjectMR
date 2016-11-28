@@ -1,5 +1,6 @@
 ﻿﻿using System.Collections.Generic;
-using UnityEngine;
+ using System.Xml.Schema;
+ using UnityEngine;
 
 public class GameAction
 {
@@ -28,7 +29,7 @@ public class GameAction
     {
         while (true)
         {
-            var grid = getGrid();
+            var grid = GetGrid();
             var randomX = Position.x + Random.Range(-1.5f, 1.5f);
             var randomZ = Position.z + Random.Range(-1.5f, 1.5f);
             var returnVector = new Vector3(randomX, 0.0f, randomZ);
@@ -46,10 +47,10 @@ public class GameAction
         return "gameaction " + Id + " " + ActionName + " " + AnimationName + " " + Position;
     }
 
-    private Grid getGrid()
+    private Grid GetGrid()
     {
         return GameObject.Find("Pathfinder").GetComponent<Grid>();
     }
 }
 
-                                                                                                                                          
+                                                                                                                                                                                                                                               

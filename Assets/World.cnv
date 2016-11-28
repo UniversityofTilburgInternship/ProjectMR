@@ -125,14 +125,18 @@ entity Person = {
     actionIds : [int]
     PositionAvailable : bool
 
-    //rule InteractionId =
-      //wait Random.Range(5.0f, 10.0f)
-      //yield InteractionId
-      //if not (UnityNpc.GetNearbyIdleNpcId() = -1) then
-       //HelperFunctions.Log("My Id: " + Id + "Nearby npc id: " + UnityNpc.GetNearbyIdleNpcId())
-       //yield 1
-      //else
-       //yield 2
+    rule Interacting =
+      //wait not Interacting
+      wait Random.Range(5.0f, 10.0f)
+      if(UnityNpc.InteractionAvailable()) then
+        HelperFunctions.Log("Interacting yay")
+        wait 5.0f
+        wait not PositionAvailable
+        yield true
+      else
+        HelperFunctions.Log("No interactions 5 me :( ")
+        yield false
+
 
     rule actionIds, PositionAvailable =
       wait PositionAvailable
@@ -151,7 +155,6 @@ entity Person = {
         yield [for id in actionIds do
                 where (not (id = actionToExecute))
                 select id], false
-  
 
     rule actionIds, PositionAvailable =
       wait not PositionAvailable
@@ -172,6 +175,11 @@ entity Person = {
       yield UnityNpc.ActionsToPerform, false
       wait 25.0f
       wait not IsInEvent
+
+    rule actionIds, PositionAvailable =
+      wait Interacting
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
 
     rule actionIds, PositionAvailable =
       wait IsInEvent

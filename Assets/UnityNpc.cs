@@ -1,6 +1,7 @@
 ﻿﻿using System.Collections.Generic;
 using System.Linq;
-using Casanova.Prelude;
+ using System.Xml.Schema;
+ using Casanova.Prelude;
 using UnityEngine;
 
 public class UnityNpc : MonoBehaviour
@@ -34,19 +35,11 @@ public class UnityNpc : MonoBehaviour
         }
     }
 
-    public int GetNearbyIdleNpcId()
-    {
-        return _npcObject.GetNearbyIdleNpcId();
-    }
+    public bool Interacting { get; set; }
 
-    public int InteractionTarget
+    public bool InteractionAvailable()
     {
-        set { _npcObject.CurrentInteractionTarget = value; }
-    }
-
-    public int InteractionId
-    {
-        get { return _npcObject.TrySendInteraction(); }
+        return _npcObject.InteractionAvailable();
     }
 
     public bool IsInEvent
@@ -123,9 +116,17 @@ public class UnityNpc : MonoBehaviour
 
     public void UpdateCurrentNodesCollection()
     {
-        _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
-            ? GetAssociatedActionsForEventId(_npcObject.MyEvent.Id)
-            : ActionsParser.NormalActions;
+        if (Interacting)
+        {
+            _npcObject.CurrentNodesCollection = ActionsParser.Interactions;
+            _npcObject.SetActionPositions(_npcObject.CurrentInteractionTarget, Position);
+        }
+        else
+        {
+            _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
+                ? GetAssociatedActionsForEventId(_npcObject.MyEvent.Id)
+                : ActionsParser.NormalActions;
+        }
     }
 
     private static Dictionary<int, GameAction> GetAssociatedActionsForEventId(int eventId)
@@ -142,4 +143,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                                                                                                                        
+              
