@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Messaging;
 using Assets;
 using Casanova.Prelude;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class NpcObject : MonoBehaviour
     public bool IsInEvent;
     public bool FirstAction;
     public Animator Animator;
+    public bool IsInteractionTarget;
     public NpcObject CurrentInteractionTarget;
     public Dictionary<int, NpcObject> InteractionRequesters = new Dictionary<int, NpcObject>();
     public Dictionary<int, GameAction> CurrentNodesCollection;
@@ -197,20 +199,31 @@ public class NpcObject : MonoBehaviour
 
     public bool InteractionAvailable()
     {
-        //see if NearestNpc and this match
-        var NearestNpc = GetNearbyIdleNpcId();
+        var nearestNpc = GetNearbyIdleNpcId();
 
-        if (GetNearbyIdleNpcId() != null)
+        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget && !IsIntrovert())
+            return HandleInteraction(nearestNpc);
+        else
+            return false;
+    }
+
+    private bool HandleInteraction(NpcObject npc)
+    {
+        if(!AlreadySentRequest(npc))
+            npc.InteractionRequesters.Add(this.Id, this);
+
+        CurrentInteractionTarget = npc;
+
+        if (CurrentInteractionTarget.WantsToInteractWith(this.Id))
         {
-            if(!AlreadySentRequest(NearestNpc))
-                NearestNpc.InteractionRequesters.Add(this.Id, this);
-
-            CurrentInteractionTarget = NearestNpc;
-            return CurrentInteractionTarget.WantsToInteractWith(this.Id);
+            CurrentInteractionTarget.IsInteractionTarget = true;
+            return true;
         }
         else
             return false;
     }
+
+
 
     public void SetActionPositions(NpcObject npcObject, Vector3 NewPosition)
     {
@@ -305,4 +318,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}                        
+}                         

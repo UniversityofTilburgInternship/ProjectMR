@@ -610,6 +610,9 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public System.Boolean Interacting{  get { return UnityNpc.Interacting; }
   set{UnityNpc.Interacting = value; }
  }
+	public System.Boolean InteractionTarget{  get { return UnityNpc.InteractionTarget; }
+  set{UnityNpc.InteractionTarget = value; }
+ }
 	public System.Boolean IsInEvent{  get { return UnityNpc.IsInEvent; }
   set{UnityNpc.IsInEvent = value; }
  }
@@ -665,6 +668,7 @@ frame = World.frame;
 		this.Rule6(dt, world);
 		this.Rule7(dt, world);
 		this.Rule8(dt, world);
+		this.Rule9(dt, world);
 	}
 
 
@@ -989,29 +993,60 @@ return;
 	{
 
 	case -1:
-	if(UnityNpc.InteractionAvailable())
+	if(!(InteractionTarget))
 	{
 
-	goto case 14;	}else
-	{
-
-	goto case 15;	}
-	case 14:
-	if(!(!(PositionAvailable)))
-	{
-
-	s8 = 14;
+	s8 = -1;
 return;	}else
 	{
 
-	goto case 17;	}
-	case 17:
+	goto case 2;	}
+	case 2:
+	if(!(!(Interacting)))
+	{
+
+	s8 = 2;
+return;	}else
+	{
+
+	goto case 1;	}
+	case 1:
+	UnityNpc.UpdateCurrentNodesCollection();
+	actionIds = UnityNpc.ActionsToPerform;
+	PositionAvailable = false;
+	s8 = -1;
+return;	
+	default: return;}}
+	
+
+	int s9=-1;
+	public void Rule9(float dt, World world){ switch (s9)
+	{
+
+	case -1:
+	if(UnityNpc.InteractionAvailable())
+	{
+
+	goto case 4;	}else
+	{
+
+	goto case 5;	}
+	case 4:
+	if(!(!(PositionAvailable)))
+	{
+
+	s9 = 4;
+return;	}else
+	{
+
+	goto case 7;	}
+	case 7:
 	Interacting = true;
-	s8 = -1;
+	s9 = -1;
 return;
-	case 15:
+	case 5:
 	Interacting = false;
-	s8 = -1;
+	s9 = -1;
 return;	
 	default: return;}}
 	

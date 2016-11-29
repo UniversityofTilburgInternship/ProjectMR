@@ -8,6 +8,7 @@ using Casanova.Prelude;
 
 public static class ActionsParser
 {
+    private const string REACTIONS = "reactions";
     private const string INTERACTIONS = "interactions";
     private const string ACTIONS = "actions";
     private const string EVENTACTIONS = "eventActions";
@@ -18,6 +19,26 @@ public static class ActionsParser
     public static Dictionary<int, GameAction> EventActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> NormalActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> Interactions = new Dictionary<int, GameAction>();
+    public static Dictionary<int, GameAction> Reactions = new Dictionary<int, GameAction>();
+
+
+    public static void ParseReactions()
+    {
+        var reactions = XmlNodule.Load(REACTIONS);
+
+        foreach (var reaction in reactions)
+        {
+            var reactionInstance = new Reaction
+            {
+                Id = reaction.Get("id").ToInt(),
+                Position = reaction.Get("position").ToVector3(),
+                ActionName = reaction.Get("name").ToString(),
+                AnimationName = reaction.Get("animationname").ToString(),
+                PersonalityModifiers = GetNodePersonalityModifiers(reaction)
+            };
+            Reactions.Add(reactionInstance.Id, reactionInstance);
+        }
+    }
 
     public static void ParseInteractions()
     {
@@ -125,4 +146,4 @@ public static class ActionsParser
     }
 }
 
-                                                                                                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                          

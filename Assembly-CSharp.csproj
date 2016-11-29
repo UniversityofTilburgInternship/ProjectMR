@@ -74,6 +74,7 @@
      <Compile Include="Assets\PlayerObject.cs" />
      <Compile Include="Assets\PlayerParser.cs" />
      <Compile Include="Assets\Prelude.cs" />
+     <Compile Include="Assets\Reaction.cs" />
      <Compile Include="Assets\Scripts\AudioOffset.cs" />
      <Compile Include="Assets\Scripts\CaptureNormals.cs" />
      <Compile Include="Assets\Scripts\ClusterRenderer\CameraRig.cs" />
@@ -115,6 +116,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\BlendModesOverlay.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+     <None Include="Assets\Resources\reactions.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
      <None Include="Assets\Resources\eventActions.xml" />

@@ -132,6 +132,12 @@ entity Person = {
       else
         yield false
 
+    rule actionIds, PositionAvailable =
+      wait InteractionTarget
+      wait not Interacting
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+
 
     rule actionIds, PositionAvailable =
       wait PositionAvailable

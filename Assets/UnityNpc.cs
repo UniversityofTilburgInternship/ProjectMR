@@ -35,6 +35,14 @@ public class UnityNpc : MonoBehaviour
         }
     }
 
+    //if this is true, change nodes collection in cnv
+    public bool InteractionTarget
+    {
+        get { return _npcObject.IsInteractionTarget;  }
+        set { _npcObject.IsInteractionTarget = value;  }
+    }
+
+
     public bool Interacting { get; set; }
 
     public bool InteractionAvailable()
@@ -119,7 +127,10 @@ public class UnityNpc : MonoBehaviour
         if (Interacting)
         {
             _npcObject.CurrentNodesCollection = ActionsParser.Interactions;
-            //_npcObject.SetActionPositions(_npcObject.CurrentInteractionTarget, Position);
+        }
+        else if (InteractionTarget)
+        {
+            _npcObject.CurrentNodesCollection = ActionsParser.Reactions;
         }
         else
         {
@@ -143,4 +154,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                                                                                        
+                                                                                                         
