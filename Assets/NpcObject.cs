@@ -202,16 +202,11 @@ public class NpcObject : MonoBehaviour
 
         if (GetNearbyIdleNpcId() != null)
         {
-            /*
-            InteractionRequesters.Add(this.Id, this);
-            if (CurrentInteractionTarget.WantsToInteractWith(this.Id))
-            {
-                CurrentInteractionTarget = NearestNpc;
-                return true;
-            }
-            else
-                return false; */
-            return true;
+            if(!AlreadySentRequest(NearestNpc))
+                NearestNpc.InteractionRequesters.Add(this.Id, this);
+
+            CurrentInteractionTarget = NearestNpc;
+            return CurrentInteractionTarget.WantsToInteractWith(this.Id);
         }
         else
             return false;
@@ -244,23 +239,20 @@ public class NpcObject : MonoBehaviour
             return null;
     }
 
-    /*
+
     private bool IsExtravert()
     {
         const int EXTRAVERSION_INDEX = 0;
         var biggestPoint = AccumulatedValues.BiggestPoint();
-        Debug.Log("Biggest point has value " + biggestPoint + " with index " +
-                  AccumulatedValues.Points.IndexOf(biggestPoint)
-                  + " extraversion index = " + EXTRAVERSION_INDEX);
         return AccumulatedValues.Points.IndexOf(biggestPoint) == EXTRAVERSION_INDEX;
-    }*/
+    }
 
-    /*
+
     private bool AlreadySentRequest(NpcObject receiver)
     {
         return receiver.InteractionRequesters.ContainsKey(this.Id)
                || this.InteractionRequesters.ContainsKey(receiver.Id);
-    }*/
+    }
 
 
     /*
@@ -271,15 +263,11 @@ public class NpcObject : MonoBehaviour
     {
         if (InteractionRequesters.ContainsKey(senderId))
         {
-            //Debug.Log("InteractionRequesters.Contains(senderId) ISCH ZHTRUE");
             var bestRequester = GetBestInteractionSender();
             return bestRequester.Id == senderId;
         }
         else
-        {
-            Debug.Log("InteractionRequesters.Contains(senderId) ISCH FALSE");
             return false;
-        }
     }
 
     private NpcObject GetBestInteractionSender()
@@ -294,8 +282,8 @@ public class NpcObject : MonoBehaviour
             float weight = GenericVector.DotProduct(this.AccumulatedValues, requester.AccumulatedValues);
             IDsAndWeights.Add(requester.Id, weight);
         }
-        var idOfBiggestWeightRequester = from x in IDsAndWeights where x.Value == IDsAndWeights.Max(v => v.Value) select x.Key;
-        return null;
+        var idOfBiggestWeightRequester = (from x in IDsAndWeights where x.Value == IDsAndWeights.Max(v => v.Value) select x.Key).FirstOrDefault();
+        return AllPersons.First(x => x.Id == idOfBiggestWeightRequester);
     }
 
 
@@ -317,4 +305,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}              
+}                                

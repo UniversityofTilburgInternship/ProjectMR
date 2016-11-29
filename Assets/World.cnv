@@ -126,15 +126,12 @@ entity Person = {
     PositionAvailable : bool
 
     rule Interacting =
-      //wait not Interacting
-      wait Random.Range(5.0f, 10.0f)
+      yield false
       if(UnityNpc.InteractionAvailable()) then
-        HelperFunctions.Log("Interacting yay")
-        wait 5.0f
         wait not PositionAvailable
         yield true
+        wait Random.Range(7.0f, 17.0f)
       else
-        HelperFunctions.Log("No interactions 5 me :( ")
         yield false
 
 
@@ -180,6 +177,15 @@ entity Person = {
       wait Interacting
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
+      wait 2.0f
+
+    rule actionIds, PositionAvailable =
+      wait Interacting
+      wait not Interacting
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+
+
 
     rule actionIds, PositionAvailable =
       wait IsInEvent
@@ -192,6 +198,8 @@ entity Person = {
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
       wait 2.0f
+
+
 
     rule IsInEvent =
         wait 1.0f

@@ -647,13 +647,13 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public System.Single count_down4;
 	public System.Single count_down5;
 	public System.Single count_down6;
-	public System.Int32 ___actionToExecute50;
-	public System.Int32 ___actionToExecute61;
-	public UnityEngine.Vector3 ___destination60;
-	public System.Single ___distanceToDestination60;
 	public System.Single count_down7;
-	public System.Single count_down9;
+	public System.Int32 ___actionToExecute60;
+	public System.Int32 ___actionToExecute71;
+	public UnityEngine.Vector3 ___destination70;
+	public System.Single ___distanceToDestination70;
 	public System.Single count_down8;
+	public System.Single count_down9;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -665,6 +665,7 @@ frame = World.frame;
 		this.Rule5(dt, world);
 		this.Rule6(dt, world);
 		this.Rule7(dt, world);
+		this.Rule8(dt, world);
 	}
 
 
@@ -774,6 +775,15 @@ return;
 return;	}else
 	{
 
+	goto case 2;	}
+	case 2:
+	if(!(!(Interacting)))
+	{
+
+	s3 = 2;
+return;	}else
+	{
+
 	goto case 1;	}
 	case 1:
 	UnityNpc.UpdateCurrentNodesCollection();
@@ -789,34 +799,29 @@ return;
 	{
 
 	case -1:
-	actionIds = actionIds;
-	PositionAvailable = false;
-	s4 = 4;
-return;
-	case 4:
+	if(!(Interacting))
+	{
+
+	s4 = -1;
+return;	}else
+	{
+
+	goto case 3;	}
+	case 3:
 	UnityNpc.UpdateCurrentNodesCollection();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
-	s4 = 1;
+	s4 = 0;
 return;
+	case 0:
+	count_down6 = 20f;
+	goto case 1;
 	case 1:
-	count_down6 = 25f;
-	goto case 2;
-	case 2:
 	if(((count_down6) > (0f)))
 	{
 
 	count_down6 = ((count_down6) - (dt));
-	s4 = 2;
-return;	}else
-	{
-
-	goto case 0;	}
-	case 0:
-	if(!(!(IsInEvent)))
-	{
-
-	s4 = 0;
+	s4 = 1;
 return;	}else
 	{
 
@@ -830,48 +835,39 @@ return;	}
 	{
 
 	case -1:
-	if(!(!(PositionAvailable)))
-	{
-
-	s5 = -1;
-return;	}else
-	{
-
-	goto case 7;	}
-	case 7:
-	if(!(((actionIds.Count) > (0))))
-	{
-
-	s5 = 7;
-return;	}else
-	{
-
-	goto case 6;	}
-	case 6:
-	___actionToExecute50 = (actionIds)[0];
-	if(UnityNpc.IsPositionAvailable(___actionToExecute50))
-	{
-
-	goto case 0;	}else
-	{
-
-	goto case 1;	}
-	case 0:
-	UnityNpc.ClaimPosition(___actionToExecute50);
 	actionIds = actionIds;
-	PositionAvailable = true;
-	s5 = -1;
+	PositionAvailable = false;
+	s5 = 4;
+return;
+	case 4:
+	UnityNpc.UpdateCurrentNodesCollection();
+	actionIds = UnityNpc.ActionsToPerform;
+	PositionAvailable = false;
+	s5 = 1;
 return;
 	case 1:
-	actionIds = (
+	count_down7 = 25f;
+	goto case 2;
+	case 2:
+	if(((count_down7) > (0f)))
+	{
 
-(actionIds).Select(__ContextSymbol14 => new { ___id50 = __ContextSymbol14 })
-.Where(__ContextSymbol15 => !(((__ContextSymbol15.___id50) == (___actionToExecute50))))
-.Select(__ContextSymbol16 => __ContextSymbol16.___id50)
-.ToList<System.Int32>()).ToList<System.Int32>();
-	PositionAvailable = false;
+	count_down7 = ((count_down7) - (dt));
+	s5 = 2;
+return;	}else
+	{
+
+	goto case 0;	}
+	case 0:
+	if(!(!(IsInEvent)))
+	{
+
+	s5 = 0;
+return;	}else
+	{
+
 	s5 = -1;
-return;	
+return;	}	
 	default: return;}}
 	
 
@@ -880,58 +876,44 @@ return;
 	{
 
 	case -1:
-	if(!(PositionAvailable))
+	if(!(!(PositionAvailable)))
 	{
 
 	s6 = -1;
 return;	}else
 	{
 
-	goto case 12;	}
-	case 12:
+	goto case 7;	}
+	case 7:
 	if(!(((actionIds.Count) > (0))))
 	{
 
-	s6 = 12;
+	s6 = 7;
 return;	}else
 	{
 
-	goto case 11;	}
-	case 11:
-	___actionToExecute61 = (actionIds)[0];
-	___destination60 = UnityNpc.GetClaimedPosition(___actionToExecute61);
-	UnityNpc.MoveTo(___actionToExecute61);
-	___distanceToDestination60 = UnityEngine.Vector3.Distance(Position,___destination60);
-	if(((2.2f) > (___distanceToDestination60)))
+	goto case 6;	}
+	case 6:
+	___actionToExecute60 = (actionIds)[0];
+	if(UnityNpc.IsPositionAvailable(___actionToExecute60))
 	{
 
-	goto case 1;	}else
+	goto case 0;	}else
 	{
 
+	goto case 1;	}
+	case 0:
+	UnityNpc.ClaimPosition(___actionToExecute60);
+	actionIds = actionIds;
+	PositionAvailable = true;
 	s6 = -1;
-return;	}
+return;
 	case 1:
-	UnityNpc.StopMovement();
-	UnityNpc.UpdateAccumulatedValues(___actionToExecute61);
-	count_down7 = UnityNpc.PlayAnimation(___actionToExecute61);
-	goto case 5;
-	case 5:
-	if(((count_down7) > (0f)))
-	{
-
-	count_down7 = ((count_down7) - (dt));
-	s6 = 5;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	UnityNpc.RemoveClaimToPosition(___actionToExecute61);
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol17 => new { ___id61 = __ContextSymbol17 })
-.Where(__ContextSymbol18 => !(((__ContextSymbol18.___id61) == (___actionToExecute61))))
-.Select(__ContextSymbol19 => __ContextSymbol19.___id61)
+(actionIds).Select(__ContextSymbol14 => new { ___id60 = __ContextSymbol14 })
+.Where(__ContextSymbol15 => !(((__ContextSymbol15.___id60) == (___actionToExecute60))))
+.Select(__ContextSymbol16 => __ContextSymbol16.___id60)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s6 = -1;
@@ -944,18 +926,73 @@ return;
 	{
 
 	case -1:
-	count_down9 = UnityEngine.Random.Range(5f,10f);
-	goto case 11;
-	case 11:
-	if(((count_down9) > (0f)))
+	if(!(PositionAvailable))
 	{
 
-	count_down9 = ((count_down9) - (dt));
-	s7 = 11;
+	s7 = -1;
 return;	}else
 	{
 
-	goto case 2;	}
+	goto case 12;	}
+	case 12:
+	if(!(((actionIds.Count) > (0))))
+	{
+
+	s7 = 12;
+return;	}else
+	{
+
+	goto case 11;	}
+	case 11:
+	___actionToExecute71 = (actionIds)[0];
+	___destination70 = UnityNpc.GetClaimedPosition(___actionToExecute71);
+	UnityNpc.MoveTo(___actionToExecute71);
+	___distanceToDestination70 = UnityEngine.Vector3.Distance(Position,___destination70);
+	if(((2.2f) > (___distanceToDestination70)))
+	{
+
+	goto case 1;	}else
+	{
+
+	s7 = -1;
+return;	}
+	case 1:
+	UnityNpc.StopMovement();
+	UnityNpc.UpdateAccumulatedValues(___actionToExecute71);
+	count_down8 = UnityNpc.PlayAnimation(___actionToExecute71);
+	goto case 5;
+	case 5:
+	if(((count_down8) > (0f)))
+	{
+
+	count_down8 = ((count_down8) - (dt));
+	s7 = 5;
+return;	}else
+	{
+
+	goto case 3;	}
+	case 3:
+	UnityNpc.RemoveClaimToPosition(___actionToExecute71);
+	actionIds = (
+
+(actionIds).Select(__ContextSymbol17 => new { ___id71 = __ContextSymbol17 })
+.Where(__ContextSymbol18 => !(((__ContextSymbol18.___id71) == (___actionToExecute71))))
+.Select(__ContextSymbol19 => __ContextSymbol19.___id71)
+.ToList<System.Int32>()).ToList<System.Int32>();
+	PositionAvailable = false;
+	s7 = -1;
+return;	
+	default: return;}}
+	
+
+	int s8=-1;
+	public void Rule8(float dt, World world){ switch (s8)
+	{
+
+	case -1:
+	Interacting = false;
+	s8 = 2;
+return;
 	case 2:
 	if(UnityNpc.InteractionAvailable())
 	{
@@ -965,36 +1002,35 @@ return;	}else
 
 	goto case 1;	}
 	case 0:
-	HelperFunctions.Log("Interacting yay");
-	count_down8 = 5f;
-	goto case 6;
-	case 6:
-	if(((count_down8) > (0f)))
-	{
-
-	count_down8 = ((count_down8) - (dt));
-	s7 = 6;
-return;	}else
-	{
-
-	goto case 4;	}
-	case 4:
 	if(!(!(PositionAvailable)))
 	{
 
-	s7 = 4;
+	s8 = 0;
 return;	}else
 	{
 
-	goto case 3;	}
-	case 3:
+	goto case 5;	}
+	case 5:
 	Interacting = true;
-	s7 = -1;
+	s8 = 3;
 return;
+	case 3:
+	count_down9 = UnityEngine.Random.Range(7f,17f);
+	goto case 4;
+	case 4:
+	if(((count_down9) > (0f)))
+	{
+
+	count_down9 = ((count_down9) - (dt));
+	s8 = 4;
+return;	}else
+	{
+
+	s8 = -1;
+return;	}
 	case 1:
-	HelperFunctions.Log("No interactions 5 me :( ");
 	Interacting = false;
-	s7 = -1;
+	s8 = -1;
 return;	
 	default: return;}}
 	
