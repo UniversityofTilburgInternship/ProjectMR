@@ -119,7 +119,7 @@ public class UnityNpc : MonoBehaviour
         if (Interacting)
         {
             _npcObject.CurrentNodesCollection = ActionsParser.Interactions;
-            _npcObject.SetActionPositions(_npcObject.CurrentInteractionTarget, Position);
+            //_npcObject.SetActionPositions(_npcObject.CurrentInteractionTarget, Position);
         }
         else
         {
@@ -143,4 +143,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                              
+                                                                                                        

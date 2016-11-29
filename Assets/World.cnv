@@ -101,7 +101,7 @@ AllPlayerEvents : [Event]
     wait false
 
   rule CurrentEvents =
-    wait 50.0f
+    wait Random.Range(50.0f, 100.0f)
     HelperFunctions.Log("Spawned event!")
     wait UnityEventController.IsEventAvailable()
     yield new Event("normalEvent", this) :: CurrentEvents
@@ -126,11 +126,9 @@ entity Person = {
     PositionAvailable : bool
 
     rule Interacting =
-      yield false
       if(UnityNpc.InteractionAvailable()) then
         wait not PositionAvailable
         yield true
-        wait Random.Range(7.0f, 17.0f)
       else
         yield false
 
@@ -161,7 +159,7 @@ entity Person = {
         UnityNpc.ClaimPosition(actionToExecute)
         yield actionIds, true
       else
-        //If we cannot get a position, skip this action.    
+        //If we cannot get a position, skip this action.
         yield [for id in actionIds do
                where (not (id = actionToExecute))
                select id], false

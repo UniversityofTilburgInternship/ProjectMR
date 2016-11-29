@@ -222,29 +222,29 @@ public class NpcObject : MonoBehaviour
 
     private NpcObject GetNearbyIdleNpcId()
     {
-        var nearbyNpcs = new Dictionary<float, NpcObject>();
+        var nearbyNpcs = new Dictionary<NpcObject, float>();
 
         foreach (var npc in AllPersons)
         {
-            if (npc.Id != this.Id)
+            if (npc.Id != this.Id && !IsIntrovert())
             {
                 var distance = Vector3.Distance(transform.position, npc.transform.position);
-                nearbyNpcs.Add(distance, npc);
+                nearbyNpcs.Add(npc, distance);
             }
         }
 
         if (nearbyNpcs.Count > 1)
-            return nearbyNpcs.FirstOrDefault(x => x.Key == nearbyNpcs.Keys.Min()).Value;
+            return nearbyNpcs.FirstOrDefault(x => x.Value == nearbyNpcs.Values.Min()).Key;
         else
             return null;
     }
 
 
-    private bool IsExtravert()
+    private bool IsIntrovert()
     {
-        const int EXTRAVERSION_INDEX = 0;
+        const int INTROVERSION_INDEX = 3;
         var biggestPoint = AccumulatedValues.BiggestPoint();
-        return AccumulatedValues.Points.IndexOf(biggestPoint) == EXTRAVERSION_INDEX;
+        return AccumulatedValues.Points.IndexOf(biggestPoint) == INTROVERSION_INDEX;
     }
 
 
@@ -305,4 +305,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}                                
+}                        

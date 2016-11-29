@@ -504,7 +504,7 @@ return;
 	{
 
 	case -1:
-	count_down3 = 50f;
+	count_down3 = UnityEngine.Random.Range(50f,100f);
 	goto case 4;
 	case 4:
 	if(((count_down3) > (0f)))
@@ -653,7 +653,6 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public UnityEngine.Vector3 ___destination70;
 	public System.Single ___distanceToDestination70;
 	public System.Single count_down8;
-	public System.Single count_down9;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -814,7 +813,7 @@ return;	}else
 	s4 = 0;
 return;
 	case 0:
-	count_down6 = 20f;
+	count_down6 = 2f;
 	goto case 1;
 	case 1:
 	if(((count_down6) > (0f)))
@@ -990,45 +989,27 @@ return;
 	{
 
 	case -1:
-	Interacting = false;
-	s8 = 2;
-return;
-	case 2:
 	if(UnityNpc.InteractionAvailable())
 	{
 
-	goto case 0;	}else
+	goto case 14;	}else
 	{
 
-	goto case 1;	}
-	case 0:
+	goto case 15;	}
+	case 14:
 	if(!(!(PositionAvailable)))
 	{
 
-	s8 = 0;
+	s8 = 14;
 return;	}else
 	{
 
-	goto case 5;	}
-	case 5:
+	goto case 17;	}
+	case 17:
 	Interacting = true;
-	s8 = 3;
-return;
-	case 3:
-	count_down9 = UnityEngine.Random.Range(7f,17f);
-	goto case 4;
-	case 4:
-	if(((count_down9) > (0f)))
-	{
-
-	count_down9 = ((count_down9) - (dt));
-	s8 = 4;
-return;	}else
-	{
-
 	s8 = -1;
-return;	}
-	case 1:
+return;
+	case 15:
 	Interacting = false;
 	s8 = -1;
 return;	
