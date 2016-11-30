@@ -17,6 +17,7 @@ public class NpcObject : MonoBehaviour
     public Animator Animator;
     public bool IsInteractionTarget;
     public NpcObject CurrentInteractionTarget;
+    public NpcObject InteractionSender;
     public Dictionary<int, NpcObject> InteractionRequesters = new Dictionary<int, NpcObject>();
     public Dictionary<int, GameAction> CurrentNodesCollection;
     public EventObject MyEvent;
@@ -167,41 +168,28 @@ public class NpcObject : MonoBehaviour
     }
 
     /*
-	XML: Store interaction-actions seperately or with bool (which means we separate
-	them later)
-
-    CNV: If near and not reacting or acting: Do Routine
-
-    C#:
-        If extravert and not receipient:
-            get the Npc that is near from cnv
-                  send request to npc
-                  get response (one call?)
-                  do interact anim
-                  remove interaction request
-
-              If reponse = good
-                  Call moveTo etc
-
-              If received request
-                  get best request via genetic algorithm, only one best request.
-                  set response / do these 2 in one method: getresponse
-    */
-
-    /*
         INTERACTION SENDING
     */
 
-    public void RemoveInteraction()
+    public void FreeInteractionTarget()
     {
         CurrentInteractionTarget.InteractionRequesters.Remove(this.Id);
+        CurrentInteractionTarget.IsInteractionTarget = false;
+        CurrentInteractionTarget.InteractionSender = null;
+    }
+
+    //This is done in a separate method for timing issues, so that the reaction of an npc does not happen
+    //before the interaction-action of the sender because IsInteractionTarget is set before a return statement.
+    public void SetInteractionTarget()
+    {
+        CurrentInteractionTarget.IsInteractionTarget = true;
     }
 
     public bool InteractionAvailable()
     {
         var nearestNpc = GetNearbyIdleNpcId();
 
-        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget && !IsIntrovert())
+        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget)
             return HandleInteraction(nearestNpc);
         else
             return false;
@@ -216,14 +204,12 @@ public class NpcObject : MonoBehaviour
 
         if (CurrentInteractionTarget.WantsToInteractWith(this.Id))
         {
-            CurrentInteractionTarget.IsInteractionTarget = true;
+            CurrentInteractionTarget.InteractionSender = this;
             return true;
         }
         else
             return false;
     }
-
-
 
     public void SetActionPositions(NpcObject npcObject, Vector3 NewPosition)
     {
@@ -252,7 +238,6 @@ public class NpcObject : MonoBehaviour
             return null;
     }
 
-
     private bool IsIntrovert()
     {
         const int INTROVERSION_INDEX = 3;
@@ -269,7 +254,7 @@ public class NpcObject : MonoBehaviour
 
 
     /*
-        INTERACTION RECEIVING
+        INTERACTION RECEIVING / HELPERS
     */
 
     private bool WantsToInteractWith(int senderId)
@@ -285,9 +270,6 @@ public class NpcObject : MonoBehaviour
 
     private NpcObject GetBestInteractionSender()
     {
-        //get all accvalues
-        //store their weights and their id's in a dict
-        //return key of biggest value of said dict
         var IDsAndWeights = new Dictionary<int, float>();
 
         foreach (var requester in InteractionRequesters.Values)
@@ -301,6 +283,23 @@ public class NpcObject : MonoBehaviour
 
 
     /* HELPERS */
+
+    //make action positions be the interaciton position
+    public void ChangeActionPositions(Vector3 newPosition)
+    {
+        foreach (var action in CurrentNodesCollection)
+        {
+            action.Value.Position = newPosition;
+        }
+    }
+
+    public Vector3 GetVectorForInteraction(string type)
+    {
+        if (type.Equals("InteractionSender"))
+            return (transform.position + CurrentInteractionTarget.transform.position).normalized;
+        else
+            return (transform.position + InteractionSender.transform.position).normalized;
+    }
 
     private GameAction _GetAction(int actionId)
     {
@@ -318,4 +317,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}                         
+}              

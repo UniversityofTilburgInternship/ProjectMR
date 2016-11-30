@@ -125,19 +125,31 @@ entity Person = {
     actionIds : [int]
     PositionAvailable : bool
 
-    rule Interacting =
-      if(UnityNpc.InteractionAvailable()) then
-        wait not PositionAvailable
-        yield true
-      else
-        yield false
-
     rule actionIds, PositionAvailable =
       wait InteractionTarget
       wait not Interacting
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
+    rule actionIds, PositionAvailable =
+      wait Interacting
+      wait not Interacting
+      UnityNpc.FreeInteractionTarget()
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+
+    rule actionIds, PositionAvailable =
+      wait Interacting
+      UnityNpc.UpdateCurrentNodesCollection()
+      UnityNpc.SetInteractionTarget()
+      yield UnityNpc.ActionsToPerform, false
+
+    rule Interacting =
+      if(UnityNpc.InteractionAvailable()) then
+        wait not PositionAvailable    
+        yield true
+      else
+        yield false
 
     rule actionIds, PositionAvailable =
       wait PositionAvailable
@@ -176,20 +188,6 @@ entity Person = {
       yield UnityNpc.ActionsToPerform, false
       wait 25.0f
       wait not IsInEvent
-
-    rule actionIds, PositionAvailable =
-      wait Interacting
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-      wait 2.0f
-
-    rule actionIds, PositionAvailable =
-      wait Interacting
-      wait not Interacting
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-
-
 
     rule actionIds, PositionAvailable =
       wait IsInEvent

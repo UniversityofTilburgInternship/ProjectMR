@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Assets;
 using Casanova.Prelude;
+ using UnityEngine;
 
 
 public static class ActionsParser
@@ -25,7 +26,6 @@ public static class ActionsParser
     public static void ParseReactions()
     {
         var reactions = XmlNodule.Load(REACTIONS);
-
         foreach (var reaction in reactions)
         {
             var reactionInstance = new Reaction
@@ -146,4 +146,4 @@ public static class ActionsParser
     }
 }
 
-                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                      
