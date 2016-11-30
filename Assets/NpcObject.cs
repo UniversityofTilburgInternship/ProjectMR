@@ -187,10 +187,11 @@ public class NpcObject : MonoBehaviour
 
     public bool InteractionAvailable()
     {
-        var nearestNpc = GetNearbyIdleNpcId();
-
-        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget)
+        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget && IsItTime())
+        {
+            var nearestNpc = GetNearbyIdleNpcId();
             return HandleInteraction(nearestNpc);
+        }
         else
             return false;
     }
@@ -250,6 +251,12 @@ public class NpcObject : MonoBehaviour
     {
         return receiver.InteractionRequesters.ContainsKey(this.Id)
                || this.InteractionRequesters.ContainsKey(receiver.Id);
+    }
+
+    //TODO: temp, better to use waits in casanova
+    private bool IsItTime()
+    {
+        return Random.Range(0, 15) == 5;
     }
 
 
@@ -317,4 +324,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}              
+}      

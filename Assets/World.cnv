@@ -146,7 +146,7 @@ entity Person = {
 
     rule Interacting =
       if(UnityNpc.InteractionAvailable()) then
-        wait not PositionAvailable    
+        wait not PositionAvailable
         yield true
       else
         yield false
