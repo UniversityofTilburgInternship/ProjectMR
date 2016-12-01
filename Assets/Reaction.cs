@@ -2,4 +2,4 @@
 {
     public class Reaction : GameAction
     {}
-}                                                                                                                   
+}                                                                                                                                                                                   

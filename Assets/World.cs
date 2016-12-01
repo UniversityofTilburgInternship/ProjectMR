@@ -655,6 +655,8 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public UnityEngine.Vector3 ___destination50;
 	public System.Single ___distanceToDestination50;
 	public System.Single count_down7;
+	public System.Single count_down8;
+	public System.Single count_down9;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -925,27 +927,31 @@ return;
 	{
 
 	case -1:
-	if(UnityNpc.InteractionAvailable())
+	count_down8 = UnityEngine.Random.Range(10f,20f);
+	goto case 6;
+	case 6:
+	if(((count_down8) > (0f)))
 	{
 
-	goto case 14;	}else
-	{
-
-	goto case 15;	}
-	case 14:
-	if(!(!(PositionAvailable)))
-	{
-
-	s6 = 14;
+	count_down8 = ((count_down8) - (dt));
+	s6 = 6;
 return;	}else
 	{
 
-	goto case 17;	}
-	case 17:
+	goto case 2;	}
+	case 2:
+	if(UnityNpc.InteractionAvailable())
+	{
+
+	goto case 0;	}else
+	{
+
+	goto case 1;	}
+	case 0:
 	Interacting = true;
 	s6 = -1;
 return;
-	case 15:
+	case 1:
 	Interacting = false;
 	s6 = -1;
 return;	
@@ -964,10 +970,9 @@ return;
 return;	}else
 	{
 
-	goto case 2;	}
-	case 2:
+	goto case 1;	}
+	case 1:
 	UnityNpc.UpdateCurrentNodesCollection();
-	UnityNpc.SetInteractionTarget();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
 	s7 = -1;
@@ -1012,16 +1017,20 @@ return;
 	{
 
 	case -1:
-	if(!(InteractionTarget))
+	count_down9 = UnityEngine.Random.Range(10f,20f);
+	goto case 4;
+	case 4:
+	if(((count_down9) > (0f)))
 	{
 
-	s9 = -1;
+	count_down9 = ((count_down9) - (dt));
+	s9 = 4;
 return;	}else
 	{
 
 	goto case 2;	}
 	case 2:
-	if(!(!(Interacting)))
+	if(!(InteractionTarget))
 	{
 
 	s9 = 2;
@@ -1043,4 +1052,4 @@ return;
 
 
 }
-}     
+} 

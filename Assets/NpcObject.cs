@@ -132,6 +132,7 @@ public class NpcObject : MonoBehaviour
         {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             agent.destination = position;
+            transform.LookAt(position);
         }
     }
 
@@ -178,16 +179,10 @@ public class NpcObject : MonoBehaviour
         CurrentInteractionTarget.InteractionSender = null;
     }
 
-    //This is done in a separate method for timing issues, so that the reaction of an npc does not happen
-    //before the interaction-action of the sender because IsInteractionTarget is set before a return statement.
-    public void SetInteractionTarget()
-    {
-        CurrentInteractionTarget.IsInteractionTarget = true;
-    }
-
     public bool InteractionAvailable()
     {
-        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget && IsItTime())
+        //&& IsItTime()
+        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget )
         {
             var nearestNpc = GetNearbyIdleNpcId();
             return HandleInteraction(nearestNpc);
@@ -198,7 +193,8 @@ public class NpcObject : MonoBehaviour
 
     private bool HandleInteraction(NpcObject npc)
     {
-        if(!AlreadySentRequest(npc))
+        //not sure about the else
+        if (!AlreadySentRequest(npc))
             npc.InteractionRequesters.Add(this.Id, this);
 
         CurrentInteractionTarget = npc;
@@ -206,6 +202,7 @@ public class NpcObject : MonoBehaviour
         if (CurrentInteractionTarget.WantsToInteractWith(this.Id))
         {
             CurrentInteractionTarget.InteractionSender = this;
+            CurrentInteractionTarget.IsInteractionTarget = true;
             return true;
         }
         else
@@ -226,7 +223,7 @@ public class NpcObject : MonoBehaviour
 
         foreach (var npc in AllPersons)
         {
-            if (npc.Id != this.Id && !IsIntrovert())
+            if (npc.Id != this.Id)
             {
                 var distance = Vector3.Distance(transform.position, npc.transform.position);
                 nearbyNpcs.Add(npc, distance);
@@ -256,7 +253,7 @@ public class NpcObject : MonoBehaviour
     //TODO: temp, better to use waits in casanova
     private bool IsItTime()
     {
-        return Random.Range(0, 15) == 5;
+        return Random.Range(0, 50) == 5;
     }
 
 
@@ -275,6 +272,7 @@ public class NpcObject : MonoBehaviour
             return false;
     }
 
+    //wait until requests is big
     private NpcObject GetBestInteractionSender()
     {
         var IDsAndWeights = new Dictionary<int, float>();
@@ -324,4 +322,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}      
+}                                                   

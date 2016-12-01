@@ -126,8 +126,8 @@ entity Person = {
     PositionAvailable : bool
 
     rule actionIds, PositionAvailable =
+      wait Random.Range(10.0f, 20.0f)
       wait InteractionTarget
-      wait not Interacting
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
@@ -141,12 +141,11 @@ entity Person = {
     rule actionIds, PositionAvailable =
       wait Interacting
       UnityNpc.UpdateCurrentNodesCollection()
-      UnityNpc.SetInteractionTarget()
       yield UnityNpc.ActionsToPerform, false
 
     rule Interacting =
+      wait Random.Range(10.0f, 20.0f)
       if(UnityNpc.InteractionAvailable()) then
-        wait not PositionAvailable
         yield true
       else
         yield false
@@ -200,8 +199,6 @@ entity Person = {
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
       wait 2.0f
-
-
 
     rule IsInEvent =
         wait 1.0f
