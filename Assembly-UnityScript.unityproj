@@ -74,6 +74,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ScreenSpaceAmbientObscurance.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\BlendModesOverlay.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+     <None Include="Assets\Resources\reactions.xml" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
      <None Include="Assets\Resources\eventActions.xml" />
@@ -92,6 +93,7 @@
      <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Luminance.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\GlowCompose.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\VortexEffect.shader" />
+     <None Include="Assets\Resources\players.xml" />
      <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\MinMaxReduction.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\SSAA.shader" />

@@ -26,8 +26,6 @@ public class EventObject : MonoBehaviour
     {
         var gameObjectModelName = sourceEvent.ModelName;
 
-        Debug.Log("GAMEOBJECTMODLENAME = " + gameObjectModelName);
-
         var eventObject = (Instantiate(
                 Resources.Load(gameObjectModelName),
                 sourceEvent.Position,
@@ -61,4 +59,4 @@ public class EventObject : MonoBehaviour
 
 }
 
-                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                    

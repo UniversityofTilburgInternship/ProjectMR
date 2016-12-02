@@ -15,9 +15,11 @@ public class NpcObject : MonoBehaviour
     public bool IsInEvent;
     public bool FirstAction;
     public Animator Animator;
+
     public bool IsInteractionTarget;
     public NpcObject CurrentInteractionTarget;
     public Dictionary<int, NpcObject> InteractionRequesters = new Dictionary<int, NpcObject>();
+
     public Dictionary<int, GameAction> CurrentNodesCollection;
     public EventObject MyEvent;
     public GenericVector AccumulatedValues;
@@ -167,28 +169,6 @@ public class NpcObject : MonoBehaviour
     }
 
     /*
-	XML: Store interaction-actions seperately or with bool (which means we separate
-	them later)
-
-    CNV: If near and not reacting or acting: Do Routine
-
-    C#:
-        If extravert and not receipient:
-            get the Npc that is near from cnv
-                  send request to npc
-                  get response (one call?)
-                  do interact anim
-                  remove interaction request
-
-              If reponse = good
-                  Call moveTo etc
-
-              If received request
-                  get best request via genetic algorithm, only one best request.
-                  set response / do these 2 in one method: getresponse
-    */
-
-    /*
         INTERACTION SENDING
     */
 
@@ -223,8 +203,6 @@ public class NpcObject : MonoBehaviour
             return false;
     }
 
-
-
     public void SetActionPositions(NpcObject npcObject, Vector3 NewPosition)
     {
         foreach (var gameAction in npcObject.CurrentNodesCollection.Values)
@@ -251,7 +229,6 @@ public class NpcObject : MonoBehaviour
         else
             return null;
     }
-
 
     private bool IsIntrovert()
     {
@@ -318,4 +295,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}                         
+}                                                                                                                   

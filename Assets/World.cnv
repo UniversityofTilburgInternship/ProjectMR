@@ -120,24 +120,42 @@ AllPlayerEvents : [Event]
 }
 
 entity Person = {
-    inherit UnityNpc
-    settings : [(int * int)]
-    actionIds : [int]
-    PositionAvailable : bool
+inherit UnityNpc
+settings : [(int * int)]
+actionIds : [int]
+PositionAvailable : bool
+TimeToInteract : bool
+
+    rule TimeToInteract =
+      yield false
+      wait Random.Range(10.0f, 15.0f)
+      yield true
 
     rule Interacting =
+      HelperFunctions.Log("TimeToInteract iz " + TimeToInteract)
+      wait TimeToInteract
       if(UnityNpc.InteractionAvailable()) then
-        wait not PositionAvailable
         yield true
       else
         yield false
 
     rule actionIds, PositionAvailable =
-      wait InteractionTarget
+      wait Interacting
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+      wait 2.0f
+
+    rule actionIds, PositionAvailable =
+      wait Interacting
       wait not Interacting
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
+    //rule actionIds, PositionAvailable =
+      //wait InteractionTarget
+      //wait not Interacting
+      //UnityNpc.UpdateCurrentNodesCollection()
+      //yield UnityNpc.ActionsToPerform, false
 
     rule actionIds, PositionAvailable =
       wait PositionAvailable
@@ -178,20 +196,6 @@ entity Person = {
       wait not IsInEvent
 
     rule actionIds, PositionAvailable =
-      wait Interacting
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-      wait 2.0f
-
-    rule actionIds, PositionAvailable =
-      wait Interacting
-      wait not Interacting
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-
-
-
-    rule actionIds, PositionAvailable =
       wait IsInEvent
       wait not IsInEvent
       UnityNpc.UpdateCurrentNodesCollection()
@@ -202,8 +206,6 @@ entity Person = {
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
       wait 2.0f
-
-
 
     rule IsInEvent =
         wait 1.0f
@@ -216,5 +218,6 @@ entity Person = {
         UnityNpc = unity_npc
         PositionAvailable = false
         actionIds = []
+        TimeToInteract = false
     }
 }

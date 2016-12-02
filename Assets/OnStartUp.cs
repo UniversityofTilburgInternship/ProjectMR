@@ -6,6 +6,7 @@ public class OnStartUp : MonoBehaviour
   {
     ActionsParser.ParseEventsActions();
     ActionsParser.ParseInteractions();
+    ActionsParser.ParseReactions();
     ActionsParser.ParseNormalActions();
     ActionsParser.ParseEvents();
 
@@ -15,4 +16,4 @@ public class OnStartUp : MonoBehaviour
   }
 
 }
-                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                    
