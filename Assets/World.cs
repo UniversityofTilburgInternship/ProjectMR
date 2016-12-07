@@ -676,6 +676,7 @@ frame = World.frame;
 		this.Rule9(dt, world);
 		this.Rule10(dt, world);
 		this.Rule11(dt, world);
+		this.Rule12(dt, world);
 	}
 
 
@@ -933,25 +934,24 @@ return;
 	{
 
 	case -1:
-	if(!(Interacting))
+	if(!(InteractionTarget))
 	{
 
 	s6 = -1;
 return;	}else
 	{
 
-	goto case 3;	}
-	case 3:
+	goto case 2;	}
+	case 2:
 	if(!(!(Interacting)))
 	{
 
-	s6 = 3;
+	s6 = 2;
 return;	}else
 	{
 
-	goto case 2;	}
-	case 2:
-	UnityNpc.FreeInteractionTarget();
+	goto case 1;	}
+	case 1:
 	UnityNpc.UpdateCurrentNodesCollection();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
@@ -974,10 +974,42 @@ return;	}else
 
 	goto case 3;	}
 	case 3:
+	if(!(!(Interacting)))
+	{
+
+	s7 = 3;
+return;	}else
+	{
+
+	goto case 2;	}
+	case 2:
+	UnityNpc.FreeInteractionTarget();
 	UnityNpc.UpdateCurrentNodesCollection();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
-	s7 = 0;
+	s7 = -1;
+return;	
+	default: return;}}
+	
+
+	int s8=-1;
+	public void Rule8(float dt, World world){ switch (s8)
+	{
+
+	case -1:
+	if(!(Interacting))
+	{
+
+	s8 = -1;
+return;	}else
+	{
+
+	goto case 3;	}
+	case 3:
+	UnityNpc.UpdateCurrentNodesCollection();
+	actionIds = UnityNpc.ActionsToPerform;
+	PositionAvailable = false;
+	s8 = 0;
 return;
 	case 0:
 	count_down8 = 2f;
@@ -987,24 +1019,24 @@ return;
 	{
 
 	count_down8 = ((count_down8) - (dt));
-	s7 = 1;
+	s8 = 1;
 return;	}else
 	{
 
-	s7 = -1;
+	s8 = -1;
 return;	}	
 	default: return;}}
 	
 
-	int s8=-1;
-	public void Rule8(float dt, World world){ switch (s8)
+	int s9=-1;
+	public void Rule9(float dt, World world){ switch (s9)
 	{
 
 	case -1:
 	if(!(TimeToInteract))
 	{
 
-	s8 = -1;
+	s9 = -1;
 return;	}else
 	{
 
@@ -1019,7 +1051,7 @@ return;	}else
 	goto case 1;	}
 	case 0:
 	Interacting = true;
-	s8 = 3;
+	s9 = 3;
 return;
 	case 3:
 	count_down9 = 5f;
@@ -1029,21 +1061,21 @@ return;
 	{
 
 	count_down9 = ((count_down9) - (dt));
-	s8 = 4;
+	s9 = 4;
 return;	}else
 	{
 
-	s8 = -1;
+	s9 = -1;
 return;	}
 	case 1:
 	Interacting = false;
-	s8 = -1;
+	s9 = -1;
 return;	
 	default: return;}}
 	
 
-	int s9=-1;
-	public void Rule9(float dt, World world){ switch (s9)
+	int s10=-1;
+	public void Rule10(float dt, World world){ switch (s10)
 	{
 
 	case -1:
@@ -1056,55 +1088,10 @@ return;
 	goto case 9;	}
 	case 8:
 	Interacting = false;
-	s9 = -1;
+	s10 = -1;
 return;
 	case 9:
 	Interacting = Interacting;
-	s9 = -1;
-return;	
-	default: return;}}
-	
-
-	int s10=-1;
-	public void Rule10(float dt, World world){ switch (s10)
-	{
-
-	case -1:
-	TimeToInteract = false;
-	s10 = 4;
-return;
-	case 4:
-	count_down11 = 15f;
-	goto case 5;
-	case 5:
-	if(((count_down11) > (0f)))
-	{
-
-	count_down11 = ((count_down11) - (dt));
-	s10 = 5;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	TimeToInteract = true;
-	s10 = 1;
-return;
-	case 1:
-	count_down10 = 5f;
-	goto case 2;
-	case 2:
-	if(((count_down10) > (0f)))
-	{
-
-	count_down10 = ((count_down10) - (dt));
-	s10 = 2;
-return;	}else
-	{
-
-	goto case 0;	}
-	case 0:
-	TimeToInteract = false;
 	s10 = -1;
 return;	
 	default: return;}}
@@ -1115,9 +1102,54 @@ return;
 	{
 
 	case -1:
+	TimeToInteract = false;
+	s11 = 4;
+return;
+	case 4:
+	count_down11 = 15f;
+	goto case 5;
+	case 5:
+	if(((count_down11) > (0f)))
+	{
+
+	count_down11 = ((count_down11) - (dt));
+	s11 = 5;
+return;	}else
+	{
+
+	goto case 3;	}
+	case 3:
+	TimeToInteract = true;
+	s11 = 1;
+return;
+	case 1:
+	count_down10 = 5f;
+	goto case 2;
+	case 2:
+	if(((count_down10) > (0f)))
+	{
+
+	count_down10 = ((count_down10) - (dt));
+	s11 = 2;
+return;	}else
+	{
+
+	goto case 0;	}
+	case 0:
+	TimeToInteract = false;
+	s11 = -1;
+return;	
+	default: return;}}
+	
+
+	int s12=-1;
+	public void Rule12(float dt, World world){ switch (s12)
+	{
+
+	case -1:
 	HelperFunctions.Log(("TTI x ") + (TimeToInteract));
 	TimeToInteract = TimeToInteract;
-	s11 = -1;
+	s12 = -1;
 return;	
 	default: return;}}
 	
@@ -1127,4 +1159,4 @@ return;
 
 
 }
-} 
+}  

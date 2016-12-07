@@ -138,15 +138,14 @@ public class UnityNpc : MonoBehaviour
             _npcObject.CurrentNodesCollection = ActionsParser.Interactions;
             Debug.Log("Switching to interaction nodes");
             _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionSender"));
-
-        }/*
+        }
         else if (InteractionTarget)
         {
             _npcObject.CurrentNodesCollection = ActionsParser.Reactions;
             Debug.Log("Switching to interaction target nodes");
             if(_npcObject.InteractionSender != null)
                 _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionReceiver"));
-        }*/
+        }
         else
         {
             Debug.Log("Switching to normal nodes");
@@ -170,4 +169,4 @@ public class UnityNpc : MonoBehaviour
     }
 }
 
-                                                                                                   
+                                                                                                     
