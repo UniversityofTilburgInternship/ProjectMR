@@ -96,5 +96,4 @@ public class GenericVector
         return aMinusBpoints.Sum(item => Math.Pow(item, 2));
     }
 }
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                                                                                                                                     

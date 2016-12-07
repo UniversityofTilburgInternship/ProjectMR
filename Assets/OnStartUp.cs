@@ -4,11 +4,12 @@ public class OnStartUp : MonoBehaviour
 {
   void Awake()
   {
-      ActionsParser.ParseEventsActions();
-      ActionsParser.ParseInteractions();
-      ActionsParser.ParseNormalActions();
-      ActionsParser.ParseEvents();
-      ActionsParser.ParseReactions();
+
+     ActionsParser.ParseEventsActions();
+     ActionsParser.ParseInteractions();
+     ActionsParser.ParseReactions();
+     ActionsParser.ParseNormalActions();
+     ActionsParser.ParseEvents();
 
       //This parses the spawnpositions and modelnames from settings.xml
       SettingsParser.ParseAll();
@@ -16,4 +17,4 @@ public class OnStartUp : MonoBehaviour
   }
 
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                     

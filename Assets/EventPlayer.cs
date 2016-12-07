@@ -10,10 +10,10 @@ namespace Assets
             GetAudioSource(eventObject.gameObject).Play();
             switch (eventObject.AnimationName)
             {
-                  case "light_switch":
+                case "light_switch":
                     SwitchLights();
                     break;
-                  case "AlarmBell":
+                case "AlarmBell":
                     SetLightColor(Color.red);
                     break;
             }
@@ -59,4 +59,4 @@ namespace Assets
             return GameObject.FindGameObjectsWithTag("ceiling_light");
         }
     }
-}                                                                                                                                                                                                                                                                                                                                                                                                                            
+}                                                                                                                                     

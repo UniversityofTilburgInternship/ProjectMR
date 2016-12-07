@@ -55,8 +55,6 @@ public static class EventController
         }
     }
 
-    //PlayerEvents are only ready for having their completion level upped when they are activated by the player.
-    //!!!!!!Activeevents event id not ready on normal event
     public static bool IsEventReady(int eventId)
     {
         return ActiveEvents.ContainsKey(eventId) && ActiveEvents[eventId].IsReady;
@@ -86,4 +84,5 @@ public static class EventController
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+                                                                                                                                     

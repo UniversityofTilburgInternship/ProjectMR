@@ -136,19 +136,20 @@ public class UnityNpc : MonoBehaviour
         if (Interacting)
         {
             _npcObject.CurrentNodesCollection = ActionsParser.Interactions;
-            //code duplication, temp
+            Debug.Log("Switching to interaction nodes");
             _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionSender"));
 
-        }
+        }/*
         else if (InteractionTarget)
         {
             _npcObject.CurrentNodesCollection = ActionsParser.Reactions;
-            //code duplication, temp
+            Debug.Log("Switching to interaction target nodes");
             if(_npcObject.InteractionSender != null)
                 _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionReceiver"));
-        }
+        }*/
         else
         {
+            Debug.Log("Switching to normal nodes");
             _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
                 ? GetAssociatedActionsForEventId(_npcObject.MyEvent.Id)
                 : ActionsParser.NormalActions;
@@ -157,7 +158,6 @@ public class UnityNpc : MonoBehaviour
 
     private static Dictionary<int, GameAction> GetAssociatedActionsForEventId(int eventId)
     {
-
         Event currentEvent;
 
         if (ActionsParser.Events.ContainsKey(eventId))
@@ -169,4 +169,5 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                               
+
+                                                                                                   

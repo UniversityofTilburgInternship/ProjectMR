@@ -15,10 +15,12 @@ public class NpcObject : MonoBehaviour
     public bool IsInEvent;
     public bool FirstAction;
     public Animator Animator;
+
     public bool IsInteractionTarget;
     public NpcObject CurrentInteractionTarget;
     public NpcObject InteractionSender;
     public Dictionary<int, NpcObject> InteractionRequesters = new Dictionary<int, NpcObject>();
+
     public Dictionary<int, GameAction> CurrentNodesCollection;
     public EventObject MyEvent;
     public GenericVector AccumulatedValues;
@@ -181,8 +183,7 @@ public class NpcObject : MonoBehaviour
 
     public bool InteractionAvailable()
     {
-        //&& IsItTime()
-        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget )
+        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget)
         {
             var nearestNpc = GetNearbyIdleNpcId();
             return HandleInteraction(nearestNpc);
@@ -223,7 +224,7 @@ public class NpcObject : MonoBehaviour
 
         foreach (var npc in AllPersons)
         {
-            if (npc.Id != this.Id)
+            if (npc.Id != this.Id && !(npc.InteractionRequesters.Count > 1))
             {
                 var distance = Vector3.Distance(transform.position, npc.transform.position);
                 nearbyNpcs.Add(npc, distance);
@@ -248,12 +249,6 @@ public class NpcObject : MonoBehaviour
     {
         return receiver.InteractionRequesters.ContainsKey(this.Id)
                || this.InteractionRequesters.ContainsKey(receiver.Id);
-    }
-
-    //TODO: temp, better to use waits in casanova
-    private bool IsItTime()
-    {
-        return Random.Range(0, 50) == 5;
     }
 
 
@@ -282,7 +277,8 @@ public class NpcObject : MonoBehaviour
             float weight = GenericVector.DotProduct(this.AccumulatedValues, requester.AccumulatedValues);
             IDsAndWeights.Add(requester.Id, weight);
         }
-        var idOfBiggestWeightRequester = (from x in IDsAndWeights where x.Value == IDsAndWeights.Max(v => v.Value) select x.Key).FirstOrDefault();
+        var idOfBiggestWeightRequester =
+            (from x in IDsAndWeights where x.Value == IDsAndWeights.Max(v => v.Value) select x.Key).FirstOrDefault();
         return AllPersons.First(x => x.Id == idOfBiggestWeightRequester);
     }
 
@@ -322,4 +318,5 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}                                                   
+}
+                                                                                                                                     

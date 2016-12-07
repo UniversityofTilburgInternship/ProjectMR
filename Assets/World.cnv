@@ -120,16 +120,42 @@ AllPlayerEvents : [Event]
 }
 
 entity Person = {
-    inherit UnityNpc
-    settings : [(int * int)]
-    actionIds : [int]
-    PositionAvailable : bool
+inherit UnityNpc
+settings : [(int * int)]
+actionIds : [int]
+PositionAvailable : bool
+TimeToInteract : bool
+
+    rule TimeToInteract =
+      HelperFunctions.Log("TTI x " + TimeToInteract)
+      yield TimeToInteract
+
+    rule TimeToInteract =
+      yield false
+      wait 15.0f
+      yield true
+      wait 5.0f
+      yield false
+
+    rule Interacting =
+      if(TimeToInteract = false) then
+        yield false
+      else
+        yield Interacting
+
+    rule Interacting =
+      wait TimeToInteract
+      if(UnityNpc.InteractionAvailable()) then
+        yield true
+        wait 5.0f
+      else
+        yield false
 
     rule actionIds, PositionAvailable =
-      wait Random.Range(10.0f, 20.0f)
-      wait InteractionTarget
+      wait Interacting
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
+      wait 2.0f
 
     rule actionIds, PositionAvailable =
       wait Interacting
@@ -138,17 +164,11 @@ entity Person = {
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
-    rule actionIds, PositionAvailable =
-      wait Interacting
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-
-    rule Interacting =
-      wait Random.Range(10.0f, 20.0f)
-      if(UnityNpc.InteractionAvailable()) then
-        yield true
-      else
-        yield false
+    //rule actionIds, PositionAvailable =
+      //wait InteractionTarget
+      //wait not Interacting
+      //UnityNpc.UpdateCurrentNodesCollection()
+      //yield UnityNpc.ActionsToPerform, false
 
     rule actionIds, PositionAvailable =
       wait PositionAvailable
@@ -211,5 +231,6 @@ entity Person = {
         UnityNpc = unity_npc
         PositionAvailable = false
         actionIds = []
+        TimeToInteract = false
     }
 }
