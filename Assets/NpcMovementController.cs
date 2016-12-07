@@ -24,11 +24,9 @@ public class NpcMovementController : MonoBehaviour
         if (Vector3.Distance(_npcObject.gameObject.GetComponent<NavMeshAgent>().destination, transform.position) <= 2.2)
         {
             StopWalking();
-            Debug.Log("stop walking");
         }
         else
         {
-            Debug.Log("start walking");
             StartWalking();
         }
     }
@@ -47,4 +45,4 @@ public class NpcMovementController : MonoBehaviour
             _walking = true;
         }
     }
-}                                                                                          
+}                                                                                                                                                                                                                                                                 
