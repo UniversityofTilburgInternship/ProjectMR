@@ -3,11 +3,13 @@
         <id>0</id>
         <name>Ignore</name>
         <position>
-            <x>50</x>
-            <y>0</y>
-            <z>50</z>
+            <x>0</x>
+            <y>1</y>
+            <z>2</z>
         </position>
         <animationname>wave</animationname>
+        <neighbours>
+        </neighbours>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -47,11 +49,13 @@
         <id>1</id>
         <name>FallDown</name>
         <position>
-            <x>30</x>
-            <y>0</y>
-            <z>20</z>
+            <x>0</x>
+            <y>1</y>
+            <z>2</z>
         </position>
         <animationname>salute</animationname>
+        <neighbours>
+        </neighbours>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -91,11 +95,13 @@
         <id>2</id>
         <name>Scream</name>
         <position>
-            <x>50</x>
-            <y>0</y>
-            <z>50</z>
+            <x>0</x>
+            <y>1</y>
+            <z>2</z>
         </position>
         <animationname>talking_1</animationname>
+        <neighbours>
+        </neighbours>
         <modifiers>
             <modifier>
                 <id>0</id>
@@ -135,11 +141,13 @@
         <id>3</id>
         <name>RunAway</name>
         <position>
-            <x>50</x>
-            <y>0</y>
-            <z>50</z>
+            <x>0</x>
+            <y>1</y>
+            <z>2</z>
         </position>
         <animationname>talking_2</animationname>
+        <neighbours>
+        </neighbours>
         <modifiers>
             <modifier>
                 <id>0</id>

@@ -95,6 +95,11 @@ public class Grid : MonoBehaviour
     {
         return !(Physics.CheckSphere(vector, NodeRadius, UnwalkableMask));
     }
+
+    public bool IsWalkable(Vector3 vector)
+    {
+        return NodeFromWorldPoint(vector).IsWalkable;
+    }
 }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+

@@ -1,3 +1,4 @@
+<<<<<< HEAD
 #pragma warning disable 162,108,618
 using Casanova.Prelude;
 using System.Linq;
@@ -852,3 +853,6 @@ return;
 
 }
 }                                                                                                                                                                                                                                    
+=======
+error 
+>>>>>>> 1aca0cba388db7f8e560fd44809f9221bb42c057

@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets;
 using Casanova.Prelude;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ public class NpcObject : MonoBehaviour
     public bool IsInEvent;
     public bool FirstAction;
     public Animator Animator;
+    public int CurrentInteractionTarget;
+    public Dictionary<int, Interaction> RequestedInteractions;
+    public Dictionary<int, Interaction> InteractionActions;
     public Dictionary<int, GameAction> CurrentNodesCollection;
     public EventObject MyEvent;
     public GenericVector AccumulatedValues;
@@ -43,6 +47,7 @@ public class NpcObject : MonoBehaviour
         npcObject.PersonalityValuesGenericVector = personalityValues.SetUpGenericVector();
         npcObject.AccumulatedValues = new GenericVector(personalityValues.Count);
         npcObject.CurrentNodesCollection = ActionsParser.NormalActions;
+        npcObject.InteractionActions = ActionsParser.Interactions;
         npcObject.GraphTraveler = new GraphTraveler(npcObject);
         npcObject.MovementController = NpcMovementController.CreateComponent(npcObject.gameObject, npcObject);
         npcObject.Animator = npcObject.gameObject.GetComponent<Animator>();
@@ -73,7 +78,7 @@ public class NpcObject : MonoBehaviour
         }
         Animator.SetBool(animationName, true);
         StartCoroutine(StopAnimation(animationName, time));
-        return time + 0.2f;
+        return time + 0.1f;
     }
 
     public bool IsInterestedInEvent()
@@ -128,7 +133,6 @@ public class NpcObject : MonoBehaviour
         }
     }
 
-
     public bool IsPositionAvailable(int actionId)
     {
         var action = _GetAction(actionId);
@@ -161,6 +165,115 @@ public class NpcObject : MonoBehaviour
         }
     }
 
+    /*
+	XML: Store interaction-actions seperately or with bool (which means we separate
+	them later)
+
+    CNV: If near and not reacting or acting: Do Routine
+
+    C#:
+        If extravert and not receipient:
+            get the Npc that is near from cnv
+                  send request to npc
+                  get response (one call?)
+                  do interact anim
+                  remove interaction request
+
+              If reponse = good
+                  Call moveTo etc
+
+              If received request
+                  get best request via genetic algorithm, only one best request.
+                  set response / do these 2 in one method: getresponse
+    */
+
+    /*
+        INTERACTION SENDING
+    */
+
+    public int GetNearbyIdleNpcId()
+    {
+        var nearbyNpcs = new Dictionary<float, NpcObject>();
+        foreach (var npc in AllPersons)
+        {
+            var distance = Vector3.Distance(transform.position, npc.transform.position);
+            if (distance < 8.0f)
+            {
+                nearbyNpcs.Add(distance, npc);
+            }
+        }
+
+        if (nearbyNpcs.Count > 1)
+            return nearbyNpcs.FirstOrDefault(x => x.Key == nearbyNpcs.Keys.Max()).Value.Id;
+        else
+            return -1;
+    }
+
+    public int TrySendInteraction()
+    {
+        Debug.Log("SENT INTERACTION");
+        //CurrentInteractionTarget is set in the UnityNpc proxy
+        var receiver = AllPersons[CurrentInteractionTarget];
+
+        if (IsExtravert() && !AlreadySentRequest(receiver))
+        {
+
+            var receiverAccumulatedValues = receiver.AccumulatedValues;
+
+            var interaction = GetInteraction();
+            interaction.Weight = GenericVector.GetAngle(AccumulatedValues, receiverAccumulatedValues);
+
+            receiver.RequestedInteractions.Add(this.Id, interaction);
+
+            if (receiver.WantsToInteract(this.Id))
+                return interaction.Id;
+            else
+                return -1;
+        }
+        else
+            return -1;
+    }
+
+    private bool IsExtravert()
+    {
+        const int EXTRAVERSION_INDEX = 0;
+        var biggestPoint = AccumulatedValues.BiggestPoint();
+        Debug.Log("Extraversion AccValues = " + AccumulatedValues.Points[AccumulatedValues.Points.IndexOf(biggestPoint)]);
+        return AccumulatedValues.Points.IndexOf(biggestPoint) == EXTRAVERSION_INDEX;
+    }
+
+    private bool AlreadySentRequest(NpcObject receiver)
+    {
+        return receiver.RequestedInteractions.ContainsKey(this.Id);
+    }
+
+
+    /*
+        INTERACTION RECEIVING
+    */
+
+    //Change this to get it using the genetic algorithm (?)
+    private Interaction GetInteraction()
+    {
+        return InteractionActions[0];
+    }
+
+    public bool WantsToInteract(int senderId)
+    {
+        var requestWithBiggestWeight = GetRequestWithBiggestWeight();
+        return requestWithBiggestWeight.Sender.Id == senderId;
+    }
+
+    private Interaction GetRequestWithBiggestWeight()
+    {
+        var allRequestWeights = RequestedInteractions.Select(x => x.Value.Weight).ToList();
+        var biggestWeight = allRequestWeights.Max();
+        return RequestedInteractions[allRequestWeights.IndexOf(biggestWeight)];
+    }
+
+
+    /* HELPERS */
+
     private GameAction _GetAction(int actionId)
     {
         var actionForId = CurrentNodesCollection[actionId];
@@ -178,4 +291,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                                                                                                                                                 
+

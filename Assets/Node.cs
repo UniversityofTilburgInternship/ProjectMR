@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿﻿using UnityEngine;
 
 public class Node : IHeapItem<Node>
 {
@@ -46,4 +46,3 @@ public class Node : IHeapItem<Node>
     }
 }
 
-                                                                                                                                                                                                                                                                 

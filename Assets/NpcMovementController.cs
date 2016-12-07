@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,13 +22,9 @@ public class NpcMovementController : MonoBehaviour
     void Update()
     {
         if (Vector3.Distance(_npcObject.gameObject.GetComponent<NavMeshAgent>().destination, transform.position) <= 2.2)
-        {
             StopWalking();
-        }
         else
-        {
             StartWalking();
-        }
     }
 
     private void StopWalking()
@@ -45,4 +41,4 @@ public class NpcMovementController : MonoBehaviour
             _walking = true;
         }
     }
-}                                                                                                                                                                                                                                                                 
+}
