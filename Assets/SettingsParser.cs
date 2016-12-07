@@ -74,3 +74,4 @@ public static class SettingsParser
         return personality;
     }
 }
+                   

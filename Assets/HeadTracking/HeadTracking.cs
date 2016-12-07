@@ -1,9 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using System.Text;
-using System.IO;
-using System;
 
 public class HeadTracking : MonoBehaviour {
 
@@ -85,4 +80,4 @@ public class HeadTracking : MonoBehaviour {
 
         return m;
     }
-}                                                                                   
+}                                                                                               

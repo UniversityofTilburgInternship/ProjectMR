@@ -1,6 +1,5 @@
 ﻿﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class UnityEventController
 {
@@ -24,3 +23,4 @@ public class UnityEventController
         get { return EventController.PlayerEvents.Values.ToList(); }
     }
 }
+                   

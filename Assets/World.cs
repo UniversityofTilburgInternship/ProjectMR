@@ -1,4 +1,3 @@
-<<<<<< HEAD
 #pragma warning disable 162,108,618
 using Casanova.Prelude;
 using System.Linq;
@@ -22,10 +21,12 @@ public void Start()
 		Persons = (
 
 Enumerable.Empty<Person>()).ToList<Person>();
+		MainPlayer = new Player(eventController);
 		AvatarGen = ___avaGen00;
 		
 }
 		public AvatarGenerator AvatarGen;
+	public Player MainPlayer;
 	public List<Person> __Persons;
 	public List<Person> Persons{  get { return  __Persons; }
   set{ __Persons = value;
@@ -51,6 +52,7 @@ System.DateTime init_time = System.DateTime.Now;
 	public void Update(float dt, World world) {
 var t = System.DateTime.Now;
 
+		MainPlayer.Update(dt, world);
 		for(int x0 = 0; x0 < Persons.Count; x0++) { 
 			Persons[x0].Update(dt, world);
 		}
@@ -188,7 +190,7 @@ public Player(EventController controller)
 	{JustEntered = false;
  frame = World.frame;
 		UnityPlayer ___unity_player00;
-		___unity_player00 = UnityPlayer.Spawn();
+		___unity_player00 = UnityPlayer.Initialize();
 		isTriggeringEvent = false;
 		eventController = controller;
 		UnityPlayer = ___unity_player00;
@@ -220,8 +222,9 @@ public Player(EventController controller)
 	public System.Boolean useGUILayout{  get { return UnityPlayer.useGUILayout; }
   set{UnityPlayer.useGUILayout = value; }
  }
-	public EventObject ___event00;
+	public Event ___event00;
 	public System.Int32 counter10;
+	public System.Int32 ___key00;
 	public System.Single count_down1;
 	public void Update(float dt, World world) {
 frame = World.frame;
@@ -239,33 +242,30 @@ frame = World.frame;
 	{
 
 	case -1:
-	isTriggeringEvent = isTriggeringEvent;
-	s0 = 0;
-return;
-	case 0:
 	
 	counter10 = -1;
-	if((((eventController.PlayerEventsList).Count) == (0)))
+	if((((eventController.AllPlayerEvents).Count) == (0)))
 	{
 
 	s0 = -1;
 return;	}else
 	{
 
-	___event00 = (eventController.PlayerEventsList)[0];
+	___event00 = (eventController.AllPlayerEvents)[0];
 	goto case 1;	}
 	case 1:
 	counter10 = ((counter10) + (1));
-	if((((((eventController.PlayerEventsList).Count) == (counter10))) || (((counter10) > ((eventController.PlayerEventsList).Count)))))
+	if((((((eventController.AllPlayerEvents).Count) == (counter10))) || (((counter10) > ((eventController.AllPlayerEvents).Count)))))
 	{
 
 	s0 = -1;
 return;	}else
 	{
 
-	___event00 = (eventController.PlayerEventsList)[counter10];
+	___event00 = (eventController.AllPlayerEvents)[counter10];
 	goto case 2;	}
 	case 2:
+	___key00 = ___event00.Id;
 	if(UnityEngine.Input.GetKey(KeyCode.F))
 	{
 
@@ -275,37 +275,25 @@ return;	}else
 	s0 = 1;
 return;	}
 	case 4:
-	if(UnityPlayer.IsLookingAt(___event00.gameObject))
-	{
-
-	goto case 5;	}else
-	{
-
-	goto case 6;	}
-	case 5:
 	HelperFunctions.Log("Player triggered event");
-	UnityPlayer.TriggerEvent(___event00);
-	isTriggeringEvent = true;
-	s0 = 8;
+	UnityPlayer.TriggerPlayerEvent(___event00._eventObject);
+	eventController.CurrentEvents = new Cons<Event>(___event00, (eventController.CurrentEvents)).ToList<Event>();
+	s0 = 5;
 return;
-	case 8:
-	count_down1 = 0;
-	goto case 9;
-	case 9:
+	case 5:
+	count_down1 = 1f;
+	goto case 6;
+	case 6:
 	if(((count_down1) > (0f)))
 	{
 
 	count_down1 = ((count_down1) - (dt));
-	s0 = 9;
+	s0 = 6;
 return;	}else
 	{
 
 	s0 = 1;
-return;	}
-	case 6:
-	isTriggeringEvent = false;
-	s0 = 1;
-return;	
+return;	}	
 	default: return;}}
 	
 
@@ -318,12 +306,15 @@ return;
 public class Event{
 public int frame;
 public bool JustEntered = true;
+private System.String Type;
+private EventController controller;
 	public int ID;
-public Event()
+public Event(System.String Type, EventController controller)
 	{JustEntered = false;
  frame = World.frame;
 		UnityEvent ___unity_event00;
-		___unity_event00 = UnityEvent.SpawnRandomEvent();
+		___unity_event00 = UnityEvent.SpawnRandomEvent(Type);
+		eventController = controller;
 		UnityEvent = ___unity_event00;
 		
 }
@@ -364,7 +355,14 @@ public Event()
 	public System.Single Radius{  get { return UnityEvent.Radius; }
   set{UnityEvent.Radius = value; }
  }
+	public System.String TriggerKey{  get { return UnityEvent.TriggerKey; }
+  set{UnityEvent.TriggerKey = value; }
+ }
 	public UnityEvent UnityEvent;
+	public EventObject _eventObject{  get { return UnityEvent._eventObject; }
+  set{UnityEvent._eventObject = value; }
+ }
+	public EventController eventController;
 	public System.Single count_down2;
 	public void Update(float dt, World world) {
 frame = World.frame;
@@ -382,34 +380,47 @@ frame = World.frame;
 	{
 
 	case -1:
-	count_down2 = 1f;
-	goto case 6;
-	case 6:
+	count_down2 = 2.5f;
+	goto case 11;
+	case 11:
 	if(((count_down2) > (0f)))
 	{
 
 	count_down2 = ((count_down2) - (dt));
-	s0 = 6;
+	s0 = 11;
 return;	}else
 	{
 
-	goto case 4;	}
-	case 4:
+	goto case 2;	}
+	case 2:
+	if(UnityEventController.IsEventReady(this.Id))
+	{
+
+	goto case 0;	}else
+	{
+
+	goto case 1;	}
+	case 0:
 	HelperFunctions.Log(Completeness);
 	Completeness = ((Completeness) + (10));
-	s0 = 0;
+	s0 = 3;
 return;
-	case 0:
+	case 3:
 	if(((((Completeness) > (100))) || (((Completeness) == (100)))))
 	{
 
-	goto case 1;	}else
+	goto case 4;	}else
 	{
 
 	s0 = -1;
 return;	}
-	case 1:
+	case 4:
 	UnityEvent.Destroy();
+	Completeness = Completeness;
+	s0 = -1;
+return;
+	case 1:
+	Completeness = 0;
 	s0 = -1;
 return;	
 	default: return;}}
@@ -432,18 +443,28 @@ public EventController()
 		CurrentEvents = (
 
 Enumerable.Empty<Event>()).ToList<Event>();
+		AllPlayerEvents = (
+
+Enumerable.Empty<Event>()).ToList<Event>();
 		
 }
-		public List<Event> CurrentEvents;
+		public List<Event> AllPlayerEvents;
+	public List<Event> CurrentEvents;
 	public System.Collections.Generic.List<EventObject> PlayerEventsList{  get { return UnityEventController.PlayerEventsList; }
  }
 	public UnityEventController UnityEventController;
 	public System.Single count_down3;
+	public System.Int32 ___x21;
+	public System.Int32 counter22;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
 		this.Rule0(dt, world);
 		this.Rule1(dt, world);
+		this.Rule2(dt, world);
+		for(int x0 = 0; x0 < AllPlayerEvents.Count; x0++) { 
+			AllPlayerEvents[x0].Update(dt, world);
+		}
 		for(int x0 = 0; x0 < CurrentEvents.Count; x0++) { 
 			CurrentEvents[x0].Update(dt, world);
 		}
@@ -469,9 +490,9 @@ return;	}else
 	case 0:
 	CurrentEvents = (
 
-(CurrentEvents).Select(__ContextSymbol7 => new { ___event01 = __ContextSymbol7 })
-.Where(__ContextSymbol8 => !(__ContextSymbol8.___event01.IsDestroyed))
-.Select(__ContextSymbol9 => __ContextSymbol9.___event01)
+(CurrentEvents).Select(__ContextSymbol9 => new { ___event01 = __ContextSymbol9 })
+.Where(__ContextSymbol10 => !(__ContextSymbol10.___event01.IsDestroyed))
+.Select(__ContextSymbol11 => __ContextSymbol11.___event01)
 .ToList<Event>()).ToList<Event>();
 	s0 = -1;
 return;	
@@ -508,9 +529,51 @@ return;	}else
 
 	goto case 0;	}
 	case 0:
-	CurrentEvents = new Cons<Event>(new Event(), (CurrentEvents)).ToList<Event>();
+	CurrentEvents = new Cons<Event>(new Event("normalEvent",this), (CurrentEvents)).ToList<Event>();
 	s1 = -1;
 return;	
+	default: return;}}
+	
+
+	int s2=-1;
+	public void Rule2(float dt, World world){ switch (s2)
+	{
+
+	case -1:
+	
+	counter22 = -1;
+	if((((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count) == (0)))
+	{
+
+	goto case 0;	}else
+	{
+
+	___x21 = (Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>())[0];
+	goto case 2;	}
+	case 2:
+	counter22 = ((counter22) + (1));
+	if((((((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count) == (counter22))) || (((counter22) > ((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count)))))
+	{
+
+	goto case 0;	}else
+	{
+
+	___x21 = (Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>())[counter22];
+	goto case 3;	}
+	case 3:
+	AllPlayerEvents = new Cons<Event>(new Event("playerEvent",this), (AllPlayerEvents)).ToList<Event>();
+	s2 = 2;
+return;
+	case 0:
+	if(!(false))
+	{
+
+	s2 = 0;
+return;	}else
+	{
+
+	s2 = -1;
+return;	}	
 	default: return;}}
 	
 
@@ -543,6 +606,10 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public UnityEngine.Vector3 CurrentActionPosition{  get { return UnityNpc.CurrentActionPosition; }
  }
 	public System.Int32 Id{  get { return UnityNpc.Id; }
+ }
+	public System.Int32 InteractionId{  get { return UnityNpc.InteractionId; }
+ }
+	public System.Int32 InteractionTarget{  set{UnityNpc.InteractionTarget = value; }
  }
 	public System.Boolean IsInEvent{  get { return UnityNpc.IsInEvent; }
   set{UnityNpc.IsInEvent = value; }
@@ -773,9 +840,9 @@ return;
 	case 1:
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol12 => new { ___id40 = __ContextSymbol12 })
-.Where(__ContextSymbol13 => !(((__ContextSymbol13.___id40) == (___actionToExecute40))))
-.Select(__ContextSymbol14 => __ContextSymbol14.___id40)
+(actionIds).Select(__ContextSymbol14 => new { ___id40 = __ContextSymbol14 })
+.Where(__ContextSymbol15 => !(((__ContextSymbol15.___id40) == (___actionToExecute40))))
+.Select(__ContextSymbol16 => __ContextSymbol16.___id40)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s4 = -1;
@@ -837,9 +904,9 @@ return;	}else
 	UnityNpc.RemoveClaimToPosition(___actionToExecute51);
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol15 => new { ___id51 = __ContextSymbol15 })
-.Where(__ContextSymbol16 => !(((__ContextSymbol16.___id51) == (___actionToExecute51))))
-.Select(__ContextSymbol17 => __ContextSymbol17.___id51)
+(actionIds).Select(__ContextSymbol17 => new { ___id51 = __ContextSymbol17 })
+.Where(__ContextSymbol18 => !(((__ContextSymbol18.___id51) == (___actionToExecute51))))
+.Select(__ContextSymbol19 => __ContextSymbol19.___id51)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s5 = -1;
@@ -852,7 +919,4 @@ return;
 
 
 }
-}                                                                                                                                                                                                                                    
-=======
-error 
->>>>>>> 1aca0cba388db7f8e560fd44809f9221bb42c057
+}     

@@ -1,6 +1,5 @@
 ﻿﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using Casanova.Prelude;
 using UnityEngine;
 
@@ -108,4 +107,4 @@ public class UnityEvent
     {
         _eventObject.Destroy();
     }
-}
+}                   
