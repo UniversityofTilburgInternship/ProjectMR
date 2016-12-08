@@ -292,4 +292,4 @@ public class NpcObject : MonoBehaviour
     }
 }
 
-                                 
+                                      
