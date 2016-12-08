@@ -1,9 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using System.Text;
-using System.IO;
-using System;
+
 
 public class HeadTracking : MonoBehaviour {
 
@@ -16,7 +12,7 @@ public class HeadTracking : MonoBehaviour {
         nearClip = 0.01f , height = 0.014f , halfCaveWidth  = 2.5f ;
 
     void Awake() {
-        cameraIndex = ClusterNetwork.nodeIndex;
+        cameraIndex = UnityEngine.ClusterNetwork.nodeIndex;
         disparity = new Vector3(pupilOffCenter,0.0f,0.0f);
 
         if (cameraIndex >= 0) {
@@ -31,16 +27,16 @@ public class HeadTracking : MonoBehaviour {
     void Update() {
 
         if (!eyeTrackerAdded) {
-            ClusterInput.AddInput ("EyeTracker", "PPT0", "FC-NUC", 0, ClusterInputType.Tracker);
+            UnityEngine.ClusterInput.AddInput ("EyeTracker", "PPT0", "FC-NUC", 0, ClusterInputType.Tracker);
             eyeTrackerAdded = true;
             Debug.Log ("eyeTrackerAdded");
         }
 
         if (cameraIndex >= 0) {
 
-            if (!ClusterNetwork.isDisconnected && eyeTrackerAdded) {
-                Quaternion trackerRotation = ClusterInput.GetTrackerRotation ("EyeTracker");
-                eyePosition = ClusterInput.GetTrackerPosition ("EyeTracker") + trackerRotation*disparity;
+            if (!UnityEngine.ClusterNetwork.isDisconnected && eyeTrackerAdded) {
+                Quaternion trackerRotation = UnityEngine.ClusterInput.GetTrackerRotation ("EyeTracker");
+                eyePosition = UnityEngine.ClusterInput.GetTrackerPosition ("EyeTracker") + trackerRotation*disparity;
             } else {
                 eyePosition = new Vector3 (0.0f, 1.25f, 0.0f);
             }
@@ -85,4 +81,4 @@ public class HeadTracking : MonoBehaviour {
 
         return m;
     }
-}                                                                                   
+}                                                                                            
