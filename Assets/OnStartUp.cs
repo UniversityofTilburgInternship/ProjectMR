@@ -17,4 +17,4 @@ public class OnStartUp : MonoBehaviour
       PlayerParser.ParsePersons();
   }
 }
-                  
+                                   

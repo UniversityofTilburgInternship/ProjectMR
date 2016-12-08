@@ -394,9 +394,9 @@
             </modifier>
         </modifiers>
         <position>
-            <z>2</z>
+            <z>8</z>
             <y>0</y>
-            <x>0</x>
+            <x>8</x>
         </position>
         <actionId>7</actionId>
         <actionname>middenkamer</actionname>
