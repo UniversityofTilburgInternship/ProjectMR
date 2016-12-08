@@ -87,6 +87,7 @@
     <Compile Include="Assets\Heap.cs" />
     <Compile Include="Assets\HelperFunctions.cs" />
     <Compile Include="Assets\Interaction.cs" />
+    <Compile Include="Assets\InteractionAction.cs" />
     <Compile Include="Assets\ListExtensions.cs" />
     <Compile Include="Assets\LoopExtensions.cs" />
     <Compile Include="Assets\Node.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Assets\PlayerObject.cs" />
     <Compile Include="Assets\PlayerParser.cs" />
     <Compile Include="Assets\Prelude.cs" />
+    <Compile Include="Assets\Reaction.cs" />
     <Compile Include="Assets\Scripts\AudioOffset.cs" />
     <Compile Include="Assets\Scripts\CaptureNormals.cs" />
     <Compile Include="Assets\Scripts\Punch.cs" />
@@ -188,6 +190,7 @@
     <None Include="Assets\Resources\events.xml" />
     <None Include="Assets\Resources\interactions.xml" />
     <None Include="Assets\Resources\players.xml" />
+    <None Include="Assets\Resources\reactions.xml" />
     <None Include="Assets\Resources\settings.xml" />
     <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
