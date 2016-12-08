@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets;
@@ -298,4 +298,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
-}      
+}                 

@@ -1,5 +1,5 @@
-﻿﻿public class NormalAction : GameAction
+﻿﻿﻿public class NormalAction : GameAction
 {
 }
 
-                                                   
+                                                              

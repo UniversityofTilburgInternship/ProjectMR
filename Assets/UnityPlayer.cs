@@ -1,4 +1,4 @@
-﻿﻿﻿using Assets;
+﻿﻿﻿﻿using Assets;
 using UnityEngine;
 
 public class UnityPlayer : MonoBehaviour
@@ -25,4 +25,4 @@ public class UnityPlayer : MonoBehaviour
         _playerObject.TriggerPlayerEvent(eventObject);
     }
 }
-                                                   
+                                                              
