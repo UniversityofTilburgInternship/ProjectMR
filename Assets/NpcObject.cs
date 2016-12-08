@@ -1,6 +1,8 @@
-﻿﻿﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Messaging;
 using Assets;
 using Casanova.Prelude;
 using UnityEngine;
@@ -13,9 +15,12 @@ public class NpcObject : MonoBehaviour
     public bool IsInEvent;
     public bool FirstAction;
     public Animator Animator;
-    public int CurrentInteractionTarget;
-    public Dictionary<int, Interaction> RequestedInteractions;
-    public Dictionary<int, Interaction> InteractionActions;
+
+    public bool IsInteractionTarget;
+    public NpcObject CurrentInteractionTarget;
+    public NpcObject InteractionSender;
+    public Dictionary<int, NpcObject> InteractionRequesters = new Dictionary<int, NpcObject>();
+
     public Dictionary<int, GameAction> CurrentNodesCollection;
     public EventObject MyEvent;
     public GenericVector AccumulatedValues;
@@ -30,7 +35,7 @@ public class NpcObject : MonoBehaviour
     public static NpcObject Instantiate(List<Tuple<int, int>> personalityValues, string modelName)
     {
         if (modelName.Equals("random"))
-        {   
+        {
             var randomIndexForModelName = Random.Range(0, SettingsParser.ModelNames.Count);
             modelName = SettingsParser.ModelNames[randomIndexForModelName];
         }
@@ -39,7 +44,7 @@ public class NpcObject : MonoBehaviour
 
         var npcObject = (Instantiate(
                 Resources.Load(modelName),
-                randomPosition,  
+                randomPosition,
                 Quaternion.identity)
             as GameObject).GetComponent<NpcObject>();
 
@@ -47,7 +52,6 @@ public class NpcObject : MonoBehaviour
         npcObject.PersonalityValuesGenericVector = personalityValues.SetUpGenericVector();
         npcObject.AccumulatedValues = new GenericVector(personalityValues.Count);
         npcObject.CurrentNodesCollection = ActionsParser.NormalActions;
-        npcObject.InteractionActions = ActionsParser.Interactions;
         npcObject.GraphTraveler = new GraphTraveler(npcObject);
         npcObject.MovementController = NpcMovementController.CreateComponent(npcObject.gameObject, npcObject);
         npcObject.Animator = npcObject.gameObject.GetComponent<Animator>();
@@ -130,6 +134,7 @@ public class NpcObject : MonoBehaviour
         {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             agent.destination = position;
+            transform.LookAt(position);
         }
     }
 
@@ -166,113 +171,136 @@ public class NpcObject : MonoBehaviour
     }
 
     /*
-	XML: Store interaction-actions seperately or with bool (which means we separate
-	them later)
-
-    CNV: If near and not reacting or acting: Do Routine
-
-    C#:
-        If extravert and not receipient:
-            get the Npc that is near from cnv
-                  send request to npc
-                  get response (one call?)
-                  do interact anim
-                  remove interaction request
-
-              If reponse = good
-                  Call moveTo etc
-
-              If received request
-                  get best request via genetic algorithm, only one best request.
-                  set response / do these 2 in one method: getresponse
-    */
-
-    /*
         INTERACTION SENDING
     */
 
-    public int GetNearbyIdleNpcId()
+    public void FreeInteractionTarget()
     {
-        var nearbyNpcs = new Dictionary<float, NpcObject>();
+        CurrentInteractionTarget.InteractionRequesters.Remove(this.Id);
+        CurrentInteractionTarget.IsInteractionTarget = false;
+        CurrentInteractionTarget.InteractionSender = null;
+    }
+
+    public bool InteractionAvailable()
+    {
+        if (GetNearbyIdleNpcId() != null && !IsInteractionTarget)
+        {
+            var nearestNpc = GetNearbyIdleNpcId();
+            return HandleInteraction(nearestNpc);
+        }
+        else
+            return false;
+    }
+
+    private bool HandleInteraction(NpcObject npc)
+    {
+        //not sure about the else
+        if (!AlreadySentRequest(npc))
+            npc.InteractionRequesters.Add(this.Id, this);
+
+        CurrentInteractionTarget = npc;
+
+        if (CurrentInteractionTarget.WantsToInteractWith(this.Id))
+        {
+            CurrentInteractionTarget.InteractionSender = this;
+            CurrentInteractionTarget.IsInteractionTarget = true;
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public void SetActionPositions(NpcObject npcObject, Vector3 NewPosition)
+    {
+        foreach (var gameAction in npcObject.CurrentNodesCollection.Values)
+        {
+            gameAction.Position = NewPosition;
+        }
+    }
+
+    private NpcObject GetNearbyIdleNpcId()
+    {
+        var nearbyNpcs = new Dictionary<NpcObject, float>();
+
         foreach (var npc in AllPersons)
         {
-            var distance = Vector3.Distance(transform.position, npc.transform.position);
-            if (distance < 8.0f)
+            if (npc.Id != this.Id && !(npc.InteractionRequesters.Count > 1))
             {
-                nearbyNpcs.Add(distance, npc);
+                var distance = Vector3.Distance(transform.position, npc.transform.position);
+                nearbyNpcs.Add(npc, distance);
             }
         }
 
         if (nearbyNpcs.Count > 1)
-            return nearbyNpcs.FirstOrDefault(x => x.Key == nearbyNpcs.Keys.Max()).Value.Id;
+            return nearbyNpcs.FirstOrDefault(x => x.Value == nearbyNpcs.Values.Min()).Key;
         else
-            return -1;
+            return null;
     }
 
-    public int TrySendInteraction()
+    private bool IsIntrovert()
     {
-        Debug.Log("SENT INTERACTION");
-        //CurrentInteractionTarget is set in the UnityNpc proxy
-        var receiver = AllPersons[CurrentInteractionTarget];
-
-        if (IsExtravert() && !AlreadySentRequest(receiver))
-        {
-
-            var receiverAccumulatedValues = receiver.AccumulatedValues;
-
-            var interaction = GetInteraction();
-            interaction.Weight = GenericVector.GetAngle(AccumulatedValues, receiverAccumulatedValues);
-
-            receiver.RequestedInteractions.Add(this.Id, interaction);
-
-            if (receiver.WantsToInteract(this.Id))
-                return interaction.Id;
-            else
-                return -1;
-        }
-        else
-            return -1;
-    }
-
-    private bool IsExtravert()
-    {
-        const int EXTRAVERSION_INDEX = 0;
+        const int INTROVERSION_INDEX = 3;
         var biggestPoint = AccumulatedValues.BiggestPoint();
-        Debug.Log("Extraversion AccValues = " + AccumulatedValues.Points[AccumulatedValues.Points.IndexOf(biggestPoint)]);
-        return AccumulatedValues.Points.IndexOf(biggestPoint) == EXTRAVERSION_INDEX;
+        return AccumulatedValues.Points.IndexOf(biggestPoint) == INTROVERSION_INDEX;
     }
+
 
     private bool AlreadySentRequest(NpcObject receiver)
     {
-        return receiver.RequestedInteractions.ContainsKey(this.Id);
+        return receiver.InteractionRequesters.ContainsKey(this.Id)
+               || this.InteractionRequesters.ContainsKey(receiver.Id);
     }
 
 
     /*
-        INTERACTION RECEIVING
+        INTERACTION RECEIVING / HELPERS
     */
 
-    //Change this to get it using the genetic algorithm (?)
-    private Interaction GetInteraction()
+    private bool WantsToInteractWith(int senderId)
     {
-        return InteractionActions[0];
+        if (InteractionRequesters.ContainsKey(senderId))
+        {
+            var bestRequester = GetBestInteractionSender();
+            return bestRequester.Id == senderId;
+        }
+        else
+            return false;
     }
 
-    public bool WantsToInteract(int senderId)
+    //wait until requests is big
+    private NpcObject GetBestInteractionSender()
     {
-        var requestWithBiggestWeight = GetRequestWithBiggestWeight();
-        return requestWithBiggestWeight.Sender.Id == senderId;
-    }
+        var IDsAndWeights = new Dictionary<int, float>();
 
-    private Interaction GetRequestWithBiggestWeight()
-    {
-        var allRequestWeights = RequestedInteractions.Select(x => x.Value.Weight).ToList();
-        var biggestWeight = allRequestWeights.Max();
-        return RequestedInteractions[allRequestWeights.IndexOf(biggestWeight)];
+        foreach (var requester in InteractionRequesters.Values)
+        {
+            float weight = GenericVector.DotProduct(this.AccumulatedValues, requester.AccumulatedValues);
+            IDsAndWeights.Add(requester.Id, weight);
+        }
+        var idOfBiggestWeightRequester =
+            (from x in IDsAndWeights where x.Value == IDsAndWeights.Max(v => v.Value) select x.Key).FirstOrDefault();
+        return AllPersons.First(x => x.Id == idOfBiggestWeightRequester);
     }
 
 
     /* HELPERS */
+
+    //make action positions be the interaciton position
+    public void ChangeActionPositions(Vector3 newPosition)
+    {
+        foreach (var action in CurrentNodesCollection)
+        {
+            action.Value.Position = newPosition;
+        }
+    }
+
+    public Vector3 GetVectorForInteraction(string type)
+    {
+        if (type.Equals("InteractionSender"))
+            return (transform.position + CurrentInteractionTarget.transform.position).normalized;
+        else
+            return (transform.position + InteractionSender.transform.position).normalized;
+    }
 
     private GameAction _GetAction(int actionId)
     {
@@ -291,5 +319,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-
-                                           
+      

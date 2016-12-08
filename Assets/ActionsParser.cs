@@ -4,10 +4,12 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Assets;
 using Casanova.Prelude;
+ using UnityEngine;
 
 
 public static class ActionsParser
 {
+    private const string REACTIONS = "reactions";
     private const string INTERACTIONS = "interactions";
     private const string ACTIONS = "actions";
     private const string EVENTACTIONS = "eventActions";
@@ -17,14 +19,33 @@ public static class ActionsParser
     public static Dictionary<int, Event> PlayerEvents = new Dictionary<int, Event>();
     public static Dictionary<int, GameAction> EventActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> NormalActions = new Dictionary<int, GameAction>();
-    public static Dictionary<int, Interaction> Interactions = new Dictionary<int, Interaction>();
+    public static Dictionary<int, GameAction> Interactions = new Dictionary<int, GameAction>();
+    public static Dictionary<int, GameAction> Reactions = new Dictionary<int, GameAction>();
+
+
+    public static void ParseReactions()
+    {
+        var reactions = XmlNodule.Load(REACTIONS);
+        foreach (var reaction in reactions)
+        {
+            var reactionInstance = new Reaction
+            {
+                Id = reaction.Get("id").ToInt(),
+                Position = reaction.Get("position").ToVector3(),
+                ActionName = reaction.Get("name").ToString(),
+                AnimationName = reaction.Get("animationname").ToString(),
+                PersonalityModifiers = GetNodePersonalityModifiers(reaction)
+            };
+            Reactions.Add(reactionInstance.Id, reactionInstance);
+        }
+    }
 
     public static void ParseInteractions()
     {
         var interactions = XmlNodule.Load(INTERACTIONS);
         foreach (var interaction in interactions)
         {
-            var interactionInstance = new Interaction
+            var interactionInstance = new InteractionAction
             {
                 Id = interaction.Get("id").ToInt(),
                 Position = interaction.Get("position").ToVector3(),
@@ -124,5 +145,4 @@ public static class ActionsParser
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
 }
-
-                                           
+      

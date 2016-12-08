@@ -1,6 +1,7 @@
 ﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
-using Casanova.Prelude;
+ using System.Xml.Schema;
+ using Casanova.Prelude;
 using UnityEngine;
 
 public class UnityNpc : MonoBehaviour
@@ -34,20 +35,29 @@ public class UnityNpc : MonoBehaviour
         }
     }
 
-    public int GetNearbyIdleNpcId()
+
+    /* INTERACTION */
+
+    public bool InteractionTarget
     {
-        return _npcObject.GetNearbyIdleNpcId();
+        get { return _npcObject.IsInteractionTarget;  }
+        set { _npcObject.IsInteractionTarget = value;  }
     }
 
-    public int InteractionTarget
+    public bool Interacting { get; set; }
+
+    public bool InteractionAvailable()
     {
-        set { _npcObject.CurrentInteractionTarget = value; }
+        return _npcObject.InteractionAvailable();
     }
 
-    public int InteractionId
+    public void FreeInteractionTarget()
     {
-        get { return _npcObject.TrySendInteraction(); }
+        _npcObject.FreeInteractionTarget();
     }
+
+    /* END INTERACTION */
+
 
     public bool IsInEvent
     {
@@ -123,14 +133,30 @@ public class UnityNpc : MonoBehaviour
 
     public void UpdateCurrentNodesCollection()
     {
-        _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
-            ? GetAssociatedActionsForEventId(_npcObject.MyEvent.Id)
-            : ActionsParser.NormalActions;
+        if (Interacting)
+        {
+            _npcObject.CurrentNodesCollection = ActionsParser.Interactions;
+            Debug.Log("Switching to interaction nodes");
+            _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionSender"));
+        }
+        else if (InteractionTarget)
+        {
+            _npcObject.CurrentNodesCollection = ActionsParser.Reactions;
+            Debug.Log("Switching to interaction target nodes");
+            if(_npcObject.InteractionSender != null)
+                _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionReceiver"));
+        }
+        else
+        {
+            Debug.Log("Switching to normal nodes");
+            _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
+                ? GetAssociatedActionsForEventId(_npcObject.MyEvent.Id)
+                : ActionsParser.NormalActions;
+        }
     }
 
     private static Dictionary<int, GameAction> GetAssociatedActionsForEventId(int eventId)
     {
-
         Event currentEvent;
 
         if (ActionsParser.Events.ContainsKey(eventId))
@@ -142,5 +168,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-
-                                           
+      

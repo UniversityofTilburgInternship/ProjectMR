@@ -101,7 +101,7 @@ AllPlayerEvents : [Event]
     wait false
 
   rule CurrentEvents =
-    wait 50.0f
+    wait Random.Range(50.0f, 100.0f)
     HelperFunctions.Log("Spawned event!")
     wait UnityEventController.IsEventAvailable()
     yield new Event("normalEvent", this) :: CurrentEvents
@@ -120,19 +120,51 @@ AllPlayerEvents : [Event]
 }
 
 entity Person = {
-    inherit UnityNpc
-    settings : [(int * int)]
-    actionIds : [int]
-    PositionAvailable : bool
+inherit UnityNpc
+settings : [(int * int)]
+actionIds : [int]
+PositionAvailable : bool
+TimeToInteract : bool
 
-    //rule InteractionId =
-      //wait Random.Range(5.0f, 10.0f)
-      //yield InteractionId
-      //if not (UnityNpc.GetNearbyIdleNpcId() = -1) then
-       //HelperFunctions.Log("My Id: " + Id + "Nearby npc id: " + UnityNpc.GetNearbyIdleNpcId())
-       //yield 1
-      //else
-       //yield 2
+    rule TimeToInteract =
+      yield false
+      wait 15.0f
+      yield true
+      wait 5.0f
+      yield false
+
+    rule Interacting =
+      if(TimeToInteract = false) then
+        yield false
+      else
+        yield Interacting   
+
+    rule Interacting =
+      wait TimeToInteract
+      if(UnityNpc.InteractionAvailable()) then
+        yield true
+        wait not TimeToInteract
+      else
+        yield false
+      
+    rule actionIds, PositionAvailable =
+      wait Interacting
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+      wait 2.0f
+
+    rule actionIds, PositionAvailable =
+      wait Interacting
+      wait not Interacting
+      UnityNpc.FreeInteractionTarget()
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+
+    rule actionIds, PositionAvailable =
+      wait InteractionTarget
+      wait not Interacting
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
 
     rule actionIds, PositionAvailable =
       wait PositionAvailable
@@ -151,7 +183,6 @@ entity Person = {
         yield [for id in actionIds do
                 where (not (id = actionToExecute))
                 select id], false
-  
 
     rule actionIds, PositionAvailable =
       wait not PositionAvailable
@@ -161,7 +192,7 @@ entity Person = {
         UnityNpc.ClaimPosition(actionToExecute)
         yield actionIds, true
       else
-        //If we cannot get a position, skip this action.    
+        //If we cannot get a position, skip this action.
         yield [for id in actionIds do
                where (not (id = actionToExecute))
                select id], false
@@ -196,5 +227,6 @@ entity Person = {
         UnityNpc = unity_npc
         PositionAvailable = false
         actionIds = []
+        TimeToInteract = false
     }
 }

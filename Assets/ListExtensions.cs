@@ -9,6 +9,4 @@ public static class ListExtensions
         list[indexB] = tmp;
     }
 }
-
-
-                                           
+      

@@ -1,13 +1,13 @@
-<interactions>
-    <interaction>
-         <id>0</id>
+<reactions>
+    <reaction>
+        <id>0</id>
         <position>
-            <x>3</x>
+            <x>1</x>
             <y>0</y>
             <z>4</z>
         </position>
-        <name>Interaction no. 0</name>
-        <animationname>wave</animationname>
+        <name>Reaction no. 0</name>
+        <animationname>yawn</animationname>
         <neighbours>
         </neighbours>
         <modifiers>
@@ -44,5 +44,5 @@
                 <value>0</value>
             </modifier>
         </modifiers>
-    </interaction>
-</interactions>
+    </reaction>
+</reactions>

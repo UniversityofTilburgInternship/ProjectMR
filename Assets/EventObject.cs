@@ -26,8 +26,6 @@ public class EventObject : MonoBehaviour
     {
         var gameObjectModelName = sourceEvent.ModelName;
 
-        Debug.Log("GAMEOBJECTMODLENAME = " + gameObjectModelName);
-
         var eventObject = (Instantiate(
                 Resources.Load(gameObjectModelName),
                 sourceEvent.Position,
@@ -55,10 +53,8 @@ public class EventObject : MonoBehaviour
         EventPlayer.RemoveAmbience(EventController.ActiveEvents[Id]);
         EventController.ActiveEvents.Remove(Id);
 
-        if(!IsPlayerControlled)
+        if (!IsPlayerControlled)
             Destroy(gameObject);
     }
-
 }
-
-                                           
+      
