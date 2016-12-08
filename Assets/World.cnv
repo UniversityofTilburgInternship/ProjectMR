@@ -49,8 +49,7 @@ isTriggeringEvent : bool
 
   rule eventController.CurrentEvents =
     for event in eventController.AllPlayerEvents do
-      let key = event.TriggerKey
-      if (Input.GetKey(KeyCode.F)) then
+      if (Input.GetKey(event.TriggerKey)) then    
           HelperFunctions.Log("Player triggered event")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)
           yield event :: eventController.CurrentEvents
