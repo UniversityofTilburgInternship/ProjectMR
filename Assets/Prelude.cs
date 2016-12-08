@@ -364,4 +364,4 @@ public class RuleTable
             ActiveIndices.Push(i);
         }
     }
-}                             
+}                                 
