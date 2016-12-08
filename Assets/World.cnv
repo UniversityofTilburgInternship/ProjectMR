@@ -7,7 +7,7 @@ worldEntity World = {
 AvatarGen : AvatarGenerator
 Persons : [Person]
 eventController : EventController
-MainPlayer : Player
+MainPlayer : Player    
 
 
   rule Persons =
@@ -19,15 +19,15 @@ MainPlayer : Player
            select (personality.Item1, personality.Item2)],
         parsedperson.Item1)) :: Persons
     wait false
-
-  rule Persons =
+   
+  rule Persons =  
     wait not AvatarGen.AutoGenerateCharacters
     for x in[0..AvatarGen.Amount - 1] do
       yield(Person.Create(
         [for characteristic in AvatarGen.SettingsList do
           select (characteristic.Item1,
             Random.Range(characteristic.Item2.Item1,
-            characteristic.Item2.Item2))], "random")) :: Persons
+            characteristic.Item2.Item2))], "random")) :: Persons    
     wait false
 
   Create() =
