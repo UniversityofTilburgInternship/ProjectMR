@@ -658,9 +658,8 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public System.Single ___distanceToDestination50;
 	public System.Single count_down7;
 	public System.Single count_down8;
-	public System.Single count_down9;
-	public System.Single count_down11;
 	public System.Single count_down10;
+	public System.Single count_down9;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -676,7 +675,6 @@ frame = World.frame;
 		this.Rule9(dt, world);
 		this.Rule10(dt, world);
 		this.Rule11(dt, world);
-		this.Rule12(dt, world);
 	}
 
 
@@ -1054,14 +1052,10 @@ return;	}else
 	s9 = 3;
 return;
 	case 3:
-	count_down9 = 5f;
-	goto case 4;
-	case 4:
-	if(((count_down9) > (0f)))
+	if(!(!(TimeToInteract)))
 	{
 
-	count_down9 = ((count_down9) - (dt));
-	s9 = 4;
+	s9 = 3;
 return;	}else
 	{
 
@@ -1082,15 +1076,15 @@ return;
 	if(((TimeToInteract) == (false)))
 	{
 
-	goto case 8;	}else
+	goto case 7;	}else
 	{
 
-	goto case 9;	}
-	case 8:
+	goto case 8;	}
+	case 7:
 	Interacting = false;
 	s10 = -1;
 return;
-	case 9:
+	case 8:
 	Interacting = Interacting;
 	s10 = -1;
 return;	
@@ -1106,13 +1100,13 @@ return;
 	s11 = 4;
 return;
 	case 4:
-	count_down11 = 15f;
+	count_down10 = 15f;
 	goto case 5;
 	case 5:
-	if(((count_down11) > (0f)))
+	if(((count_down10) > (0f)))
 	{
 
-	count_down11 = ((count_down11) - (dt));
+	count_down10 = ((count_down10) - (dt));
 	s11 = 5;
 return;	}else
 	{
@@ -1123,13 +1117,13 @@ return;	}else
 	s11 = 1;
 return;
 	case 1:
-	count_down10 = 5f;
+	count_down9 = 5f;
 	goto case 2;
 	case 2:
-	if(((count_down10) > (0f)))
+	if(((count_down9) > (0f)))
 	{
 
-	count_down10 = ((count_down10) - (dt));
+	count_down9 = ((count_down9) - (dt));
 	s11 = 2;
 return;	}else
 	{
@@ -1142,21 +1136,9 @@ return;
 	default: return;}}
 	
 
-	int s12=-1;
-	public void Rule12(float dt, World world){ switch (s12)
-	{
-
-	case -1:
-	HelperFunctions.Log(("TTI x ") + (TimeToInteract));
-	TimeToInteract = TimeToInteract;
-	s12 = -1;
-return;	
-	default: return;}}
-	
-
 
 
 
 
 }
-}  
+} 

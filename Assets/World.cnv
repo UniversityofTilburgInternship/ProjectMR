@@ -127,10 +127,6 @@ PositionAvailable : bool
 TimeToInteract : bool
 
     rule TimeToInteract =
-      HelperFunctions.Log("TTI x " + TimeToInteract)
-      yield TimeToInteract
-
-    rule TimeToInteract =
       yield false
       wait 15.0f
       yield true
@@ -141,13 +137,13 @@ TimeToInteract : bool
       if(TimeToInteract = false) then
         yield false
       else
-        yield Interacting
+        yield Interacting   
 
     rule Interacting =
       wait TimeToInteract
       if(UnityNpc.InteractionAvailable()) then
         yield true
-        wait 5.0f
+        wait not TimeToInteract
       else
         yield false
 
