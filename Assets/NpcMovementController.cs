@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,10 +21,18 @@ public class NpcMovementController : MonoBehaviour
 
     void Update()
     {
+        var audio = _npcObject.GetComponent<AudioSource>();
         if (Vector3.Distance(_npcObject.gameObject.GetComponent<NavMeshAgent>().destination, transform.position) <= 2.2)
+        {
             StopWalking();
+            audio.Stop();
+        }
+
         else
+        {
             StartWalking();
+        }
+
     }
 
     private void StopWalking()
@@ -39,7 +47,10 @@ public class NpcMovementController : MonoBehaviour
         {
             _npcObject.Animator.SetBool("Walking", true);
             _walking = true;
+            var audio = _npcObject.GetComponent<AudioSource>();
+            audio.Play();
+
         }
     }
 }
-      
+            

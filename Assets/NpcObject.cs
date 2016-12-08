@@ -56,8 +56,17 @@ public class NpcObject : MonoBehaviour
         npcObject.MovementController = NpcMovementController.CreateComponent(npcObject.gameObject, npcObject);
         npcObject.Animator = npcObject.gameObject.GetComponent<Animator>();
         npcObject.gameObject.AddComponent<NavMeshAgent>();
+        npcObject.gameObject.AddComponent<AudioSource>();
         npcObject.gameObject.GetComponent<NavMeshAgent>().stoppingDistance = 2.2f;
 
+        var audio = npcObject.gameObject.GetComponent<AudioSource>();
+        audio.clip = Resources.Load<AudioClip>("Footstep01");
+        audio.playOnAwake = false;
+        audio.loop = true;
+        audio.rolloffMode = AudioRolloffMode.Linear;
+        audio.maxDistance = 5.0f;
+        audio.minDistance = 0.0f;
+        audio.spatialBlend = 1.0f;
         AllPersons.Add(npcObject);
 
         return npcObject;
@@ -319,4 +328,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-      
+            

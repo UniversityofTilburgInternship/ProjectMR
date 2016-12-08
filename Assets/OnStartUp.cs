@@ -1,4 +1,4 @@
-﻿﻿﻿using UnityEngine;
+﻿﻿﻿﻿using UnityEngine;
 
 public class OnStartUp : MonoBehaviour
 {
@@ -10,10 +10,11 @@ public class OnStartUp : MonoBehaviour
      ActionsParser.ParseNormalActions();
      ActionsParser.ParseEvents();
 
+      Debug.Log(ActionsParser.PlayerEvents.Count);
+      
       //This parses the spawnpositions and modelnames from settings.xml
       SettingsParser.ParseAll();
       PlayerParser.ParsePersons();
   }
 }
-                                                                                                                                                                                                    
-      
+            

@@ -44,7 +44,7 @@
     <id>1</id>
     <name>light_switch</name>
     <playercontrolled>true</playercontrolled>
-    <triggerkey>F1</triggerkey>
+    <triggerkey>F</triggerkey>
     <radius>500</radius>
     <position>
       <x>0</x>

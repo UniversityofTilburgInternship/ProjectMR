@@ -224,7 +224,7 @@ public Player(EventController controller)
  }
 	public Event ___event00;
 	public System.Int32 counter10;
-	public System.Int32 ___key00;
+	public System.String ___key00;
 	public System.Single count_down1;
 	public void Update(float dt, World world) {
 frame = World.frame;
@@ -265,7 +265,7 @@ return;	}else
 	___event00 = (eventController.AllPlayerEvents)[counter10];
 	goto case 2;	}
 	case 2:
-	___key00 = ___event00.Id;
+	___key00 = ___event00.TriggerKey;
 	if(UnityEngine.Input.GetKey(KeyCode.F))
 	{
 
@@ -875,17 +875,17 @@ return;
 return;	}else
 	{
 
-	goto case 12;	}
-	case 12:
+	goto case 11;	}
+	case 11:
 	if(!(((actionIds.Count) > (0))))
 	{
 
-	s5 = 12;
+	s5 = 11;
 return;	}else
 	{
 
-	goto case 11;	}
-	case 11:
+	goto case 10;	}
+	case 10:
 	___actionToExecute51 = (actionIds)[0];
 	___destination50 = UnityNpc.GetClaimedPosition(___actionToExecute51);
 	UnityNpc.MoveTo(___actionToExecute51);
@@ -899,7 +899,6 @@ return;	}else
 	s5 = -1;
 return;	}
 	case 1:
-	UnityNpc.StopMovement();
 	UnityNpc.UpdateAccumulatedValues(___actionToExecute51);
 	count_down7 = UnityNpc.PlayAnimation(___actionToExecute51);
 	goto case 5;

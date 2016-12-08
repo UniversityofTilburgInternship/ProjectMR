@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using Casanova.Prelude;
@@ -92,7 +92,6 @@ public class UnityEvent
         set { }
     }
 
-
     public static UnityEvent SpawnRandomEvent(string type)
     {
         if (type.Equals("playerEvent"))
@@ -108,4 +107,5 @@ public class UnityEvent
     {
         _eventObject.Destroy();
     }
-}      
+}
+            

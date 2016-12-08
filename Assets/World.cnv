@@ -49,7 +49,7 @@ isTriggeringEvent : bool
 
   rule eventController.CurrentEvents =
     for event in eventController.AllPlayerEvents do
-      let key = event.Id
+      let key = event.TriggerKey
       if (Input.GetKey(KeyCode.F)) then
           HelperFunctions.Log("Player triggered event")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)
@@ -146,7 +146,7 @@ TimeToInteract : bool
         wait not TimeToInteract
       else
         yield false
-      
+
     rule actionIds, PositionAvailable =
       wait Interacting
       UnityNpc.UpdateCurrentNodesCollection()
@@ -175,7 +175,6 @@ TimeToInteract : bool
       let distanceToDestination = Vector3.Distance(Position, destination)
       //Execute action animation, then remove action that was just executed from actionIds
       if (distanceToDestination < 2.2f) then
-        UnityNpc.StopMovement()
         UnityNpc.UpdateAccumulatedValues(actionToExecute)
         wait UnityNpc.PlayAnimation(actionToExecute)
         //Cant remove if currentNodesCollection updated.

@@ -1,4 +1,4 @@
-﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
  using System.Xml.Schema;
  using Casanova.Prelude;
@@ -75,12 +75,6 @@ public class UnityNpc : MonoBehaviour
         return _npcObject.IsInterestedInEvent();
     }
 
-    public void StopMovement()
-    {
-        // _npcObject.gameObject.GetComponent<NavMeshAgent>().Stop();
-        //_npcObject.MovementController.Stop();
-    }
-
     public static UnityNpc Spawn(List<Tuple<int, int>> personalityValues, string prefabname)
     {
         var unityNpc = new UnityNpc {_npcObject = NpcObject.Instantiate(personalityValues, prefabname)};
@@ -136,19 +130,16 @@ public class UnityNpc : MonoBehaviour
         if (Interacting)
         {
             _npcObject.CurrentNodesCollection = ActionsParser.Interactions;
-            Debug.Log("Switching to interaction nodes");
             _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionSender"));
         }
         else if (InteractionTarget)
         {
             _npcObject.CurrentNodesCollection = ActionsParser.Reactions;
-            Debug.Log("Switching to interaction target nodes");
             if(_npcObject.InteractionSender != null)
                 _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionReceiver"));
         }
         else
         {
-            Debug.Log("Switching to normal nodes");
             _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
                 ? GetAssociatedActionsForEventId(_npcObject.MyEvent.Id)
                 : ActionsParser.NormalActions;
@@ -168,4 +159,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-      
+            
