@@ -16,7 +16,7 @@ public static class EventController
     {
         while (true)
         {
-            var randomIndex = Random.Range(0, PlayerEvents.Count - 1);
+            var randomIndex = Random.Range(0, PlayerEvents.Count);
             var potentialPlayerEvent = PlayerEvents.ElementAt(randomIndex).Value;
 
             //might run out
@@ -84,4 +84,4 @@ public static class EventController
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
 }
-                                                            
+                                                                                           

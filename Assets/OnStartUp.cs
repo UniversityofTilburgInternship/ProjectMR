@@ -5,11 +5,11 @@ public class OnStartUp : MonoBehaviour
 {
     void Awake()
     {
+        ActionsParser.ParseEvents();
         ActionsParser.ParseEventsActions();
         ActionsParser.ParseInteractions();
         ActionsParser.ParseReactions();
         ActionsParser.ParseNormalActions();
-        ActionsParser.ParseEvents();
 
         //This parses the spawnpositions and modelnames from settings.xml
         SettingsParser.ParseAll();
@@ -32,4 +32,4 @@ public class OnStartUp : MonoBehaviour
         playerObject.GetComponent<NavMeshObstacle>().radius = newNavMeshRadius;
         playerObject.GetComponent<FPSInputController>().enabled = playerObjectComponent.AllowMovement;
     }
-}              
+}                                             

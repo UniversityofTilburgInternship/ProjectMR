@@ -7,11 +7,16 @@ namespace Assets
     {
         public static void PlayEventAmbience(EventObject eventObject)
         {
+            //audio is always played
             GetAudioSource(eventObject.gameObject).Play();
+
             switch (eventObject.AnimationName)
             {
                 case "light_switch":
                     SwitchLights();
+                    break;
+                case "Celebration":
+                    SetLightColor(Color.green);
                     break;
                 case "AlarmBell":
                     SetLightColor(Color.red);
@@ -26,6 +31,9 @@ namespace Assets
             {
                 //no case for lightswitching since those can be, well, switched
                 case "AlarmBell":
+                    SetLightColor(Color.white);
+                    break;
+                case "Celebration":
                     SetLightColor(Color.white);
                     break;
             }
@@ -59,4 +67,4 @@ namespace Assets
             return GameObject.FindGameObjectsWithTag("ceiling_light");
         }
     }
-}                                                            
+}                                                                                           

@@ -12,7 +12,7 @@ MainPlayer : Player
 
   rule Persons =
     wait AvatarGen.AutoGenerateCharacters
-    for parsedperson in PlayerParser.ParsedPersons do
+    for parsedperson in PersonParser.ParsedPersons do
       let personalities = parsedperson.Item2
       yield(Person.Create(
         [for personality in personalities do
@@ -49,6 +49,7 @@ isTriggeringEvent : bool
 
   rule eventController.CurrentEvents =
     for event in eventController.AllPlayerEvents do
+      HelperFunctions.Log(event.TriggerKey)
       if (Input.GetKey(event.TriggerKey)) then    
           HelperFunctions.Log("Player triggered event")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)

@@ -224,7 +224,6 @@ public Player(EventController controller)
  }
 	public Event ___event00;
 	public System.Int32 counter10;
-	public System.String ___key00;
 	public System.Single count_down1;
 	public void Update(float dt, World world) {
 frame = World.frame;
@@ -265,8 +264,8 @@ return;	}else
 	___event00 = (eventController.AllPlayerEvents)[counter10];
 	goto case 2;	}
 	case 2:
-	___key00 = ___event00.TriggerKey;
-	if(UnityEngine.Input.GetKey(KeyCode.F))
+	HelperFunctions.Log(___event00.TriggerKey);
+	if(UnityEngine.Input.GetKey(___event00.TriggerKey))
 	{
 
 	goto case 4;	}else
@@ -1140,4 +1139,4 @@ return;
 
 
 }
-}                                                    
+}  
