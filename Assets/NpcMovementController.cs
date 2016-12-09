@@ -1,9 +1,5 @@
-﻿﻿﻿﻿﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class NpcMovementController : MonoBehaviour
 {
@@ -53,4 +49,4 @@ public class NpcMovementController : MonoBehaviour
         }
     }
 }
-                                                                                                                       
+                                                                                                                                   
