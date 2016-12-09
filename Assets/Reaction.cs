@@ -1,7 +1,7 @@
-﻿namespace Assets
+﻿﻿namespace Assets
 {
     public class Reaction : GameAction
     {
     }
 }
-                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                  

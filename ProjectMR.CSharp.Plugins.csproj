@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -184,6 +178,7 @@
     <None Include="Assets\Resources\events.xml" />
     <None Include="Assets\Resources\interactions.xml" />
     <None Include="Assets\Resources\players.xml" />
+    <None Include="Assets\Resources\reactions.xml" />
     <None Include="Assets\Resources\settings.xml" />
     <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
