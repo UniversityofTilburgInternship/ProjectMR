@@ -97,7 +97,10 @@
     <interestlevel>1</interestlevel>
     <maxamountofparticipants>9</maxamountofparticipants>
     <associatedactions>
-      <id>1</id>
+      <id>9</id>
+      <id>10</id>
+      <id>11</id>
+      <id>12</id>
     </associatedactions>
     <personalityMinimums>
       <minimum>

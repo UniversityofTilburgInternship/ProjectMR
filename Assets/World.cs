@@ -264,7 +264,6 @@ return;	}else
 	___event00 = (eventController.AllPlayerEvents)[counter10];
 	goto case 2;	}
 	case 2:
-	HelperFunctions.Log(___event00.TriggerKey);
 	if(UnityEngine.Input.GetKey(___event00.TriggerKey))
 	{
 
@@ -1139,4 +1138,4 @@ return;
 
 
 }
-}  
+}                  
