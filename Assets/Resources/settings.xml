@@ -47,5 +47,10 @@
   </spawnpoints>
   <modelnames>
     <modelname>PlayerLiam</modelname>
+    <modelname>PlayerMalcon</modelname>
+    <modelname>PlayerRegina</modelname>
+    <modelname>PlayerRemy</modelname>
+    <modelname>PlayerShae</modelname>
+    <modelname>PlayerStefani</modelname>
   </modelnames>
 </settings>
