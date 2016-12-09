@@ -49,11 +49,13 @@
      <Compile Include="Assets\ActionsParser.cs" />
      <Compile Include="Assets\Arkham Interactive\Industrial\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
      <Compile Include="Assets\AvatarGenerator.cs" />
+     <Compile Include="Assets\CharacterMotor.cs" />
      <Compile Include="Assets\Event.cs" />
      <Compile Include="Assets\EventAction.cs" />
      <Compile Include="Assets\EventController.cs" />
      <Compile Include="Assets\EventObject.cs" />
      <Compile Include="Assets\EventPlayer.cs" />
+     <Compile Include="Assets\FPSInputController.cs" />
      <Compile Include="Assets\FPSmovement.cs" />
      <Compile Include="Assets\GameAction.cs" />
      <Compile Include="Assets\GenericVector.cs" />
@@ -73,8 +75,8 @@
      <Compile Include="Assets\OnStartUp.cs" />
      <Compile Include="Assets\PathRequestManager.cs" />
      <Compile Include="Assets\Pathfinding.cs" />
+     <Compile Include="Assets\PersonParser.cs" />
      <Compile Include="Assets\PlayerObject.cs" />
-     <Compile Include="Assets\PlayerParser.cs" />
      <Compile Include="Assets\Prelude.cs" />
      <Compile Include="Assets\Reaction.cs" />
      <Compile Include="Assets\Scripts\AudioOffset.cs" />

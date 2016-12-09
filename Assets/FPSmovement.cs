@@ -2,7 +2,6 @@
 
 public class FPSmovement : MonoBehaviour
 {
-
     // Use this for initialization
     void Start()
     {
@@ -43,4 +42,4 @@ public class FPSmovement : MonoBehaviour
 
     }
 }
-                    
+                                                   

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Casanova.Prelude;
 
-public class PlayerParser : MonoBehaviour
+public class PersonParser : MonoBehaviour
 {
     private const string PERSONS = "players";
 
@@ -32,4 +32,4 @@ public class PlayerParser : MonoBehaviour
         }
     }
 }
-                    
+                                                   

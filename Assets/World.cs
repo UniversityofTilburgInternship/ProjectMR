@@ -136,23 +136,23 @@ return;	}else
 	case 1:
 	
 	counter21 = -1;
-	if((((PlayerParser.ParsedPersons).Count) == (0)))
+	if((((PersonParser.ParsedPersons).Count) == (0)))
 	{
 
 	goto case 0;	}else
 	{
 
-	___parsedperson10 = (PlayerParser.ParsedPersons)[0];
+	___parsedperson10 = (PersonParser.ParsedPersons)[0];
 	goto case 2;	}
 	case 2:
 	counter21 = ((counter21) + (1));
-	if((((((PlayerParser.ParsedPersons).Count) == (counter21))) || (((counter21) > ((PlayerParser.ParsedPersons).Count)))))
+	if((((((PersonParser.ParsedPersons).Count) == (counter21))) || (((counter21) > ((PersonParser.ParsedPersons).Count)))))
 	{
 
 	goto case 0;	}else
 	{
 
-	___parsedperson10 = (PlayerParser.ParsedPersons)[counter21];
+	___parsedperson10 = (PersonParser.ParsedPersons)[counter21];
 	goto case 3;	}
 	case 3:
 	___personalities10 = ___parsedperson10.Item2;
@@ -1138,4 +1138,4 @@ return;
 
 
 }
-} 
+}                                

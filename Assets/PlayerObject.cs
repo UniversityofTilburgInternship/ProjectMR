@@ -5,6 +5,8 @@ namespace Assets
 {
     public class PlayerObject : MonoBehaviour
     {
+        public bool AllowMovement;
+
         public static PlayerObject Instantiate()
         {
             var playerGameObjectModelName = GameObject.Find("Player");
@@ -28,4 +30,4 @@ namespace Assets
         }
     }
 }
-                    
+                                                   
