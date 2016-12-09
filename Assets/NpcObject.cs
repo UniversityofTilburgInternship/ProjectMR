@@ -75,7 +75,6 @@ public class NpcObject : MonoBehaviour
     public float PlayAnimation(int actionId)
     {
         var action = CurrentNodesCollection[actionId];
-        Debug.Log(action.ToString());
         var animationName = action.AnimationName;
         var time = 0.0f;
         //Get Animator controller
@@ -91,6 +90,7 @@ public class NpcObject : MonoBehaviour
         }
         Animator.SetBool(animationName, true);
         StartCoroutine(StopAnimation(animationName, time));
+
         return time + 0.1f;
     }
 
@@ -328,4 +328,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                             
+                                                                                                                                

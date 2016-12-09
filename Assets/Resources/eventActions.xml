@@ -226,9 +226,9 @@
             </modifier>
         </modifiers>
         <position>
-            <z>8</z>
+            <z>9</z>
             <y>0</y>
-            <x>6</x>
+            <x>1</x>
         </position>
         <id>9</id>
         <name>shaking head</name>
@@ -277,9 +277,9 @@
             </modifier>
         </modifiers>
         <position>
-            <z>8</z>
+            <z>9</z>
             <y>0</y>
-            <x>6</x>
+            <x>1</x>
         </position>
         <id>10</id>
         <name>chicken dance</name>
@@ -328,60 +328,9 @@
             </modifier>
         </modifiers>
         <position>
-            <z>8</z>
+            <z>11</z>
             <y>0</y>
-            <x>6</x>
-        </position>
-        <id>11</id>
-        <name>macarena dance</name>
-        <animationname>macarenadance</animationname>
-    </eventAction>
-    <eventAction>
-        <neighbours>
-            <neighbour>0</neighbour>
-            <neighbour>1</neighbour>
-            <neighbour>7</neighbour>
-            <neighbour>3</neighbour>
-            <neighbour>2</neighbour>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <value>40</value>
-                <id>1</id>
-            </modifier>
-            <modifier>
-                <value>35</value>
-                <id>5</id>
-            </modifier>
-            <modifier>
-                <value>40</value>
-                <id>0</id>
-            </modifier>
-            <modifier>
-                <value>0</value>
-                <id>4</id>
-            </modifier>
-            <modifier>
-                <value>50</value>
-                <id>6</id>
-            </modifier>
-            <modifier>
-                <value>40</value>
-                <id>2</id>
-            </modifier>
-            <modifier>
-                <value>40</value>
-                <id>7</id>
-            </modifier>
-            <modifier>
-                <value>35</value>
-                <id>3</id>
-            </modifier>
-        </modifiers>
-        <position>
-            <z>8</z>
-            <y>0</y>
-            <x>6</x>
+            <x>1</x>
         </position>
         <id>12</id>
         <name>shake fist</name>
