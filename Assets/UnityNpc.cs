@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
  using System.Xml.Schema;
  using Casanova.Prelude;
@@ -159,4 +159,4 @@ public class UnityNpc : MonoBehaviour
             currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
     }
 }
-                                                                                                                                         
+                                                                                                                                             

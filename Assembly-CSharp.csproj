@@ -93,6 +93,7 @@
      <Compile Include="Assets\UnityEventController.cs" />
      <Compile Include="Assets\UnityNpc.cs" />
      <Compile Include="Assets\UnityPlayer.cs" />
+     <Compile Include="Assets\World.cs" />
      <Compile Include="Assets\XmlNodule.cs" />
      <None Include="Assets\Image Effects\_Sources\Shaders\NoiseAndGrainDX11.shader" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
