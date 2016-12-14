@@ -12,7 +12,7 @@ MainPlayer : Player
 
   rule Persons =
     wait AvatarGen.AutoGenerateCharacters
-    for parsedperson in PlayerParser.ParsedPersons do
+    for parsedperson in PersonParser.ParsedPersons do
       let personalities = parsedperson.Item2
       yield(Person.Create(
         [for personality in personalities do
