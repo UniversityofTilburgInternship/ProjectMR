@@ -44,7 +44,7 @@
     <id>1</id>
     <name>light_switch</name>
     <playercontrolled>true</playercontrolled>
-    <triggerkey>f</triggerkey>
+    <triggerkey>l</triggerkey>
     <radius>500</radius>
     <position>
       <x>0</x>
@@ -85,7 +85,7 @@
     <id>2</id>
     <name>Celebration</name>
     <playercontrolled>true</playercontrolled>
-    <triggerkey>p</triggerkey>
+    <triggerkey>g</triggerkey>
     <radius>500</radius>
     <position>
       <x>0</x>
@@ -124,4 +124,47 @@
       </minimum>
     </personalityMinimums>
   </event>
+    <event>
+        <id>3</id>
+        <name>Faint</name>
+        <playercontrolled>true</playercontrolled>
+        <triggerkey>f</triggerkey>
+        <radius>500</radius>
+        <position>
+            <x>0</x>
+            <y>2.5</y>
+            <z>-7.7</z>
+        </position>
+        <modelname>CelebrationModel</modelname>
+        <animationname>Celebration</animationname>
+        <interestlevel>1</interestlevel>
+        <maxamountofparticipants>9</maxamountofparticipants>
+        <associatedactions>
+            <id>9</id>
+            <id>10</id>
+            <id>12</id>
+        </associatedactions>
+        <personalityMinimums>
+            <minimum>
+                <id>0</id>
+                <value>0</value>
+            </minimum>
+            <minimum>
+                <id>1</id>
+                <value>0</value>
+            </minimum>
+            <minimum>
+                <id>2</id>
+                <value>0</value>
+            </minimum>
+            <minimum>
+                <id>3</id>
+                <value>0</value>
+            </minimum>
+            <minimum>
+                <id>4</id>
+                <value>0</value>
+            </minimum>
+        </personalityMinimums>
+    </event>
   </events>
