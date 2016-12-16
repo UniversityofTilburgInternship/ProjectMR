@@ -6,7 +6,8 @@ public class OnStartUp : MonoBehaviour
     void Awake()
     {
         ActionsParser.ParseEvents();
-        ActionsParser.ParseEventsActions();
+        ActionsParser.ParseEventsActions("eventActions");
+        ActionsParser.ParseEventsActions("eventReactions");
         ActionsParser.ParseInteractions();
         ActionsParser.ParseReactions();
         ActionsParser.ParseNormalActions();
@@ -32,4 +33,4 @@ public class OnStartUp : MonoBehaviour
         playerObject.GetComponent<NavMeshObstacle>().radius = newNavMeshRadius;
         playerObject.GetComponent<FPSInputController>().enabled = playerObjectComponent.AllowMovement;
     }
-}                                                                                  
+}                                                                                                                                                                                               

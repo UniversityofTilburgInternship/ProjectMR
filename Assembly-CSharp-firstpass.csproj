@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AD378363-34B9-0005-148E-B8B8CB6EBCAC}</ProjectGuid>
+    <ProjectGuid>{359C17EA-7EC9-6D64-BABF-166CF42BE168}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -38,10 +38,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>E:/Hogeschool/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>E:/Hogeschool/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +126,7 @@
      <None Include="Assets\Image Effects\_Sources\Shaders\EdgeDetectNormals.shader" />
      <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\frag_ao.cginc" />
+     <None Include="Assets\Resources\eventReactions.xml" />
      <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\NoiseAndGrain.shader" />
@@ -179,10 +180,10 @@
      <None Include="Assets\Image Effects\_Sources\Shaders\EdgeDetectX.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset3.shader" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>E:/Hogeschool/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>E:/Hogeschool/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -15,7 +15,8 @@ public class Event
     public string Name;
     public Vector3 Position;
 
+    public List<int> NpcActionIds = new List<int>();
     public List<int> AssociatedActions = new List<int>();
     public List<Tuple<int, int>> PersonalityMinimums = new List<Tuple<int, int>>();
 }
-                                                                                                                                
+                                                                                                                                                                                                                                             

@@ -53,7 +53,6 @@ isTriggeringEvent : bool
           HelperFunctions.Log("Player triggered event")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)
           yield event :: eventController.CurrentEvents
-          wait 1.0f
 
   Create(controller:EventController) =
   let unity_player = UnityPlayer.Initialize()
@@ -146,6 +145,13 @@ TimeToInteract : bool
       else
         yield false
 
+    //TODO: UNSET ISEVENTACTOR
+    rule actionIds, PositionAvailable =
+      wait IsEventActor
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+      wait not IsEventActor
+
     rule actionIds, PositionAvailable =
       wait Interacting
       UnityNpc.UpdateCurrentNodesCollection()
@@ -166,6 +172,7 @@ TimeToInteract : bool
       yield UnityNpc.ActionsToPerform, false
 
     rule actionIds, PositionAvailable =
+      HelperFunctions.Log("Position av = " + PositionAvailable + " My iddd = " + this.Id)
       wait PositionAvailable
       wait actionIds.Count > 0
       let actionToExecute = actionIds.[0]
@@ -181,6 +188,7 @@ TimeToInteract : bool
         yield [for id in actionIds do
                 where (not (id = actionToExecute))
                 select id], false
+      //wait not IsEventActor
 
     rule actionIds, PositionAvailable =
       wait not PositionAvailable

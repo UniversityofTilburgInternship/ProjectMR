@@ -1,7 +1,7 @@
 ﻿﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
- using System.Xml.Schema;
- using Casanova.Prelude;
+using System.Xml.Schema;
+using Casanova.Prelude;
 using UnityEngine;
 
 public class UnityNpc : MonoBehaviour
@@ -17,6 +17,12 @@ public class UnityNpc : MonoBehaviour
     {
         get { return _npcObject.InEventRadius; }
         set { _npcObject.InEventRadius = value; }
+    }
+
+    public bool IsEventActor
+    {
+        get { return _npcObject.IsEventActor; }
+        set { _npcObject.IsEventActor = value; }
     }
 
     public Vector3 Position
@@ -138,6 +144,12 @@ public class UnityNpc : MonoBehaviour
             if(_npcObject.InteractionSender != null)
                 _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionReceiver"));
         }
+        else if (IsEventActor)
+        {
+            _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
+                ? _npcObject.CurrentNodesCollection = GetNpcActionsForEventId(_npcObject.MyEvent.Id)
+                : ActionsParser.NormalActions;
+        }
         else
         {
             _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
@@ -148,15 +160,26 @@ public class UnityNpc : MonoBehaviour
 
     private static Dictionary<int, GameAction> GetAssociatedActionsForEventId(int eventId)
     {
-        Event currentEvent;
-
-        if (ActionsParser.Events.ContainsKey(eventId))
-            currentEvent = ActionsParser.Events[eventId];
-        else
-            currentEvent = ActionsParser.PlayerEvents[eventId];
-
+        var currentEvent = GetEventForId(eventId);
         return
-            currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
+            currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventReactions[x]);
+    }
+
+    //This returns the appropriate action AS AN event (IE: An npc fainting), NOT a reaction to an event.
+    private static Dictionary<int, GameAction> GetNpcActionsForEventId(int eventId)
+    {
+        var eventForId = GetEventForId(eventId);
+        foreach (var VARIABLE in ActionsParser.EventActions.Values)
+        {
+            Debug.Log("EventAction.Id = " + VARIABLE.Id);
+        }
+        return  ActionsParser.EventActions.Where(x => eventForId.NpcActionIds.Contains(x.Value.Id)).ToDictionary(x => x.Key, x => x.Value);
+    }
+
+    private static Event GetEventForId(int eventId)
+    {
+        return ActionsParser.Events.ContainsKey(eventId) ? ActionsParser.Events[eventId]
+            : ActionsParser.PlayerEvents[eventId];
     }
 }
-                                                                                                                                
+                                                                                                                                                                                                                                             

@@ -1,6 +1,6 @@
 ﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+  using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
 using Assets;
@@ -13,6 +13,7 @@ public class NpcObject : MonoBehaviour
     public GameAction CurrentlyActiveAction;
     public bool InEventRadius;
     public bool IsInEvent;
+    public bool IsEventActor;
     public bool FirstAction;
     public Animator Animator;
 
@@ -328,4 +329,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                
+                                                                                                                                                                                                                                             

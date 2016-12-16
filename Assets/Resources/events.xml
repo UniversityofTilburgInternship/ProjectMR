@@ -14,9 +14,11 @@
     <animationname>AlarmBell</animationname>
     <interestlevel>0</interestlevel>
     <maxamountofparticipants>10</maxamountofparticipants>
-    <associatedactions>
+    <NpcAnimationActions>
+    </NpcAnimationActions>
+    <associatedreactions>
       <id>2</id>
-    </associatedactions>
+    </associatedreactions>
     <personalityMinimums>
       <minimum>
         <id>0</id>
@@ -55,9 +57,11 @@
     <animationname>light_switch</animationname>
     <interestlevel>12</interestlevel>
     <maxamountofparticipants>3</maxamountofparticipants>
-    <associatedactions>
+    <NpcAnimationActions>
+    </NpcAnimationActions>
+    <associatedreactions>
       <id>1</id>
-    </associatedactions>
+    </associatedreactions>
     <personalityMinimums>
       <minimum>
         <id>0</id>
@@ -96,11 +100,57 @@
     <animationname>Celebration</animationname>
     <interestlevel>1</interestlevel>
     <maxamountofparticipants>9</maxamountofparticipants>
-    <associatedactions>
-      <id>9</id>
-      <id>10</id>
-      <id>12</id>
-    </associatedactions>
+    <NpcAnimationActions>
+    </NpcAnimationActions>
+    <associatedreactions>
+      <id>4</id>
+      <id>5</id>
+      <id>6</id>
+    </associatedreactions>
+    <personalityMinimums>
+      <minimum>
+        <id>0</id>
+        <value>0</value>
+      </minimum>
+      <minimum>
+        <id>1</id>
+        <value>0</value>
+      </minimum>
+      <minimum>
+        <id>2</id>
+        <value>0</value>
+      </minimum>
+      <minimum>
+        <id>3</id>
+        <value>0</value>
+      </minimum>
+      <minimum>
+        <id>4</id>
+        <value>0</value>
+      </minimum>
+    </personalityMinimums>
+  </event>
+  <event>
+    <id>3</id>
+    <name>Faint</name>
+    <playercontrolled>true</playercontrolled>
+    <triggerkey>h</triggerkey>
+    <radius>500</radius>
+    <position>
+      <x>0</x>
+      <y>2.5</y>
+      <z>-7.7</z>
+    </position>
+    <modelname>FaintModel</modelname>
+    <animationname>Faint</animationname>
+    <interestlevel>1</interestlevel>
+    <maxamountofparticipants>9</maxamountofparticipants>
+    <NpcAnimationActions>
+      <id>0</id>
+    </NpcAnimationActions>
+    <associatedreactions>
+      <id>6</id>
+    </associatedreactions>
     <personalityMinimums>
       <minimum>
         <id>0</id>
