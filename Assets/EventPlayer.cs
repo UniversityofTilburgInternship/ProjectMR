@@ -1,4 +1,5 @@
-﻿﻿﻿﻿using System.Linq;
+﻿﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets
@@ -21,12 +22,17 @@ namespace Assets
                 case "AlarmBell":
                     SetLightColor(Color.red);
                     break;
+                case "Faint":
+                    var randomNpc = NpcObject.AllPersons[Random.Range(0, NpcObject.AllPersons.Count)];
+                    randomNpc.IsEventActor = true;
+                    break;
             }
         }
 
         public static void RemoveAmbience(EventObject eventObject)
         {
             GetAudioSource(eventObject.gameObject).Stop();
+
             switch (eventObject.AnimationName)
             {
                 //no case for lightswitching since those can be, well, switched
@@ -67,4 +73,4 @@ namespace Assets
             return GameObject.FindGameObjectsWithTag("ceiling_light");
         }
     }
-}                                                                                                                                              
+}                                                                                                                                                                                                                                                                        

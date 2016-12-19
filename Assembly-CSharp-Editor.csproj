@@ -86,6 +86,7 @@
      <None Include="Assets\Image Effects\_Sources\Shaders\EdgeDetectNormals.shader" />
      <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\frag_ao.cginc" />
+     <None Include="Assets\Resources\eventReactions.xml" />
      <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
      <None Include="Assets\Image Effects\_Sources\Shaders\NoiseAndGrain.shader" />

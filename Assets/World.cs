@@ -224,7 +224,6 @@ public Player(EventController controller)
  }
 	public Event ___event00;
 	public System.Int32 counter10;
-	public System.Single count_down1;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -273,25 +272,10 @@ return;	}else
 	s0 = 1;
 return;	}
 	case 4:
-	HelperFunctions.Log("Player triggered event");
 	UnityPlayer.TriggerPlayerEvent(___event00._eventObject);
 	eventController.CurrentEvents = new Cons<Event>(___event00, (eventController.CurrentEvents)).ToList<Event>();
-	s0 = 5;
-return;
-	case 5:
-	count_down1 = 1f;
-	goto case 6;
-	case 6:
-	if(((count_down1) > (0f)))
-	{
-
-	count_down1 = ((count_down1) - (dt));
-	s0 = 6;
-return;	}else
-	{
-
 	s0 = 1;
-return;	}	
+return;	
 	default: return;}}
 	
 
@@ -361,7 +345,7 @@ public Event(System.String Type, EventController controller)
   set{UnityEvent._eventObject = value; }
  }
 	public EventController eventController;
-	public System.Single count_down2;
+	public System.Single count_down1;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -378,14 +362,14 @@ frame = World.frame;
 	{
 
 	case -1:
-	count_down2 = 2.5f;
-	goto case 11;
-	case 11:
-	if(((count_down2) > (0f)))
+	count_down1 = 2.5f;
+	goto case 10;
+	case 10:
+	if(((count_down1) > (0f)))
 	{
 
-	count_down2 = ((count_down2) - (dt));
-	s0 = 11;
+	count_down1 = ((count_down1) - (dt));
+	s0 = 10;
 return;	}else
 	{
 
@@ -399,7 +383,6 @@ return;	}else
 
 	goto case 1;	}
 	case 0:
-	HelperFunctions.Log(Completeness);
 	Completeness = ((Completeness) + (10));
 	s0 = 3;
 return;
@@ -451,7 +434,7 @@ Enumerable.Empty<Event>()).ToList<Event>();
 	public System.Collections.Generic.List<EventObject> PlayerEventsList{  get { return UnityEventController.PlayerEventsList; }
  }
 	public UnityEventController UnityEventController;
-	public System.Single count_down3;
+	public System.Single count_down2;
 	public System.Int32 ___x21;
 	public System.Int32 counter22;
 	public void Update(float dt, World world) {
@@ -502,13 +485,13 @@ return;
 	{
 
 	case -1:
-	count_down3 = UnityEngine.Random.Range(50f,100f);
+	count_down2 = UnityEngine.Random.Range(50f,100f);
 	goto case 4;
 	case 4:
-	if(((count_down3) > (0f)))
+	if(((count_down2) > (0f)))
 	{
 
-	count_down3 = ((count_down3) - (dt));
+	count_down2 = ((count_down2) - (dt));
 	s1 = 4;
 return;	}else
 	{
@@ -612,6 +595,9 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public System.Boolean InteractionTarget{  get { return UnityNpc.InteractionTarget; }
   set{UnityNpc.InteractionTarget = value; }
  }
+	public System.Boolean IsEventActor{  get { return UnityNpc.IsEventActor; }
+  set{UnityNpc.IsEventActor = value; }
+ }
 	public System.Boolean IsInEvent{  get { return UnityNpc.IsInEvent; }
   set{UnityNpc.IsInEvent = value; }
  }
@@ -647,17 +633,17 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public System.Boolean useGUILayout{  get { return UnityNpc.useGUILayout; }
   set{UnityNpc.useGUILayout = value; }
  }
+	public System.Single count_down3;
 	public System.Single count_down4;
 	public System.Single count_down5;
-	public System.Single count_down6;
 	public System.Int32 ___actionToExecute40;
 	public System.Int32 ___actionToExecute51;
 	public UnityEngine.Vector3 ___destination50;
 	public System.Single ___distanceToDestination50;
+	public System.Single count_down6;
 	public System.Single count_down7;
-	public System.Single count_down8;
-	public System.Single count_down10;
 	public System.Single count_down9;
+	public System.Single count_down8;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -673,6 +659,8 @@ frame = World.frame;
 		this.Rule9(dt, world);
 		this.Rule10(dt, world);
 		this.Rule11(dt, world);
+		this.Rule12(dt, world);
+		this.Rule13(dt, world);
 	}
 
 
@@ -684,13 +672,13 @@ frame = World.frame;
 	{
 
 	case -1:
-	count_down4 = 1f;
+	count_down3 = 1f;
 	goto case 2;
 	case 2:
-	if(((count_down4) > (0f)))
+	if(((count_down3) > (0f)))
 	{
 
-	count_down4 = ((count_down4) - (dt));
+	count_down3 = ((count_down3) - (dt));
 	s0 = 2;
 return;	}else
 	{
@@ -723,13 +711,13 @@ return;	}else
 	s1 = 0;
 return;
 	case 0:
-	count_down5 = 2f;
+	count_down4 = 2f;
 	goto case 1;
 	case 1:
-	if(((count_down5) > (0f)))
+	if(((count_down4) > (0f)))
 	{
 
-	count_down5 = ((count_down5) - (dt));
+	count_down4 = ((count_down4) - (dt));
 	s1 = 1;
 return;	}else
 	{
@@ -751,17 +739,18 @@ return;	}
 return;	}else
 	{
 
-	goto case 2;	}
-	case 2:
+	goto case 3;	}
+	case 3:
 	if(!(!(IsInEvent)))
 	{
 
-	s2 = 2;
+	s2 = 3;
 return;	}else
 	{
 
-	goto case 1;	}
-	case 1:
+	goto case 2;	}
+	case 2:
+	UnityNpc.FreeEventActors();
 	UnityNpc.UpdateCurrentNodesCollection();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
@@ -786,13 +775,13 @@ return;
 	s3 = 1;
 return;
 	case 1:
-	count_down6 = 25f;
+	count_down5 = 25f;
 	goto case 2;
 	case 2:
-	if(((count_down6) > (0f)))
+	if(((count_down5) > (0f)))
 	{
 
-	count_down6 = ((count_down6) - (dt));
+	count_down5 = ((count_down5) - (dt));
 	s3 = 2;
 return;	}else
 	{
@@ -898,13 +887,13 @@ return;	}else
 return;	}
 	case 1:
 	UnityNpc.UpdateAccumulatedValues(___actionToExecute51);
-	count_down7 = UnityNpc.PlayAnimation(___actionToExecute51);
+	count_down6 = UnityNpc.PlayAnimation(___actionToExecute51);
 	goto case 5;
 	case 5:
-	if(((count_down7) > (0f)))
+	if(((count_down6) > (0f)))
 	{
 
-	count_down7 = ((count_down7) - (dt));
+	count_down6 = ((count_down6) - (dt));
 	s5 = 5;
 return;	}else
 	{
@@ -1007,13 +996,13 @@ return;	}else
 	s8 = 0;
 return;
 	case 0:
-	count_down8 = 2f;
+	count_down7 = 2f;
 	goto case 1;
 	case 1:
-	if(((count_down8) > (0f)))
+	if(((count_down7) > (0f)))
 	{
 
-	count_down8 = ((count_down8) - (dt));
+	count_down7 = ((count_down7) - (dt));
 	s8 = 1;
 return;	}else
 	{
@@ -1028,10 +1017,64 @@ return;	}
 	{
 
 	case -1:
-	if(!(TimeToInteract))
+	if(!(IsEventActor))
 	{
 
 	s9 = -1;
+return;	}else
+	{
+
+	goto case 3;	}
+	case 3:
+	if(!(!(IsEventActor)))
+	{
+
+	s9 = 3;
+return;	}else
+	{
+
+	goto case 2;	}
+	case 2:
+	UnityEngine.Debug.Log((("Npc with id ") + (Id)) + (" is not an EventActor anymore"));
+	UnityNpc.UpdateCurrentNodesCollection();
+	actionIds = UnityNpc.ActionsToPerform;
+	PositionAvailable = false;
+	s9 = -1;
+return;	
+	default: return;}}
+	
+
+	int s10=-1;
+	public void Rule10(float dt, World world){ switch (s10)
+	{
+
+	case -1:
+	if(!(IsEventActor))
+	{
+
+	s10 = -1;
+return;	}else
+	{
+
+	goto case 1;	}
+	case 1:
+	UnityNpc.UpdateCurrentNodesCollection();
+	actionIds = UnityNpc.ActionsToPerform;
+	PositionAvailable = false;
+	s10 = -1;
+return;	
+	default: return;}}
+	
+
+	int s11=-1;
+	public void Rule11(float dt, World world){ switch (s11)
+	{
+
+	case -1:
+	if(!(TimeToInteract))
+	{
+
+	s11 = -1;
 return;	}else
 	{
 
@@ -1046,27 +1089,27 @@ return;	}else
 	goto case 1;	}
 	case 0:
 	Interacting = true;
-	s9 = 3;
+	s11 = 3;
 return;
 	case 3:
 	if(!(!(TimeToInteract)))
 	{
 
-	s9 = 3;
+	s11 = 3;
 return;	}else
 	{
 
-	s9 = -1;
+	s11 = -1;
 return;	}
 	case 1:
 	Interacting = false;
-	s9 = -1;
+	s11 = -1;
 return;	
 	default: return;}}
 	
 
-	int s10=-1;
-	public void Rule10(float dt, World world){ switch (s10)
+	int s12=-1;
+	public void Rule12(float dt, World world){ switch (s12)
 	{
 
 	case -1:
@@ -1079,56 +1122,56 @@ return;
 	goto case 8;	}
 	case 7:
 	Interacting = false;
-	s10 = -1;
+	s12 = -1;
 return;
 	case 8:
 	Interacting = Interacting;
-	s10 = -1;
+	s12 = -1;
 return;	
 	default: return;}}
 	
 
-	int s11=-1;
-	public void Rule11(float dt, World world){ switch (s11)
+	int s13=-1;
+	public void Rule13(float dt, World world){ switch (s13)
 	{
 
 	case -1:
 	TimeToInteract = false;
-	s11 = 4;
+	s13 = 4;
 return;
 	case 4:
-	count_down10 = 15f;
+	count_down9 = 15f;
 	goto case 5;
 	case 5:
-	if(((count_down10) > (0f)))
+	if(((count_down9) > (0f)))
 	{
 
-	count_down10 = ((count_down10) - (dt));
-	s11 = 5;
+	count_down9 = ((count_down9) - (dt));
+	s13 = 5;
 return;	}else
 	{
 
 	goto case 3;	}
 	case 3:
 	TimeToInteract = true;
-	s11 = 1;
+	s13 = 1;
 return;
 	case 1:
-	count_down9 = 5f;
+	count_down8 = 5f;
 	goto case 2;
 	case 2:
-	if(((count_down9) > (0f)))
+	if(((count_down8) > (0f)))
 	{
 
-	count_down9 = ((count_down9) - (dt));
-	s11 = 2;
+	count_down8 = ((count_down8) - (dt));
+	s13 = 2;
 return;	}else
 	{
 
 	goto case 0;	}
 	case 0:
 	TimeToInteract = false;
-	s11 = -1;
+	s13 = -1;
 return;	
 	default: return;}}
 	
@@ -1138,4 +1181,4 @@ return;
 
 
 }
-}              
+}  

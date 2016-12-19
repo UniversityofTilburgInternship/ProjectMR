@@ -1,8 +1,7 @@
-﻿﻿﻿﻿﻿using System.Collections.Generic;
-using System.Linq;
- using System.Xml.Schema;
- using Casanova.Prelude;
-using UnityEngine;
+﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+     using System.Linq;
+     using Casanova.Prelude;
+     using UnityEngine;
 
 public class UnityNpc : MonoBehaviour
 {
@@ -17,6 +16,12 @@ public class UnityNpc : MonoBehaviour
     {
         get { return _npcObject.InEventRadius; }
         set { _npcObject.InEventRadius = value; }
+    }
+
+    public bool IsEventActor
+    {
+        get { return _npcObject.IsEventActor; }
+        set { _npcObject.IsEventActor = value; }
     }
 
     public Vector3 Position
@@ -58,6 +63,15 @@ public class UnityNpc : MonoBehaviour
 
     /* END INTERACTION */
 
+    public void FreeEventActors()
+    {
+        var eventActors = Enumerable.Where(NpcObject.AllPersons, x => x.IsEventActor).ToList();
+
+        if(eventActors.Count > 1)
+            Debug.Log("EventActor id = " + eventActors[0].Id);
+
+        eventActors.ForEach(x => x.IsEventActor = false);
+    }
 
     public bool IsInEvent
     {
@@ -138,25 +152,40 @@ public class UnityNpc : MonoBehaviour
             if(_npcObject.InteractionSender != null)
                 _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionReceiver"));
         }
+        else if (IsEventActor)
+        {
+            if(_npcObject.IsInEvent)
+                _npcObject.CurrentNodesCollection = GetNpcActionsForEventId(_npcObject.MyEvent.Id);
+        }
+        else if (IsInEvent)
+        {
+            _npcObject.CurrentNodesCollection = GetAssociatedActionsForEventId(_npcObject.MyEvent.Id);
+        }
         else
         {
-            _npcObject.CurrentNodesCollection = _npcObject.IsInEvent
-                ? GetAssociatedActionsForEventId(_npcObject.MyEvent.Id)
-                : ActionsParser.NormalActions;
+            Debug.Log("Npc with id " + _npcObject.Id + " has switched to normal actions");
+            _npcObject.CurrentNodesCollection = ActionsParser.NormalActions;
         }
     }
 
     private static Dictionary<int, GameAction> GetAssociatedActionsForEventId(int eventId)
     {
-        Event currentEvent;
-
-        if (ActionsParser.Events.ContainsKey(eventId))
-            currentEvent = ActionsParser.Events[eventId];
-        else
-            currentEvent = ActionsParser.PlayerEvents[eventId];
-
+        var currentEvent = GetEventForId(eventId);
         return
-            currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventActions[x]);
+            currentEvent.AssociatedActions.ToDictionary(x => x, x => ActionsParser.EventReactions[x]);
+    }
+
+    //This returns the appropriate action AS AN event (IE: An npc fainting), NOT a reaction to an event.
+    private static Dictionary<int, GameAction> GetNpcActionsForEventId(int eventId)
+    {
+        var eventForId = GetEventForId(eventId);
+        return  ActionsParser.EventActions.Where(x => eventForId.NpcActionIds.Contains(x.Value.Id)).ToDictionary(x => x.Key, x => x.Value);
+    }
+
+    private static Event GetEventForId(int eventId)
+    {
+        return ActionsParser.Events.ContainsKey(eventId) ? ActionsParser.Events[eventId]
+            : ActionsParser.PlayerEvents[eventId];
     }
 }
-                                                                                                                                              
+                                                                                                                                                                                                                                                                        

@@ -1,4 +1,4 @@
-﻿namespace Assets
+﻿﻿namespace Assets
 {
     using UnityEngine;
     using System.Collections;
@@ -47,4 +47,4 @@
             motor.inputJump = Input.GetButton("Jump");
         }
     }
-}                                                                                                                            
+}                                                                                                                                                                                                                                                      

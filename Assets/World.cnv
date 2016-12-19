@@ -50,10 +50,8 @@ isTriggeringEvent : bool
   rule eventController.CurrentEvents =
     for event in eventController.AllPlayerEvents do
       if (Input.GetKey(event.TriggerKey)) then
-          HelperFunctions.Log("Player triggered event")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)
           yield event :: eventController.CurrentEvents
-          wait 1.0f
 
   Create(controller:EventController) =
   let unity_player = UnityPlayer.Initialize()
@@ -71,7 +69,6 @@ ref eventController : EventController
   rule Completeness =
     wait 2.5f
     if(UnityEventController.IsEventReady(this.Id)) then
-      HelperFunctions.Log(Completeness)
       yield Completeness + 10
       if(Completeness >= 100) then
         UnityEvent.Destroy()
@@ -147,6 +144,18 @@ TimeToInteract : bool
         yield false
 
     rule actionIds, PositionAvailable =
+      wait IsEventActor
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+
+    rule actionIds, PositionAvailable =
+      wait IsEventActor
+      wait not IsEventActor
+      Debug.Log("Npc with id " + Id + " is not an EventActor anymore")
+      UnityNpc.UpdateCurrentNodesCollection()
+      yield UnityNpc.ActionsToPerform, false
+
+    rule actionIds, PositionAvailable =
       wait Interacting
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
@@ -205,6 +214,7 @@ TimeToInteract : bool
     rule actionIds, PositionAvailable =
       wait IsInEvent
       wait not IsInEvent
+      UnityNpc.FreeEventActors()
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 

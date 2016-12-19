@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
 using Assets;
 using UnityEngine;
@@ -37,9 +37,9 @@ public static class EventController
 
         if (!ActiveEvents.ContainsKey(eventObject.Id))
         {
+            EventPlayer.PlayEventAmbience(eventObject);
             ActiveEvents.Add(eventObject.Id, eventObject);
             ActiveEvents[eventObject.Id].IsReady = true;
-            EventPlayer.PlayEventAmbience(eventObject);
         }
         ActiveEventIds.Add(eventObject.Id);
 
@@ -84,4 +84,4 @@ public static class EventController
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
 }
-                                                                                                                                              
+                                                                                                                                                                                                                                                                        
