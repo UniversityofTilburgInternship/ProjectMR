@@ -151,7 +151,6 @@ TimeToInteract : bool
     rule actionIds, PositionAvailable =
       wait IsEventActor
       wait not IsEventActor
-      Debug.Log("Npc with id " + Id + " is not an EventActor anymore")
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
