@@ -363,13 +363,13 @@ frame = World.frame;
 
 	case -1:
 	count_down1 = 2.5f;
-	goto case 10;
-	case 10:
+	goto case 11;
+	case 11:
 	if(((count_down1) > (0f)))
 	{
 
 	count_down1 = ((count_down1) - (dt));
-	s0 = 10;
+	s0 = 11;
 return;	}else
 	{
 
@@ -383,6 +383,7 @@ return;	}else
 
 	goto case 1;	}
 	case 0:
+	HelperFunctions.Log(("Completeness: ") + (Completeness));
 	Completeness = ((Completeness) + (10));
 	s0 = 3;
 return;
@@ -1034,25 +1035,21 @@ return;	}
 return;	}else
 	{
 
-	goto case 4;	}
-	case 4:
+	goto case 3;	}
+	case 3:
 	if(!(!(IsEventActor)))
 	{
 
-	s9 = 4;
+	s9 = 3;
 return;	}else
 	{
 
-	goto case 3;	}
-	case 3:
-	UnityEngine.Debug.Log((("Npc with id ") + (Id)) + (" is not an EventActor anymore"));
+	goto case 2;	}
+	case 2:
+	UnityNpc.Unfreeze();
 	UnityNpc.UpdateCurrentNodesCollection();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
-	s9 = 0;
-return;
-	case 0:
-	UnityNpc.Unfreeze();
 	s9 = -1;
 return;	
 	default: return;}}
@@ -1195,4 +1192,4 @@ return;
 
 
 }
-}  
+}   

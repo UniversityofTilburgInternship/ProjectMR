@@ -76,6 +76,7 @@
      <Compile Include="Assets\PathRequestManager.cs" />
      <Compile Include="Assets\Pathfinding.cs" />
      <Compile Include="Assets\PersonParser.cs" />
+     <Compile Include="Assets\PlayAnimationSound.cs" />
      <Compile Include="Assets\PlayerObject.cs" />
      <Compile Include="Assets\Prelude.cs" />
      <Compile Include="Assets\Reaction.cs" />

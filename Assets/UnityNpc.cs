@@ -168,7 +168,6 @@ public class UnityNpc : MonoBehaviour
         }
         else
         {
-            Debug.Log("Npc with id " + _npcObject.Id + " has switched to normal actions");
             _npcObject.CurrentNodesCollection = ActionsParser.NormalActions;
         }
     }
@@ -193,4 +192,4 @@ public class UnityNpc : MonoBehaviour
             : ActionsParser.PlayerEvents[eventId];
     }
 }
-                                                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                                           

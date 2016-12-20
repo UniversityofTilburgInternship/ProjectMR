@@ -69,6 +69,7 @@ ref eventController : EventController
   rule Completeness =
     wait 2.5f
     if(UnityEventController.IsEventReady(this.Id)) then
+      HelperFunctions.Log("Completeness: " + Completeness)
       yield Completeness + 10
       if(Completeness >= 100) then
         UnityEvent.Destroy()
@@ -151,10 +152,9 @@ TimeToInteract : bool
     rule actionIds, PositionAvailable =
       wait IsEventActor
       wait not IsEventActor
-      Debug.Log("Npc with id " + Id + " is not an EventActor anymore")
+      UnityNpc.Unfreeze()
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
-      UnityNpc.Unfreeze()
 
     rule actionIds, PositionAvailable =
       wait Interacting
