@@ -862,17 +862,17 @@ return;
 return;	}else
 	{
 
-	goto case 11;	}
-	case 11:
+	goto case 12;	}
+	case 12:
 	if(!(((actionIds.Count) > (0))))
 	{
 
-	s5 = 11;
+	s5 = 12;
 return;	}else
 	{
 
-	goto case 10;	}
-	case 10:
+	goto case 11;	}
+	case 11:
 	___actionToExecute51 = (actionIds)[0];
 	___destination50 = UnityNpc.GetClaimedPosition(___actionToExecute51);
 	UnityNpc.MoveTo(___actionToExecute51);
@@ -888,18 +888,18 @@ return;	}
 	case 1:
 	UnityNpc.UpdateAccumulatedValues(___actionToExecute51);
 	count_down6 = UnityNpc.PlayAnimation(___actionToExecute51);
-	goto case 5;
-	case 5:
+	goto case 6;
+	case 6:
 	if(((count_down6) > (0f)))
 	{
 
 	count_down6 = ((count_down6) - (dt));
-	s5 = 5;
+	s5 = 6;
 return;	}else
 	{
 
-	goto case 3;	}
-	case 3:
+	goto case 4;	}
+	case 4:
 	UnityNpc.RemoveClaimToPosition(___actionToExecute51);
 	actionIds = (
 
@@ -908,8 +908,18 @@ return;	}else
 .Select(__ContextSymbol19 => __ContextSymbol19.___id51)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
+	s5 = 2;
+return;
+	case 2:
+	if(!(!(IsEventActor)))
+	{
+
+	s5 = 2;
+return;	}else
+	{
+
 	s5 = -1;
-return;	
+return;	}	
 	default: return;}}
 	
 
@@ -1024,21 +1034,25 @@ return;	}
 return;	}else
 	{
 
-	goto case 3;	}
-	case 3:
+	goto case 4;	}
+	case 4:
 	if(!(!(IsEventActor)))
 	{
 
-	s9 = 3;
+	s9 = 4;
 return;	}else
 	{
 
-	goto case 2;	}
-	case 2:
+	goto case 3;	}
+	case 3:
 	UnityEngine.Debug.Log((("Npc with id ") + (Id)) + (" is not an EventActor anymore"));
 	UnityNpc.UpdateCurrentNodesCollection();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
+	s9 = 0;
+return;
+	case 0:
+	UnityNpc.Unfreeze();
 	s9 = -1;
 return;	
 	default: return;}}

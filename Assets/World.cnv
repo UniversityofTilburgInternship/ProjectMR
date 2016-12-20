@@ -154,6 +154,7 @@ TimeToInteract : bool
       Debug.Log("Npc with id " + Id + " is not an EventActor anymore")
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
+      UnityNpc.Unfreeze()
 
     rule actionIds, PositionAvailable =
       wait Interacting
@@ -190,6 +191,7 @@ TimeToInteract : bool
         yield [for id in actionIds do
                 where (not (id = actionToExecute))
                 select id], false
+        wait not IsEventActor
 
     rule actionIds, PositionAvailable =
       wait not PositionAvailable
@@ -225,8 +227,8 @@ TimeToInteract : bool
       wait 2.0f
 
     rule IsInEvent =
-        wait 1.0f
-        yield UnityNpc.IsInterestedInEvent()
+      wait 1.0f
+      yield UnityNpc.IsInterestedInEvent()
 
     Create(Settings : [(int * int)], modelName : string) =
     let unity_npc = UnityNpc.Spawn(Settings, modelName)

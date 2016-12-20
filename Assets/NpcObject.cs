@@ -90,10 +90,24 @@ public class NpcObject : MonoBehaviour
             }
         }
         Animator.SetBool(animationName, true);
-        StartCoroutine(StopAnimation(animationName, time));
+        HandleAnimationRoutines(animationName, time);
 
         return time + 0.1f;
     }
+
+    private void HandleAnimationRoutines(string animationName, float time)
+    {
+        if (IsEventActor)
+            StartCoroutine(PauseAnimation(animationName, time));
+        else
+            StartCoroutine(StopAnimation(animationName, time));
+    }
+
+    public void Unfreeze()
+    {
+        Animator.enabled = true;
+    }
+
 
     public bool IsInterestedInEvent()
     {
@@ -323,10 +337,16 @@ public class NpcObject : MonoBehaviour
         return CurrentNodesCollection.ContainsKey(actionId);
     }
 
+    private IEnumerator PauseAnimation(string animationName, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Animator.enabled = false;
+    }
+
     private IEnumerator StopAnimation(string animationName, float time)
     {
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                                                                                                                                                        
+           

@@ -131,6 +131,11 @@ public class UnityNpc : MonoBehaviour
         return _npcObject.PlayAnimation(actionId);
     }
 
+    public void Unfreeze()
+    {
+        _npcObject.Unfreeze();
+    }
+
     public void RemoveClaimToAllPositions()
     {
         foreach (var action in _npcObject.CurrentNodesCollection)
@@ -188,4 +193,4 @@ public class UnityNpc : MonoBehaviour
             : ActionsParser.PlayerEvents[eventId];
     }
 }
-                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                     
