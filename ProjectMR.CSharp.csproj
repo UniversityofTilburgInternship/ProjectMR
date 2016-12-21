@@ -111,7 +111,6 @@
     <Compile Include="Assets\Scripts\ScrollingUVs.cs" />
     <Compile Include="Assets\Scripts\WheelsRotation.cs" />
     <Compile Include="Assets\SettingsParser.cs" />
-    <Compile Include="Assets\TestVRScript.cs" />
     <Compile Include="Assets\UIManager.cs" />
     <Compile Include="Assets\UnityAction.cs" />
     <Compile Include="Assets\UnityEvent.cs" />

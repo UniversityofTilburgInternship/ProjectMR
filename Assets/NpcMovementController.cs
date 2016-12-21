@@ -33,7 +33,7 @@ public class NpcMovementController : MonoBehaviour
 
     private void StopWalking()
     {
-        _npcObject.Animator.SetBool("Walking", false);
+//        _npcObject.Animator.SetBool("Walking", false);
         _walking = false;
     }
 
@@ -41,7 +41,7 @@ public class NpcMovementController : MonoBehaviour
     {
         if (!_walking)
         {
-            _npcObject.Animator.SetBool("Walking", true);
+//            _npcObject.Animator.SetBool("Walking", true);
             _walking = true;
             var audio = _npcObject.GetComponent<AudioSource>();
             audio.Play();
@@ -49,4 +49,4 @@ public class NpcMovementController : MonoBehaviour
         }
     }
 }
-                                                                                                                                             
+                                                                                                                                                                                                                                                  

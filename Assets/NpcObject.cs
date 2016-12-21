@@ -80,21 +80,25 @@ public class NpcObject : MonoBehaviour
         var action = CurrentNodesCollection[actionId];
         Debug.Log(action.ToString());
         var animationName = action.AnimationName;
-        var time = 0.0f;
-        //Get Animator controller
-        var ac = Animator.runtimeAnimatorController;
+        const float time = 0.0f;
 
-        foreach (var animationClip in ac.animationClips)
-        {
-            //If it has the same name as your clip
-            if (animationClip.name == animationName)
-            {
-                time = animationClip.length;
-            }
-        }
-        Animator.SetBool(animationName, true);
+        var animations = new List<string>{"NewAnimation", "New Animation2"};
+        gameObject.GetComponent<Animation>().Play(animations[Random.Range(0,1)]);
+
+        //Get Animator controller
+//        var ac = Animator.runtimeAnimatorController;
+//
+//        foreach (var animationClip in ac.animationClips)
+//        {
+//            //If it has the same name as your clip
+//            if (animationClip.name == animationName)
+//            {
+//                time = animationClip.length;
+//            }
+//        }
+//        Animator.SetBool(animationName, true);
         StartCoroutine(StopAnimation(animationName, time));
-        return time + 0.1f;
+        return Random.Range(1.5f, 3.5f) + 0.1f;
     }
 
     public bool IsInterestedInEvent()
@@ -328,7 +332,7 @@ public class NpcObject : MonoBehaviour
     private IEnumerator StopAnimation(string animationName, float time)
     {
         yield return new WaitForSeconds(time);
-        Animator.SetBool(animationName, false);
+//        Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                             
+                                                                                                                                                                                                                                      
