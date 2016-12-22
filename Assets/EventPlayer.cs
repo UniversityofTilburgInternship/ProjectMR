@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,8 +8,7 @@ namespace Assets
     {
         public static void PlayEventAmbience(EventObject eventObject)
         {
-            //audio is always played
-            GetAudioSource(eventObject.gameObject).Play();
+            PlayAudioSource(eventObject.gameObject, "Play");
 
             switch (eventObject.AnimationName)
             {
@@ -31,7 +30,7 @@ namespace Assets
 
         public static void RemoveAmbience(EventObject eventObject)
         {
-            GetAudioSource(eventObject.gameObject).Stop();
+            PlayAudioSource(eventObject.gameObject, "Stop");
 
             switch (eventObject.AnimationName)
             {
@@ -45,10 +44,15 @@ namespace Assets
             }
         }
 
-        //NOTE: You do need to set the audiosource to loop or not loop in the unity editor yourself.
-        private static AudioSource GetAudioSource(GameObject gameObject)
+        private static void PlayAudioSource(GameObject gameObject, string desiredState)
         {
-            return gameObject.GetComponent<AudioSource>();
+            if (gameObject.GetComponent<AudioSource>() != null)
+            {
+                if(desiredState.Equals("Play"))
+                    gameObject.GetComponent<AudioSource>().Play();
+                else
+                    gameObject.GetComponent<AudioSource>().Stop();
+            }
         }
 
         private static void SwitchLights()
@@ -73,4 +77,4 @@ namespace Assets
             return GameObject.FindGameObjectsWithTag("ceiling_light");
         }
     }
-}                                                                                                                                                                                                                                                                             
+}                                                                                                                                                                                                                                                                                                                                                         

@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
      using System.Linq;
      using Casanova.Prelude;
      using UnityEngine;
@@ -131,6 +131,11 @@ public class UnityNpc : MonoBehaviour
         return _npcObject.PlayAnimation(actionId);
     }
 
+    public void Unfreeze()
+    {
+        _npcObject.Unfreeze();
+    }
+
     public void RemoveClaimToAllPositions()
     {
         foreach (var action in _npcObject.CurrentNodesCollection)
@@ -163,7 +168,6 @@ public class UnityNpc : MonoBehaviour
         }
         else
         {
-            Debug.Log("Npc with id " + _npcObject.Id + " has switched to normal actions");
             _npcObject.CurrentNodesCollection = ActionsParser.NormalActions;
         }
     }
@@ -179,7 +183,7 @@ public class UnityNpc : MonoBehaviour
     private static Dictionary<int, GameAction> GetNpcActionsForEventId(int eventId)
     {
         var eventForId = GetEventForId(eventId);
-        return  ActionsParser.EventActions.Where(x => eventForId.NpcActionIds.Contains(x.Value.Id)).ToDictionary(x => x.Key, x => x.Value);
+        return ActionsParser.EventActions.Where(x => eventForId.NpcActionIds.Contains(x.Value.Id)).ToDictionary(x => x.Key, x => x.Value);
     }
 
     private static Event GetEventForId(int eventId)
@@ -188,4 +192,4 @@ public class UnityNpc : MonoBehaviour
             : ActionsParser.PlayerEvents[eventId];
     }
 }
-                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                         

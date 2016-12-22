@@ -1,4 +1,4 @@
-﻿﻿using Assets;
+﻿﻿﻿using Assets;
 using UnityEngine;
 
 public class OnStartUp : MonoBehaviour
@@ -33,4 +33,4 @@ public class OnStartUp : MonoBehaviour
         playerObject.GetComponent<NavMeshObstacle>().radius = newNavMeshRadius;
         playerObject.GetComponent<FPSInputController>().enabled = playerObjectComponent.AllowMovement;
     }
-}                                                                                                                                                                                                                               
+}                                                                                                                                                                                                                                                                                                           

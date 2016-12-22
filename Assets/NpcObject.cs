@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using System.Collections;
+﻿﻿﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
   using System.Linq;
 using System.Runtime.CompilerServices;
@@ -13,8 +13,11 @@ public class NpcObject : MonoBehaviour
     public GameAction CurrentlyActiveAction;
     public bool InEventRadius;
     public bool IsInEvent;
+
     public bool IsEventActor;
+    public EventObject MyActingEvent;
     public bool FirstAction;
+
     public Animator Animator;
 
     public bool IsInteractionTarget;
@@ -90,10 +93,24 @@ public class NpcObject : MonoBehaviour
             }
         }
         Animator.SetBool(animationName, true);
-        StartCoroutine(StopAnimation(animationName, time));
+        HandleAnimationRoutines(animationName, time);
 
         return time + 0.1f;
     }
+
+    private void HandleAnimationRoutines(string animationName, float time)
+    {
+        if (IsEventActor)
+            StartCoroutine(PauseAnimation(animationName, time));
+        else
+            StartCoroutine(StopAnimation(animationName, time));
+    }
+
+    public void Unfreeze()
+    {
+        Animator.enabled = true;
+    }
+
 
     public bool IsInterestedInEvent()
     {
@@ -101,7 +118,7 @@ public class NpcObject : MonoBehaviour
             return false;
 
         var eventsInRadius = EventController.ActiveEvents.Values
-            .Where(ev => Vector3.Distance(transform.position, ev.Position) <= ev.Radius);
+            .Where(ev => Vector3.Distance(transform.position, ev.Position) <= ev.Radius && ev.IsReady);
 
         var eventsInterested = new List<EventObject>();
 
@@ -124,7 +141,14 @@ public class NpcObject : MonoBehaviour
         }
 
         if (!eventsInterested.Any()) return false;
+
+        //todo: Shouldn this be the event with the highest interestrating?
         MyEvent = eventsInterested[Random.Range(0, eventsInterested.Count)];
+
+        //Todo: Make this specific for an event using an id instead of a bool
+        //if (IsEventActor)
+            MyActingEvent = MyEvent;
+
         return true;
     }
 
@@ -145,6 +169,18 @@ public class NpcObject : MonoBehaviour
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             agent.destination = position;
             transform.LookAt(position);
+        }
+        else
+        {
+            //TODO: Fix the second if never being hit
+            if (IsEventActor)
+            {
+                if (MyActingEvent != null)
+                {
+                    Debug.Log("Set MyActingEvent to truee");
+                    MyActingEvent.IsReady = true;
+                }
+            }
         }
     }
 
@@ -323,10 +359,16 @@ public class NpcObject : MonoBehaviour
         return CurrentNodesCollection.ContainsKey(actionId);
     }
 
+    private IEnumerator PauseAnimation(string animationName, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Animator.enabled = false;
+    }
+
     private IEnumerator StopAnimation(string animationName, float time)
     {
         yield return new WaitForSeconds(time);
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                                                                                                                                                             
+                                                                               

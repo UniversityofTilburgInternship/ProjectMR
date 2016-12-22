@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using UnityEngine;
+﻿﻿﻿﻿﻿﻿﻿using UnityEngine;
 
 public class ActionObject : MonoBehaviour
 {
@@ -13,4 +13,4 @@ public class ActionObject : MonoBehaviour
         return actionObject;
     }
 }
-                                                                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                                                                                                       

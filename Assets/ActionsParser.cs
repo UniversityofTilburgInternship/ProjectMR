@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 ﻿using System.CodeDom;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -152,4 +152,4 @@ public static class ActionsParser
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
 }
-                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                         

@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 using Casanova.Prelude;
 using UnityEngine;
 
@@ -19,4 +19,4 @@ public class Event
     public List<int> AssociatedActions = new List<int>();
     public List<Tuple<int, int>> PersonalityMinimums = new List<Tuple<int, int>>();
 }
-                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                         

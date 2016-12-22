@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using System.Runtime.InteropServices;
+﻿﻿﻿﻿﻿﻿﻿using System.Runtime.InteropServices;
  using UnityEngine;
 
 namespace Assets
@@ -20,7 +20,14 @@ namespace Assets
             {
                 EventController.ActiveEvents.Add(eventObject.Id, eventObject);
                 EventPlayer.PlayEventAmbience(eventObject);
-                eventObject.IsReady = true;
+
+                //Events that have npc's associated with them as actors have IsReady set by those actors.
+                if (eventObject.NpcActionIds.Count == 0)
+                {
+                    eventObject.IsReady = true;
+                    Debug.Log("eventObject.NpcActionIds.Count == 0");
+                }
+
             }
             else
             {
@@ -30,4 +37,4 @@ namespace Assets
         }
     }
 }
-                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                         

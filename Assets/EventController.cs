@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
 using Assets;
 using UnityEngine;
@@ -30,12 +30,14 @@ public static class EventController
 
     public static EventObject SpawnRandomEvent()
     {
+        Debug.Log("SpawnRandomEvent");
         var randomEventIndex = GetRandomUniqueEventIndex();
         var Event = ActionsParser.Events[randomEventIndex];
 
         var eventObject = EventObject.Instantiate(Event);
 
-        if (!ActiveEvents.ContainsKey(eventObject.Id))
+        //Events that have npc's associated with them as actors have IsReady set by those actors.
+        if (!ActiveEvents.ContainsKey(eventObject.Id) && eventObject.NpcActionIds.Count == 0)
         {
             EventPlayer.PlayEventAmbience(eventObject);
             ActiveEvents.Add(eventObject.Id, eventObject);
@@ -84,4 +86,4 @@ public static class EventController
         return possibleActions.ElementAt(Random.Range(0, possibleActions.Count));
     }
 }
-                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                         

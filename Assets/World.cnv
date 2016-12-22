@@ -45,19 +45,31 @@ MainPlayer : Player
 entity Player = {
 inherit UnityPlayer
 ref eventController : EventController
+triggeredEvents : [Event]
 isTriggeringEvent : bool
 
-  rule eventController.CurrentEvents =
+  rule eventController.CurrentEvents, triggeredEvents =
+    for event in triggeredEvents do
+      if (UnityEventController.IsEventReady(event.Id)) then
+        HelperFunctions.Log("Addedd playerevent with id" + event.Id + " to currentEvents since IsReady = " + UnityEventController.IsEventReady(event.Id))
+        yield event :: eventController.CurrentEvents, [for triggeredEvent in triggeredEvents do
+                                                          where (not (triggeredEvent = event))
+                                                          select triggeredEvent]
+
+  rule triggeredEvents =
+    //HelperFunctions.Log("HERP DERP")
     for event in eventController.AllPlayerEvents do
       if (Input.GetKey(event.TriggerKey)) then
+          HelperFunctions.Log("Triggered event! Waiting for isready...")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)
-          yield event :: eventController.CurrentEvents
+          yield event :: triggeredEvents
 
   Create(controller:EventController) =
   let unity_player = UnityPlayer.Initialize()
   {
     UnityPlayer = unity_player
     eventController = controller
+    triggeredEvents = []
     isTriggeringEvent = false
   }
 }
@@ -65,10 +77,11 @@ isTriggeringEvent : bool
 entity Event = {
 inherit UnityEvent
 ref eventController : EventController
+
   rule Completeness =
     wait 2.5f
     if(UnityEventController.IsEventReady(this.Id)) then
-      HelperFunctions.Log("Completeness")
+      HelperFunctions.Log("Completenesss: " + Completeness)
       yield Completeness + 10
       if(Completeness >= 100) then
         UnityEvent.Destroy()
@@ -97,12 +110,6 @@ AllPlayerEvents : [Event]
     wait false
 
   rule CurrentEvents =
-    wait Random.Range(50.0f, 100.0f)
-    HelperFunctions.Log("Spawned event!")
-    wait UnityEventController.IsEventAvailable()
-    yield new Event("normalEvent", this) :: CurrentEvents
-
-  rule CurrentEvents =
     wait (CurrentEvents.Count > 0)
     yield [for event in CurrentEvents do
             where(not event.IsDestroyed)
@@ -126,14 +133,14 @@ TimeToInteract : bool
       yield false
       wait 15.0f
       yield true
-      wait 2.0f
+      wait 0.1f
       yield false
 
     rule Interacting =
       if(TimeToInteract = false) then
         yield false
       else
-        yield Interacting   
+        yield Interacting
 
     rule Interacting =
       wait TimeToInteract
@@ -151,6 +158,7 @@ TimeToInteract : bool
     rule actionIds, PositionAvailable =
       wait IsEventActor
       wait not IsEventActor
+      UnityNpc.Unfreeze()
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
@@ -173,6 +181,10 @@ TimeToInteract : bool
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
+    rule IsInEvent =
+      wait 1.0f
+      yield UnityNpc.IsInterestedInEvent()
+
     rule actionIds, PositionAvailable =
       wait PositionAvailable
       wait actionIds.Count > 0
@@ -189,6 +201,7 @@ TimeToInteract : bool
         yield [for id in actionIds do
                 where (not (id = actionToExecute))
                 select id], false
+        wait not IsEventActor
 
     rule actionIds, PositionAvailable =
       wait not PositionAvailable
@@ -222,10 +235,6 @@ TimeToInteract : bool
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
       wait 2.0f
-
-    rule IsInEvent =
-        wait 1.0f
-        yield UnityNpc.IsInterestedInEvent()
 
     Create(Settings : [(int * int)], modelName : string) =
     let unity_npc = UnityNpc.Spawn(Settings, modelName)
