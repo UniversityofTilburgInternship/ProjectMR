@@ -183,7 +183,6 @@
     <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpecTransp.shader" />
-    <None Include="Assets\SpartanKing\animations.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />

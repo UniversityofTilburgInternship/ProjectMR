@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -26,7 +26,9 @@ public class NpcObject : MonoBehaviour
     public GenericVector AccumulatedValues;
     public GenericVector PersonalityValuesGenericVector;
     public GraphTraveler GraphTraveler;
+
     public NpcMovementController MovementController;
+
     //This is set to a dummy value in order to avoid NPCs freezing on start.
     public Vector3 CurrentActionPosition = new Vector3(-1.0f, -1.0f, -1.0f);
 
@@ -38,9 +40,7 @@ public class NpcObject : MonoBehaviour
         {
             var randomIndexForModelName = Random.Range(0, SettingsParser.ModelNames.Count);
             modelName = SettingsParser.ModelNames[randomIndexForModelName];
-
         }
-        Debug.Log(modelName);
         var randomIndexForPosition = Random.Range(0, SettingsParser.Spawnpoints.Count);
         var randomPosition = SettingsParser.Spawnpoints[randomIndexForPosition];
 
@@ -82,25 +82,14 @@ public class NpcObject : MonoBehaviour
         var action = CurrentNodesCollection[actionId];
         Debug.Log(action.ToString());
         var animationName = action.AnimationName;
-        const float time = 0.0f;
 
-        var animations = new List<string>{"NewAnimation", "New Animation2"};
-        gameObject.GetComponent<Animation>().Play(animations[Random.Range(0,1)]);
 
-        //Get Animator controller
-//        var ac = Animator.runtimeAnimatorController;
-//
-//        foreach (var animationClip in ac.animationClips)
-//        {
-//            //If it has the same name as your clip
-//            if (animationClip.name == animationName)
-//            {
-//                time = animationClip.length;
-//            }
-//        }
-//        Animator.SetBool(animationName, true);
-        StartCoroutine(StopAnimation(animationName, time));
-        return Random.Range(1.5f, 3.5f) + 0.1f;
+        var animationplayer = gameObject.GetComponent<Animation>();
+        animationplayer.Play(animationName);
+        var time = animationplayer.GetClip(animationName).length;
+
+//        return Random.Range(1.5f, 3.5f) + 0.1f;
+        return time + 0.1f;
     }
 
     public bool IsInterestedInEvent()
@@ -336,5 +325,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
 //        Animator.SetBool(animationName, false);
     }
-}
-                                                                                                                                                                                                                                                                 
+}                                               

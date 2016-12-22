@@ -1,4 +1,4 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcMovementController : MonoBehaviour
@@ -28,25 +28,23 @@ public class NpcMovementController : MonoBehaviour
         {
             StartWalking();
         }
-
     }
 
     private void StopWalking()
     {
-//        _npcObject.Animator.SetBool("Walking", false);
+        _npcObject.GetComponent<Animation>().Stop("walking_inPlace");
         _walking = false;
     }
 
     private void StartWalking()
     {
-        if (!_walking)
+        if (!_walking )
         {
-//            _npcObject.Animator.SetBool("Walking", true);
+            Debug.Log("OK");
+            _npcObject.GetComponent<Animation>().CrossFade("walking_inPlace");
             _walking = true;
             var audio = _npcObject.GetComponent<AudioSource>();
             audio.Play();
-
         }
     }
-}
-                                                                                                                                                                                                                                                                             
+}                                  
