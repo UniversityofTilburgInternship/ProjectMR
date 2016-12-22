@@ -101,7 +101,15 @@ public class NpcObject : MonoBehaviour
     private void HandleAnimationRoutines(string animationName, float time)
     {
         if (IsEventActor)
+        {
+            Debug.Log("Is event Actor. Position = " + transform.position + " and destination is " + CurrentActionPosition);
+            if (MyActingEvent != null)
+            {
+                Debug.Log("Set MyActingEvent to truee");
+                MyActingEvent.IsReady = true;
+            }
             StartCoroutine(PauseAnimation(animationName, time));
+        }
         else
             StartCoroutine(StopAnimation(animationName, time));
     }
@@ -117,8 +125,18 @@ public class NpcObject : MonoBehaviour
         if (!(EventController.ActiveEvents.Count > 0))
             return false;
 
-        var eventsInRadius = EventController.ActiveEvents.Values
-            .Where(ev => Vector3.Distance(transform.position, ev.Position) <= ev.Radius && ev.IsReady);
+        IEnumerable<EventObject> eventsInRadius;
+        //EventActors can also look at events that are not ready yet, since they are the ones who have to make them ready
+        if (IsEventActor)
+        {
+            eventsInRadius = EventController.ActiveEvents.Values
+                .Where(ev => Vector3.Distance(transform.position, ev.Position) <= ev.Radius);
+        }
+        else
+        {
+            eventsInRadius = EventController.ActiveEvents.Values
+                .Where(ev => Vector3.Distance(transform.position, ev.Position) <= ev.Radius && ev.IsReady );
+        }
 
         var eventsInterested = new List<EventObject>();
 
@@ -170,17 +188,11 @@ public class NpcObject : MonoBehaviour
             agent.destination = position;
             transform.LookAt(position);
         }
-        else
+
+        //TODO: Fix this not being triggered at the right time: It should be when the npcs position and the action position are equal.
+        if (IsEventActor)
         {
-            //TODO: Fix the second if never being hit
-            if (IsEventActor)
-            {
-                if (MyActingEvent != null)
-                {
-                    Debug.Log("Set MyActingEvent to truee");
-                    MyActingEvent.IsReady = true;
-                }
-            }
+
         }
     }
 
@@ -371,4 +383,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                               
+                                                                                   

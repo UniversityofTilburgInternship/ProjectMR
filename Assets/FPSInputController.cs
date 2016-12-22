@@ -47,4 +47,4 @@
             motor.inputJump = Input.GetButton("Jump");
         }
     }
-}                                                                                                                                                                                                                                                                                                                                       
+}                                                                                                                                                                                                                                                                                                                                           
