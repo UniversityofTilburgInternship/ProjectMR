@@ -1,7 +1,7 @@
 <players>
     <player>
         <prefabname>
-            PlayerLiam
+            PlayerLiam1
         </prefabname>
         <personalities>
             <personality>
@@ -24,7 +24,7 @@
     </player>
     <player>
         <prefabname>
-            PlayerMalcon
+            PlayerMalcon1
         </prefabname>
         <personalities>
             <personality>
@@ -47,7 +47,7 @@
     </player>
     <player>
         <prefabname>
-            PlayerRegina
+            PlayerRegina1
         </prefabname>
         <personalities>
             <personality>
@@ -70,7 +70,7 @@
     </player>
     <player>
         <prefabname>
-            PlayerRemy
+            PlayerRemy1
         </prefabname>
         <personalities>
             <personality>
@@ -93,7 +93,7 @@
     </player>
     <player>
         <prefabname>
-            PlayerShae
+            PlayerShae1
         </prefabname>
         <personalities>
             <personality>
@@ -116,7 +116,7 @@
     </player>
     <player>
         <prefabname>
-            PlayerStefani
+            PlayerStefani1
         </prefabname>
         <personalities>
             <personality>

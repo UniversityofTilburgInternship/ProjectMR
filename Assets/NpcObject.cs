@@ -38,7 +38,9 @@ public class NpcObject : MonoBehaviour
         {
             var randomIndexForModelName = Random.Range(0, SettingsParser.ModelNames.Count);
             modelName = SettingsParser.ModelNames[randomIndexForModelName];
+
         }
+        Debug.Log(modelName);
         var randomIndexForPosition = Random.Range(0, SettingsParser.Spawnpoints.Count);
         var randomPosition = SettingsParser.Spawnpoints[randomIndexForPosition];
 
@@ -335,4 +337,4 @@ public class NpcObject : MonoBehaviour
 //        Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                              
