@@ -65,10 +65,10 @@ isTriggeringEvent : bool
 entity Event = {
 inherit UnityEvent
 ref eventController : EventController
-
   rule Completeness =
     wait 2.5f
     if(UnityEventController.IsEventReady(this.Id)) then
+      HelperFunctions.Log("Completeness")
       yield Completeness + 10
       if(Completeness >= 100) then
         UnityEvent.Destroy()
@@ -126,7 +126,7 @@ TimeToInteract : bool
       yield false
       wait 15.0f
       yield true
-      wait 5.0f
+      wait 2.0f
       yield false
 
     rule Interacting =

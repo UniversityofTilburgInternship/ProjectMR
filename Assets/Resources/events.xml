@@ -2,8 +2,8 @@
     <event>
         <id>0</id>
         <name>AlarmBell</name>
-        <playercontrolled>false</playercontrolled>
-        <triggerkey></triggerkey>
+        <playercontrolled>true</playercontrolled>
+        <triggerkey>q</triggerkey>
         <radius>500</radius>
         <position>
             <x>30</x>
