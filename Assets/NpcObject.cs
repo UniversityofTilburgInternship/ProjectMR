@@ -102,10 +102,9 @@ public class NpcObject : MonoBehaviour
     {
         if (IsEventActor)
         {
-            Debug.Log("Is event Actor. Position = " + transform.position + " and destination is " + CurrentActionPosition);
+            Debug.Log("Handling anim routines for actor");
             if (MyActingEvent != null)
             {
-                Debug.Log("Set MyActingEvent to truee");
                 MyActingEvent.IsReady = true;
             }
             StartCoroutine(PauseAnimation(animationName, time));
@@ -187,12 +186,6 @@ public class NpcObject : MonoBehaviour
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             agent.destination = position;
             transform.LookAt(position);
-        }
-
-        //TODO: Fix this not being triggered at the right time: It should be when the npcs position and the action position are equal.
-        if (IsEventActor)
-        {
-
         }
     }
 
@@ -383,4 +376,4 @@ public class NpcObject : MonoBehaviour
         Animator.SetBool(animationName, false);
     }
 }
-                                                                                   
+                                                                                           

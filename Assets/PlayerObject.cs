@@ -23,11 +23,7 @@ namespace Assets
 
                 //Events that have npc's associated with them as actors have IsReady set by those actors.
                 if (eventObject.NpcActionIds.Count == 0)
-                {
                     eventObject.IsReady = true;
-                    Debug.Log("eventObject.NpcActionIds.Count == 0");
-                }
-
             }
             else
             {
@@ -37,4 +33,4 @@ namespace Assets
         }
     }
 }
-                                                                                                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                                     

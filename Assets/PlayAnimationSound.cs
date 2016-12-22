@@ -11,4 +11,4 @@ public class PlayAnimationSound : MonoBehaviour
         audio.Play(44100);
     }
 }
-     
+             

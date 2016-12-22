@@ -66,10 +66,6 @@ public class UnityNpc : MonoBehaviour
     public void FreeEventActors()
     {
         var eventActors = Enumerable.Where(NpcObject.AllPersons, x => x.IsEventActor).ToList();
-
-        if(eventActors.Count > 1)
-            Debug.Log("EventActor id = " + eventActors[0].Id);
-
         eventActors.ForEach(x => x.IsEventActor = false);
     }
 
@@ -192,4 +188,4 @@ public class UnityNpc : MonoBehaviour
             : ActionsParser.PlayerEvents[eventId];
     }
 }
-                                                                                                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                                     

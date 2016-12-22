@@ -281,7 +281,7 @@ return;	}else
 	s0 = 1;
 return;	}
 	case 4:
-	HelperFunctions.Log("Triggered event! Waiting for isready...");
+	HelperFunctions.Log("Triggered event! Now waiting for isready to be set elsewhere...");
 	UnityPlayer.TriggerPlayerEvent(___event00._eventObject);
 	triggeredEvents = new Cons<Event>(___event00, (triggeredEvents)).ToList<Event>();
 	s0 = 1;
@@ -683,6 +683,7 @@ frame = World.frame;
 		this.Rule11(dt, world);
 		this.Rule12(dt, world);
 		this.Rule13(dt, world);
+		this.Rule14(dt, world);
 	}
 
 
@@ -810,17 +811,18 @@ return;	}
 return;	}else
 	{
 
-	goto case 7;	}
-	case 7:
+	goto case 10;	}
+	case 10:
 	if(!(((actionIds.Count) > (0))))
 	{
 
-	s3 = 7;
+	s3 = 10;
 return;	}else
 	{
 
-	goto case 6;	}
-	case 6:
+	goto case 9;	}
+	case 9:
+	HelperFunctions.Log("actionIds.Count > 0");
 	___actionToExecute30 = (actionIds)[0];
 	if(UnityNpc.IsPositionAvailable(___actionToExecute30))
 	{
@@ -830,12 +832,14 @@ return;	}else
 
 	goto case 1;	}
 	case 0:
+	HelperFunctions.Log("UnityNpc.IsPositionAvailable");
 	UnityNpc.ClaimPosition(___actionToExecute30);
 	actionIds = actionIds;
 	PositionAvailable = true;
 	s3 = -1;
 return;
 	case 1:
+	HelperFunctions.Log("else");
 	actionIds = (
 
 (actionIds).Select(__ContextSymbol19 => new { ___id30 = __ContextSymbol19 })
@@ -1208,9 +1212,21 @@ return;
 	default: return;}}
 	
 
+	int s14=-1;
+	public void Rule14(float dt, World world){ switch (s14)
+	{
+
+	case -1:
+	HelperFunctions.Log(((((("Npc with id = ") + (Id)) + (" has IsEventActor = ")) + (IsEventActor)) + (" and pos available = ")) + (PositionAvailable));
+	IsEventActor = IsEventActor;
+	s14 = -1;
+return;	
+	default: return;}}
+	
+
 
 
 
 
 }
-}           
+} 

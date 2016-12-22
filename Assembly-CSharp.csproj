@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,170 +45,169 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ActionObject.cs" />
-    <Compile Include="Assets\ActionsParser.cs" />
-    <Compile Include="Assets\Arkham Interactive\Industrial\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
-    <Compile Include="Assets\AvatarGenerator.cs" />
-    <Compile Include="Assets\CharacterMotor.cs" />
-    <Compile Include="Assets\Event.cs" />
-    <Compile Include="Assets\EventAction.cs" />
-    <Compile Include="Assets\EventController.cs" />
-    <Compile Include="Assets\EventObject.cs" />
-    <Compile Include="Assets\EventPlayer.cs" />
-    <Compile Include="Assets\FPSInputController.cs" />
-    <Compile Include="Assets\FPSmovement.cs" />
-    <Compile Include="Assets\GameAction.cs" />
-    <Compile Include="Assets\GenericVector.cs" />
-    <Compile Include="Assets\GraphTraveler.cs" />
-    <Compile Include="Assets\Grid.cs" />
-    <Compile Include="Assets\HeadTracking\HeadTracking.cs" />
-    <Compile Include="Assets\Heap.cs" />
-    <Compile Include="Assets\HelperFunctions.cs" />
-    <Compile Include="Assets\Interaction.cs" />
-    <Compile Include="Assets\InteractionAction.cs" />
-    <Compile Include="Assets\ListExtensions.cs" />
-    <Compile Include="Assets\LoopExtensions.cs" />
-    <Compile Include="Assets\Node.cs" />
-    <Compile Include="Assets\NormalAction.cs" />
-    <Compile Include="Assets\NpcMovementController.cs" />
-    <Compile Include="Assets\NpcObject.cs" />
-    <Compile Include="Assets\OnStartUp.cs" />
-    <Compile Include="Assets\PathRequestManager.cs" />
-    <Compile Include="Assets\Pathfinding.cs" />
-    <Compile Include="Assets\PersonParser.cs" />
-    <Compile Include="Assets\PlayerObject.cs" />
-    <Compile Include="Assets\Prelude.cs" />
-    <Compile Include="Assets\Reaction.cs" />
-    <Compile Include="Assets\Scripts\AudioOffset.cs" />
-    <Compile Include="Assets\Scripts\CaptureNormals.cs" />
-    <Compile Include="Assets\Scripts\Punch.cs" />
-    <Compile Include="Assets\Scripts\RandomFloorBotMovement.cs" />
-    <Compile Include="Assets\Scripts\Rotator.cs" />
-    <Compile Include="Assets\Scripts\ScrollingUVs.cs" />
-    <Compile Include="Assets\Scripts\WheelsRotation.cs" />
-    <Compile Include="Assets\SettingsParser.cs" />
-    <Compile Include="Assets\TestVR.cs" />
-    <Compile Include="Assets\UIManager.cs" />
-    <Compile Include="Assets\UnityAction.cs" />
-    <Compile Include="Assets\UnityEvent.cs" />
-    <Compile Include="Assets\UnityEventController.cs" />
-    <Compile Include="Assets\UnityNpc.cs" />
-    <Compile Include="Assets\UnityPlayer.cs" />
-    <Compile Include="Assets\World.cs" />
-    <Compile Include="Assets\XmlNodule.cs" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\NoiseAndGrainDX11.shader" />
-    <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
-    <None Include="Assets\Resources\actions.xml" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrectionEffect.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrectionCurves.shader" />
-    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\PrepareSunShaftsBlur.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\SeparableBlur.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\TwirlEffect.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\VignetteShader.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\GlowConeTap.shader" />
-    <None Include="Assets\Resources\settings.xml" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrectionCurvesSimple.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\BlendModesOverlay.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
-    <None Include="Assets\Resources\reactions.xml" />
-    <None Include="Assets\Resources\eventActions.xml" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrection3DLut.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
-    <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
-    <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
-    <None Include="Assets\Shaders\ReflectiveDiffuseSpecTransp.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ChromaticAberrationShader.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Luminance.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\GlowCompose.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\VortexEffect.shader" />
-    <None Include="Assets\Resources\players.xml" />
-    <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\CameraMotionBlurDX11.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\Blend.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\RadialBlur.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\Bokeh34.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\CreaseApply.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\EdgeDetectNormals.shader" />
-    <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\frag_ao.cginc" />
-    <None Include="Assets\Resources\eventReactions.xml" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\NoiseAndGrain.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Apply.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
-    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
-    <None Include="Assets\SpartanKing\animations.txt" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ContrastComposite.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\TiltShift.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\BlurEffectConeTaps.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\SSAA.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\GlowEffectDownsample.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\MotionBlur.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
-    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\DLAA.shader" />
-    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\FisheyeShader.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\GrayscaleEffect.shader" />
-    <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\SunShaftsComposite.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ConvertDepth.shader" />
-    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\MotionBlurClear.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ShowAlphaChannel.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\SepiaToneEffect.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\NFAA.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\NoiseEffectShaderYUV.shader" />
-    <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
-    <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\SimpleClear.shader" />
-    <None Include="Assets\Resources\events.xml" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\GlobalFog.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAA3Console.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\Tonemapper.shader" />
-    <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
-    <None Include="Assets\Resources\interactions.xml" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\VignettingShader.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\MinMaxReduction.shader" />
-    <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\CameraMotionBlur.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrectionSelective.shader" />
-    <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\EdgeDetectX.shader" />
-    <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset3.shader" />
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\ActionObject.cs" />
+     <Compile Include="Assets\ActionsParser.cs" />
+     <Compile Include="Assets\Arkham Interactive\Industrial\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\AvatarGenerator.cs" />
+     <Compile Include="Assets\CharacterMotor.cs" />
+     <Compile Include="Assets\Event.cs" />
+     <Compile Include="Assets\EventAction.cs" />
+     <Compile Include="Assets\EventController.cs" />
+     <Compile Include="Assets\EventObject.cs" />
+     <Compile Include="Assets\EventPlayer.cs" />
+     <Compile Include="Assets\FPSInputController.cs" />
+     <Compile Include="Assets\FPSmovement.cs" />
+     <Compile Include="Assets\GameAction.cs" />
+     <Compile Include="Assets\GenericVector.cs" />
+     <Compile Include="Assets\GraphTraveler.cs" />
+     <Compile Include="Assets\Grid.cs" />
+     <Compile Include="Assets\HeadTracking\HeadTracking.cs" />
+     <Compile Include="Assets\Heap.cs" />
+     <Compile Include="Assets\HelperFunctions.cs" />
+     <Compile Include="Assets\Interaction.cs" />
+     <Compile Include="Assets\InteractionAction.cs" />
+     <Compile Include="Assets\ListExtensions.cs" />
+     <Compile Include="Assets\LoopExtensions.cs" />
+     <Compile Include="Assets\Node.cs" />
+     <Compile Include="Assets\NormalAction.cs" />
+     <Compile Include="Assets\NpcMovementController.cs" />
+     <Compile Include="Assets\NpcObject.cs" />
+     <Compile Include="Assets\OnStartUp.cs" />
+     <Compile Include="Assets\PathRequestManager.cs" />
+     <Compile Include="Assets\Pathfinding.cs" />
+     <Compile Include="Assets\PersonParser.cs" />
+     <Compile Include="Assets\PlayAnimationSound.cs" />
+     <Compile Include="Assets\PlayerObject.cs" />
+     <Compile Include="Assets\Prelude.cs" />
+     <Compile Include="Assets\Reaction.cs" />
+     <Compile Include="Assets\Scripts\AudioOffset.cs" />
+     <Compile Include="Assets\Scripts\CaptureNormals.cs" />
+     <Compile Include="Assets\Scripts\Punch.cs" />
+     <Compile Include="Assets\Scripts\RandomFloorBotMovement.cs" />
+     <Compile Include="Assets\Scripts\Rotator.cs" />
+     <Compile Include="Assets\Scripts\ScrollingUVs.cs" />
+     <Compile Include="Assets\Scripts\WheelsRotation.cs" />
+     <Compile Include="Assets\SettingsParser.cs" />
+     <Compile Include="Assets\TestVR.cs" />
+     <Compile Include="Assets\UIManager.cs" />
+     <Compile Include="Assets\UnityAction.cs" />
+     <Compile Include="Assets\UnityEvent.cs" />
+     <Compile Include="Assets\UnityEventController.cs" />
+     <Compile Include="Assets\UnityNpc.cs" />
+     <Compile Include="Assets\UnityPlayer.cs" />
+     <Compile Include="Assets\World.cs" />
+     <Compile Include="Assets\XmlNodule.cs" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\NoiseAndGrainDX11.shader" />
+     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
+     <None Include="Assets\Resources\actions.xml" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrectionEffect.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrectionCurves.shader" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\PrepareSunShaftsBlur.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\SeparableBlur.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\TwirlEffect.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\VignetteShader.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\GlowConeTap.shader" />
+     <None Include="Assets\Resources\settings.xml" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrectionCurvesSimple.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\BlendModesOverlay.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
+     <None Include="Assets\Resources\reactions.xml" />
+     <None Include="Assets\Resources\eventActions.xml" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrection3DLut.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfField34.shader" />
+     <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
+     <None Include="Assets\Standard Assets\Effects\Projectors\Guidelines.txt" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfFieldScatter.shader" />
+     <None Include="Assets\Shaders\ReflectiveDiffuseSpecTransp.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ChromaticAberrationShader.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Luminance.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\GlowCompose.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\VortexEffect.shader" />
+     <None Include="Assets\Resources\players.xml" />
+     <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\CameraMotionBlurDX11.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\Blend.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\RadialBlur.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\Bokeh34.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\CreaseApply.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\EdgeDetectNormals.shader" />
+     <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\frag_ao.cginc" />
+     <None Include="Assets\Resources\eventReactions.xml" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Adaptation.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\NoiseAndGrain.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\Apply.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
+     <None Include="Assets\SpartanKing\animations.txt" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ContrastComposite.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\TiltShift.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\BlurEffectConeTaps.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\SSAA.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\GlowEffectDownsample.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\MotionBlur.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\MultiPassHollywoodFlares.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\DLAA.shader" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\FisheyeShader.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\GrayscaleEffect.shader" />
+     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\SunShaftsComposite.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ConvertDepth.shader" />
+     <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_DepthOfField\DepthOfFieldDX11.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\MotionBlurClear.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ShowAlphaChannel.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\SepiaToneEffect.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\NFAA.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\BrightPassFilter2.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\NoiseEffectShaderYUV.shader" />
+     <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
+     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\SimpleClear.shader" />
+     <None Include="Assets\Resources\events.xml" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\GlobalFog.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAA3Console.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\Tonemapper.shader" />
+     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
+     <None Include="Assets\Resources\interactions.xml" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_BloomAndFlares\SeparableBlurPlus.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\VignettingShader.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\Contrast Stretch\MinMaxReduction.shader" />
+     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\CameraMotionBlur.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\ColorCorrectionSelective.shader" />
+     <None Include="Assets\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\EdgeDetectX.shader" />
+     <None Include="Assets\Image Effects\_Sources\Shaders\_Antialiasing\FXAAPreset3.shader" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{AD378363-34B9-0005-148E-B8B8CB6EBCAC}</Project>
-      <Name>Assembly-CSharp-firstpass</Name>
-    </ProjectReference>
+      <Project>{AD378363-34B9-0005-148E-B8B8CB6EBCAC}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -218,4 +217,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

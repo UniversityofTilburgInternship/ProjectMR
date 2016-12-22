@@ -57,10 +57,9 @@ isTriggeringEvent : bool
                                                           select triggeredEvent]
 
   rule triggeredEvents =
-    //HelperFunctions.Log("HERP DERP")
     for event in eventController.AllPlayerEvents do
       if (Input.GetKey(event.TriggerKey)) then
-          HelperFunctions.Log("Triggered event! Waiting for isready...")
+          HelperFunctions.Log("Triggered event! Now waiting for isready to be set elsewhere...")
           UnityPlayer.TriggerPlayerEvent(event._eventObject)
           yield event :: triggeredEvents
 
@@ -128,6 +127,12 @@ settings : [(int * int)]
 actionIds : [int]
 PositionAvailable : bool
 TimeToInteract : bool
+
+
+
+    rule IsEventActor =
+      HelperFunctions.Log("Npc with id = " + Id +  " has IsEventActor = " + IsEventActor + " and pos available = " + PositionAvailable)
+      yield IsEventActor
 
     rule TimeToInteract =
       yield false
@@ -206,11 +211,14 @@ TimeToInteract : bool
     rule actionIds, PositionAvailable =
       wait not PositionAvailable
       wait actionIds.Count > 0
+      HelperFunctions.Log("actionIds.Count > 0")
       let actionToExecute = actionIds.[0]
       if(UnityNpc.IsPositionAvailable(actionToExecute)) then
+        HelperFunctions.Log("UnityNpc.IsPositionAvailable")
         UnityNpc.ClaimPosition(actionToExecute)
-        yield actionIds, true
+        yield actionIds, true   
       else
+        HelperFunctions.Log("else")
         //If we cannot get a position, skip this action.
         yield [for id in actionIds do
                where (not (id = actionToExecute))
