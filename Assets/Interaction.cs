@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿namespace Assets
+﻿﻿﻿﻿﻿﻿﻿namespace Assets
 {
     public class Interaction : GameAction
     {

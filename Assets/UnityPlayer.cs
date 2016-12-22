@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿using Assets;
+﻿﻿﻿﻿﻿﻿﻿﻿using Assets;
 using UnityEngine;
 
 public class UnityPlayer : MonoBehaviour

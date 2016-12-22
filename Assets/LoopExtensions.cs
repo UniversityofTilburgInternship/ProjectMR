@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿public static class LoopExtensions
+﻿﻿﻿﻿﻿﻿﻿﻿public static class LoopExtensions
 {
     public static void Times(this int count, System.Action action)
     {
