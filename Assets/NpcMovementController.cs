@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcMovementController : MonoBehaviour
@@ -47,4 +47,4 @@ public class NpcMovementController : MonoBehaviour
             audio.Play();
         }
     }
-}                                  
+}                                                     

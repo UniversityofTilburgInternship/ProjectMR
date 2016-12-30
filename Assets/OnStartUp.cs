@@ -1,15 +1,16 @@
-﻿﻿using Assets;
+using Assets;
 using UnityEngine;
 
 public class OnStartUp : MonoBehaviour
 {
     void Awake()
     {
-        ActionsParser.ParseEventsActions();
+        ActionsParser.ParseEvents();
+        ActionsParser.ParseEventsActions("eventActions");
+        ActionsParser.ParseEventsActions("eventReactions");
         ActionsParser.ParseInteractions();
         ActionsParser.ParseReactions();
         ActionsParser.ParseNormalActions();
-        ActionsParser.ParseEvents();
 
         //This parses the spawnpositions and modelnames from settings.xml
         SettingsParser.ParseAll();
@@ -32,4 +33,4 @@ public class OnStartUp : MonoBehaviour
         playerObject.GetComponent<NavMeshObstacle>().radius = newNavMeshRadius;
         playerObject.GetComponent<FPSInputController>().enabled = playerObjectComponent.AllowMovement;
     }
-}                                                                                                                                                                                                                                                                                                                                                                                                                                               
+}                                 

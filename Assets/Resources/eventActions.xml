@@ -1,186 +1,48 @@
-﻿<eventActions>
+<eventActions>
     <eventAction>
-        <id>0</id>
-        <name>Ignore</name>
-        <position>
-            <x>0</x>
-            <y>1</y>
-            <z>2</z>
-        </position>
-        <animationname>waving</animationname>
         <neighbours>
         </neighbours>
         <modifiers>
             <modifier>
-                <id>0</id>
-                <value>10</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>20</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>30</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
                 <value>40</value>
+                <id>1</id>
             </modifier>
             <modifier>
+                <value>35</value>
+                <id>5</id>
+            </modifier>
+            <modifier>
+                <value>40</value>
+                <id>0</id>
+            </modifier>
+            <modifier>
+                <value>0</value>
                 <id>4</id>
+            </modifier>
+            <modifier>
                 <value>50</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>60</value>
-            </modifier>
-            <modifier>
                 <id>6</id>
-                <value>70</value>
             </modifier>
             <modifier>
-                <id>7</id>
-                <value>80</value>
-            </modifier>
-        </modifiers>
-    </eventAction>
-    <eventAction>
-        <id>1</id>
-        <name>FallDown</name>
-        <position>
-            <x>0</x>
-            <y>1</y>
-            <z>2</z>
-        </position>
-        <animationname>salute</animationname>
-        <neighbours>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>33</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>33</value>
-            </modifier>
-            <modifier>
+                <value>40</value>
                 <id>2</id>
-                <value>33</value>
             </modifier>
             <modifier>
-                <id>3</id>
-                <value>33</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
-                <value>33</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>33</value>
-            </modifier>
-            <modifier>
-                <id>6</id>
-                <value>33</value>
-            </modifier>
-            <modifier>
+                <value>40</value>
                 <id>7</id>
-                <value>3</value>
+            </modifier>
+            <modifier>
+                <value>35</value>
+                <id>3</id>
             </modifier>
         </modifiers>
-    </eventAction>
-    <eventAction>
-        <id>2</id>
-        <name>Scream</name>
         <position>
-            <x>0</x>
-            <y>1</y>
-            <z>2</z>
+            <z>10</z>
+            <y>0</y>
+            <x>1</x>
         </position>
-        <animationname>talking_1</animationname>
-        <neighbours>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>70</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>70</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>70</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
-                <value>70</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
-                <value>70</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>70</value>
-            </modifier>
-            <modifier>
-                <id>6</id>
-                <value>80</value>
-            </modifier>
-            <modifier>
-                <id>7</id>
-                <value>70</value>
-            </modifier>
-        </modifiers>
-    </eventAction>
-    <eventAction>
-        <id>3</id>
-        <name>RunAway</name>
-        <position>
-            <x>0</x>
-            <y>1</y>
-            <z>2</z>
-        </position>
-        <animationname>talking_2</animationname>
-        <neighbours>
-        </neighbours>
-        <modifiers>
-            <modifier>
-                <id>0</id>
-                <value>60</value>
-            </modifier>
-            <modifier>
-                <id>1</id>
-                <value>60</value>
-            </modifier>
-            <modifier>
-                <id>2</id>
-                <value>60</value>
-            </modifier>
-            <modifier>
-                <id>3</id>
-                <value>60</value>
-            </modifier>
-            <modifier>
-                <id>4</id>
-                <value>60</value>
-            </modifier>
-            <modifier>
-                <id>5</id>
-                <value>60</value>
-            </modifier>
-            <modifier>
-                <id>6</id>
-                <value>60</value>
-            </modifier>
-            <modifier>
-                <id>7</id>
-                <value>60</value>
-            </modifier>
-        </modifiers>
+        <id>0</id>
+        <name>SINGLE npc faints: Not a reaction, but used in an event</name>
+        <animationname>falling_down</animationname>
     </eventAction>
 </eventActions>

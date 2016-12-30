@@ -1,4 +1,5 @@
-﻿﻿﻿﻿﻿using System.Linq;
+﻿﻿﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets
@@ -7,34 +8,51 @@ namespace Assets
     {
         public static void PlayEventAmbience(EventObject eventObject)
         {
-            GetAudioSource(eventObject.gameObject).Play();
+            PlayAudioSource(eventObject.gameObject, "Play");
+
             switch (eventObject.AnimationName)
             {
                 case "light_switch":
                     SwitchLights();
                     break;
+                case "Celebration":
+                    SetLightColor(Color.green);
+                    break;
                 case "AlarmBell":
                     SetLightColor(Color.red);
+                    break;
+                case "Faint":
+                    var randomNpc = NpcObject.AllPersons[Random.Range(0, NpcObject.AllPersons.Count)];
+                    randomNpc.IsEventActor = true;
                     break;
             }
         }
 
         public static void RemoveAmbience(EventObject eventObject)
         {
-            GetAudioSource(eventObject.gameObject).Stop();
+            PlayAudioSource(eventObject.gameObject, "Stop");
+
             switch (eventObject.AnimationName)
             {
                 //no case for lightswitching since those can be, well, switched
                 case "AlarmBell":
                     SetLightColor(Color.white);
                     break;
+                case "Celebration":
+                    SetLightColor(Color.white);
+                    break;
             }
         }
 
-        //NOTE: You do need to set the audiosource to loop or not loop in the unity editor yourself.
-        private static AudioSource GetAudioSource(GameObject gameObject)
+        private static void PlayAudioSource(GameObject gameObject, string desiredState)
         {
-            return gameObject.GetComponent<AudioSource>();
+            if (gameObject.GetComponent<AudioSource>() != null)
+            {
+                if(desiredState.Equals("Play"))
+                    gameObject.GetComponent<AudioSource>().Play();
+                else
+                    gameObject.GetComponent<AudioSource>().Stop();
+            }
         }
 
         private static void SwitchLights()
@@ -59,4 +77,4 @@ namespace Assets
             return GameObject.FindGameObjectsWithTag("ceiling_light");
         }
     }
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+}                                                                                                                                                                                                                                                                                                                                                                                        

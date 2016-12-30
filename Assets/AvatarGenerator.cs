@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
 using Casanova.Prelude;
 using UnityEngine;
@@ -54,4 +54,4 @@ public class AvatarGenerator : MonoBehaviour
         }
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                                                        
