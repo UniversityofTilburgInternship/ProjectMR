@@ -22,8 +22,9 @@ namespace Assets
                     SetLightColor(Color.red);
                     break;
                 case "Faint":
+                    //todo to fix it: CHANGE THIS TO BE A PERSON NOT CURRENTLY IN AN ACTION!!!!
                     var randomNpc = NpcObject.AllPersons[Random.Range(0, NpcObject.AllPersons.Count)];
-                    randomNpc.IsEventActor = true;
+                    //randomNpc.IsEventActor = true;
                     break;
             }
         }
@@ -77,4 +78,4 @@ namespace Assets
             return GameObject.FindGameObjectsWithTag("ceiling_light");
         }
     }
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

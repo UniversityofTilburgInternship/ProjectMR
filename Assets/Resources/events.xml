@@ -147,7 +147,6 @@
         <interestlevel>1</interestlevel>
         <maxamountofparticipants>9</maxamountofparticipants>
         <NpcAnimationActions>
-            <id>0</id>
         </NpcAnimationActions>
         <associatedreactions>
             <id>6</id>

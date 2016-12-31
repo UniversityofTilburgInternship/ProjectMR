@@ -189,4 +189,4 @@ public class UnityNpc : MonoBehaviour
             : ActionsParser.PlayerEvents[eventId];
     }
 }
-                                                                                                                                                                                           
+                                                                                                                                                                                                 

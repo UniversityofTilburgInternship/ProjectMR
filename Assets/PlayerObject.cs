@@ -21,6 +21,7 @@ namespace Assets
                 EventController.ActiveEvents.Add(eventObject.Id, eventObject);
                 EventPlayer.PlayEventAmbience(eventObject);
 
+                Debug.Log("eventObject.NpcActionIds.Count = " + eventObject.NpcActionIds.Count);
                 //Events that have npc's associated with them as actors have IsReady set by those actors.
                 if (eventObject.NpcActionIds.Count == 0)
                     eventObject.IsReady = true;
@@ -33,4 +34,4 @@ namespace Assets
         }
     }
 }
-                                                                                                                                                                                           
+                                                                                                                                                                                                 
