@@ -47,7 +47,7 @@
         </position>
         <actionId>0</actionId>
         <actionname>wave</actionname>
-        <animationname>wave</animationname>
+        <animationname>waving</animationname>
     </action>
     <action>
         <neighbours>
@@ -453,4 +453,5 @@
         <actionname>tafels</actionname>
         <animationname>talking_2</animationname>
     </action>
+
 </actions>

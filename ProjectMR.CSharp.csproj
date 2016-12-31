@@ -111,7 +111,6 @@
     <Compile Include="Assets\Scripts\ScrollingUVs.cs" />
     <Compile Include="Assets\Scripts\WheelsRotation.cs" />
     <Compile Include="Assets\SettingsParser.cs" />
-    <Compile Include="Assets\TestVRScript.cs" />
     <Compile Include="Assets\UIManager.cs" />
     <Compile Include="Assets\UnityAction.cs" />
     <Compile Include="Assets\UnityEvent.cs" />
@@ -198,7 +197,6 @@
     <None Include="Assets\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpec.shader" />
     <None Include="Assets\Shaders\ReflectiveDiffuseSpecTransp.shader" />
-    <None Include="Assets\SpartanKing\animations.txt" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />

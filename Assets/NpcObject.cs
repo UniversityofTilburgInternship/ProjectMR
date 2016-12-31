@@ -1,6 +1,7 @@
-﻿﻿﻿﻿using System.Collections;
+using System.Collections;
+﻿﻿﻿﻿﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+  using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
 using Assets;
@@ -13,7 +14,11 @@ public class NpcObject : MonoBehaviour
     public GameAction CurrentlyActiveAction;
     public bool InEventRadius;
     public bool IsInEvent;
+
+    public bool IsEventActor;
+    public EventObject MyActingEvent;
     public bool FirstAction;
+
     public Animator Animator;
 
     public bool IsInteractionTarget;
@@ -26,7 +31,9 @@ public class NpcObject : MonoBehaviour
     public GenericVector AccumulatedValues;
     public GenericVector PersonalityValuesGenericVector;
     public GraphTraveler GraphTraveler;
+
     public NpcMovementController MovementController;
+
     //This is set to a dummy value in order to avoid NPCs freezing on start.
     public Vector3 CurrentActionPosition = new Vector3(-1.0f, -1.0f, -1.0f);
 
@@ -56,6 +63,7 @@ public class NpcObject : MonoBehaviour
         npcObject.MovementController = NpcMovementController.CreateComponent(npcObject.gameObject, npcObject);
         npcObject.Animator = npcObject.gameObject.GetComponent<Animator>();
         npcObject.gameObject.AddComponent<NavMeshAgent>();
+        npcObject.gameObject.AddComponent<AudioSource>();
         npcObject.gameObject.GetComponent<NavMeshAgent>().stoppingDistance = 2.2f;
         npcObject.gameObject.GetComponent<NavMeshAgent>().speed = 2.0f;
         npcObject.gameObject.GetComponent<NavMeshAgent>().angularSpeed = 12.0f;
@@ -78,32 +86,65 @@ public class NpcObject : MonoBehaviour
     public float PlayAnimation(int actionId)
     {
         var action = CurrentNodesCollection[actionId];
-        Debug.Log(action.ToString());
         var animationName = action.AnimationName;
-        var time = 0.0f;
-        //Get Animator controller
-        var ac = Animator.runtimeAnimatorController;
 
-        foreach (var animationClip in ac.animationClips)
+
+        var animationplayer = gameObject.GetComponent<Animation>();
+        animationplayer.Play(animationName);
+        var time = animationplayer.GetClip(animationName).length;
+
+        if (IsEventActor)
         {
-            //If it has the same name as your clip
-            if (animationClip.name == animationName)
+            Debug.Log("Handling anim routines for actor");
+            if (MyActingEvent != null)
             {
-                time = animationClip.length;
+                MyActingEvent.IsReady = true;
             }
+            //StartCoroutine(PauseAnimation(animationName, time));
         }
-        Animator.SetBool(animationName, true);
-        StartCoroutine(StopAnimation(animationName, time));
+
+//        return Random.Range(1.5f, 3.5f) + 0.1f;
         return time + 0.1f;
     }
+
+    private void HandleAnimationRoutines(string animationName, float time)
+    {
+        if (IsEventActor)
+        {
+            Debug.Log("Handling anim routines for actor");
+            if (MyActingEvent != null)
+            {
+                MyActingEvent.IsReady = true;
+            }
+            StartCoroutine(PauseAnimation(animationName, time));
+        }
+        else
+            StartCoroutine(StopAnimation(animationName, time));
+    }
+
+    public void Unfreeze()
+    {
+        //Animator.enabled = true;
+    }
+
 
     public bool IsInterestedInEvent()
     {
         if (!(EventController.ActiveEvents.Count > 0))
             return false;
 
-        var eventsInRadius = EventController.ActiveEvents.Values
-            .Where(ev => Vector3.Distance(transform.position, ev.Position) <= ev.Radius);
+        IEnumerable<EventObject> eventsInRadius;
+        //EventActors can also look at events that are not ready yet, since they are the ones who have to make them ready
+        if (IsEventActor)
+        {
+            eventsInRadius = EventController.ActiveEvents.Values
+                .Where(ev => Vector3.Distance(transform.position, ev.Position) <= ev.Radius);
+        }
+        else
+        {
+            eventsInRadius = EventController.ActiveEvents.Values
+                .Where(ev => Vector3.Distance(transform.position, ev.Position) <= ev.Radius && ev.IsReady );
+        }
 
         var eventsInterested = new List<EventObject>();
 
@@ -126,7 +167,14 @@ public class NpcObject : MonoBehaviour
         }
 
         if (!eventsInterested.Any()) return false;
+
+        //todo: Shouldn this be the event with the highest interestrating?
         MyEvent = eventsInterested[Random.Range(0, eventsInterested.Count)];
+
+        //Todo: Make this specific for an event using an id instead of a bool
+        //if (IsEventActor)
+            MyActingEvent = MyEvent;
+
         return true;
     }
 
@@ -158,6 +206,7 @@ public class NpcObject : MonoBehaviour
 
     public void ClaimPosition(int actionId)
     {
+        Debug.Log("ClaimPosition()");
         var action = _GetAction(actionId);
         if (action.ClaimablePositions.ContainsKey(Id))
         {
@@ -325,10 +374,16 @@ public class NpcObject : MonoBehaviour
         return CurrentNodesCollection.ContainsKey(actionId);
     }
 
+    private IEnumerator PauseAnimation(string animationName, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Animator.enabled = false;
+    }
+
     private IEnumerator StopAnimation(string animationName, float time)
     {
         yield return new WaitForSeconds(time);
-        Animator.SetBool(animationName, false);
+//        Animator.SetBool(animationName, false);
     }
 }
-                                                                                                                                             
+                                                                                                                                                                                       

@@ -46,11 +46,12 @@
     </spawnpoint>
   </spawnpoints>
   <modelnames>
-    <modelname>PlayerLiam</modelname>
-    <modelname>PlayerMalcon</modelname>
-    <modelname>PlayerRegina</modelname>
-    <modelname>PlayerRemy</modelname>
-    <modelname>PlayerShae</modelname>
-    <modelname>PlayerStefani</modelname>
+    <modelname>PlayerLiam1</modelname>
+    <modelname>PlayerMalcon1</modelname>
+    <modelname>PlayerRegina1</modelname>
+    <modelname>PlayerRemy1</modelname>
+    <modelname>PlayerShae1</modelname>
+    <modelname>PlayerStefani1</modelname>
+    <modelname>PlayerDouglas</modelname>
   </modelnames>
 </settings>

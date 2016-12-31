@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 using Assets;
 using Casanova.Prelude;
 using UnityEngine;
@@ -19,6 +19,7 @@ public class EventObject : MonoBehaviour
     public string TriggerKey;
     public Vector3 Position;
 
+    public List<int> NpcActionIds = new List<int>();
     public List<int> AssociatedActions = new List<int>();
     public List<Tuple<int, int>> PersonalityMinimums = new List<Tuple<int, int>>();
 
@@ -41,6 +42,7 @@ public class EventObject : MonoBehaviour
         eventObject.Radius = sourceEvent.Radius;
         eventObject.IsPlayerControlled = sourceEvent.IsPlayerControlled;
         eventObject.TriggerKey = sourceEvent.TriggerKey;
+        eventObject.NpcActionIds = sourceEvent.NpcActionIds;
         eventObject.AssociatedActions = sourceEvent.AssociatedActions;
         eventObject.PersonalityMinimums = sourceEvent.PersonalityMinimums;
 
@@ -57,4 +59,4 @@ public class EventObject : MonoBehaviour
             Destroy(gameObject);
     }
 }
-                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

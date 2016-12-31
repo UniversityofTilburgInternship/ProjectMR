@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using Casanova.Prelude;
@@ -82,13 +82,13 @@ public class UnityEvent
 
     public static int AmountOfEvents
     {
-        get { return ActionsParser.EventActions.Count; }
+        get { return ActionsParser.Events.Count; }
         set { }
     }
 
     public static int AmountOfPlayerEvents
     {
-        get { return ActionsParser.Events.Count(x => x.Value.IsPlayerControlled); }
+        get { return ActionsParser.PlayerEvents.Count(x => x.Value.IsPlayerControlled); }
         set { }
     }
 
@@ -108,4 +108,4 @@ public class UnityEvent
         _eventObject.Destroy();
     }
 }
-                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                              

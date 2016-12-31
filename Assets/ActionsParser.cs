@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 ﻿using System.CodeDom;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -12,11 +12,12 @@ public static class ActionsParser
     private const string REACTIONS = "reactions";
     private const string INTERACTIONS = "interactions";
     private const string ACTIONS = "actions";
-    private const string EVENTACTIONS = "eventActions";
     private const string EVENTS = "events";
+
 
     public static Dictionary<int, Event> Events = new Dictionary<int, Event>();
     public static Dictionary<int, Event> PlayerEvents = new Dictionary<int, Event>();
+    public static Dictionary<int, GameAction> EventReactions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> EventActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> NormalActions = new Dictionary<int, GameAction>();
     public static Dictionary<int, GameAction> Interactions = new Dictionary<int, GameAction>();
@@ -80,9 +81,10 @@ public static class ActionsParser
         }
     }
 
-    public static void ParseEventsActions()
+
+    public static void ParseEventsActions(string fileName)
     {
-        var eventActionsNodule = XmlNodule.Load(EVENTACTIONS);
+        var eventActionsNodule = XmlNodule.Load(fileName);
 
         foreach (var eventAction in eventActionsNodule)
         {
@@ -95,7 +97,10 @@ public static class ActionsParser
                 PersonalityModifiers = GetNodePersonalityModifiers(eventAction)
             };
 
-            EventActions.Add(eventActionObject.Id, eventActionObject);
+            if (fileName.Equals("eventActions"))
+                EventActions.Add(eventActionObject.Id, eventActionObject);
+            else
+                EventReactions.Add(eventActionObject.Id, eventActionObject);
         }
     }
 
@@ -129,8 +134,10 @@ public static class ActionsParser
             }
             eventObject.PersonalityMinimums = personalityMinimums;
 
-            var associatedActionIds = Event.Get("associatedactions").Select(actionId => actionId.ToInt()).ToList();
+            var npcActionIds = Event.Get("NpcAnimationActions").Select(actionId => actionId.ToInt()).ToList();
+            var associatedActionIds = Event.Get("associatedreactions").Select(actionId => actionId.ToInt()).ToList();
             eventObject.AssociatedActions = associatedActionIds;
+            eventObject.NpcActionIds = npcActionIds;
 
             if (eventObject.IsPlayerControlled)
                 PlayerEvents.Add(eventObject.Id, eventObject);
@@ -145,4 +152,4 @@ public static class ActionsParser
             .ToDictionary(modifier => modifier.Get("id").ToInt(), modifier => modifier.Get("value").ToInt());
     }
 }
-                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
