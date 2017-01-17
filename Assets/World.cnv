@@ -125,32 +125,6 @@ inherit UnityNpc
 settings : [(int * int)]
 actionIds : [int]
 PositionAvailable : bool
-TimeToInteract : bool
-
-    rule IsEventActor =
-      HelperFunctions.Log("Npc with id = " + Id +  " has IsEventActor = " + IsEventActor + " and pos available = " + PositionAvailable)
-      yield IsEventActor
-
-    rule TimeToInteract =
-      yield false
-      wait 15.0f
-      yield true
-      wait 0.1f
-      yield false
-
-    rule Interacting =
-      if(TimeToInteract = false) then
-        yield false
-      else
-        yield Interacting
-
-    rule Interacting =
-      wait TimeToInteract
-      if(UnityNpc.InteractionAvailable()) then
-        yield true
-        wait not TimeToInteract
-      else
-        yield false
 
     rule actionIds, PositionAvailable =
       wait IsEventActor
@@ -160,26 +134,6 @@ TimeToInteract : bool
     rule actionIds, PositionAvailable =
       wait IsEventActor
       wait not IsEventActor
-      UnityNpc.Unfreeze()
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-
-    rule actionIds, PositionAvailable =
-      wait Interacting
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-      wait 2.0f
-
-    rule actionIds, PositionAvailable =
-      wait Interacting
-      wait not Interacting
-      UnityNpc.FreeInteractionTarget()
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-
-    rule actionIds, PositionAvailable =
-      wait InteractionTarget
-      wait not Interacting
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
@@ -248,6 +202,5 @@ TimeToInteract : bool
         UnityNpc = unity_npc
         PositionAvailable = false
         actionIds = []
-        TimeToInteract = false
     }
 }

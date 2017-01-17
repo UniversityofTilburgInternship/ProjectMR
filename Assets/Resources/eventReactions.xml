@@ -47,13 +47,13 @@
     </eventReaction>
     <eventReaction>
         <id>1</id>
-        <name>Salute</name>
+        <name>Yelling</name>
         <position>
             <x>0</x>
             <y>1</y>
             <z>2</z>
         </position>
-        <animationname>salute</animationname>
+        <animationname>yelling</animationname>
         <neighbours>
         </neighbours>
         <modifiers>
@@ -387,4 +387,126 @@
         <name>macarena dance</name>
         <animationname>macarena_dance</animationname>
     </eventReaction>
+    <eventReaction>
+        <neighbours>
+            <neighbour>0</neighbour>
+            <neighbour>1</neighbour>
+            <neighbour>6</neighbour>
+            <neighbour>3</neighbour>
+            <neighbour>2</neighbour>
+        </neighbours>
+        <!--
+        0: Extraversion
+        1: Egoism
+        2: Thoroughness
+        3: EmotionalStability
+        4: Introversion
+        5: Altruism
+        6: Chaoticness
+        7: Neuroticism
+        -->
+        <modifiers>
+            <modifier>
+                <id>0</id>
+                <value>55</value>
+            </modifier>
+            <modifier>
+                <id>1</id>
+                <value>50</value>
+            </modifier>
+            <modifier>
+                <id>2</id>
+                <value>30</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>20</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
+                <value>10</value>
+            </modifier>
+            <modifier>
+                <id>5</id>
+                <value>40</value>
+            </modifier>
+            <modifier>
+                <id>6</id>
+                <value>65</value>
+            </modifier>
+            <modifier>
+                <id>7</id>
+                <value>60</value>
+            </modifier>
+        </modifiers>
+        <position>
+            <z>10</z>
+            <y>0</y>
+            <x>2</x>
+        </position>
+        <id>8</id>
+        <name>cover ears</name>
+        <animationname>coverEars</animationname>
+    </eventReaction>
+    <eventReaction>
+        <neighbours>
+            <neighbour>0</neighbour>
+            <neighbour>1</neighbour>
+            <neighbour>6</neighbour>
+            <neighbour>3</neighbour>
+            <neighbour>2</neighbour>
+        </neighbours>
+        <modifiers>
+            <modifier>
+                <id>0</id>
+                <value>45</value>
+            </modifier>
+            <modifier>
+                <id>1</id>
+                <value>30</value>
+            </modifier>
+            <modifier>
+                <id>2</id>
+                <value>45</value>
+            </modifier>
+            <modifier>
+                <id>3</id>
+                <value>80</value>
+            </modifier>
+            <modifier>
+                <id>4</id>
+                <value>50</value>
+            </modifier>
+            <modifier>
+                <id>5</id>
+                <value>40</value>
+            </modifier>
+            <modifier>
+                <id>6</id>
+                <value>25</value>
+            </modifier>
+            <modifier>
+                <id>7</id>
+                <value>30</value>
+            </modifier>
+        </modifiers>
+        <position>
+            <z>11</z>
+            <y>0</y>
+            <x>3</x>
+        </position>
+        <id>9</id>
+        <name>wave at ceiling</name>
+        <animationname>standing_greeting</animationname>
+    </eventReaction>
 </eventReactions>
+        <!--
+                0: Extraversion
+                1: Egoism
+                2: Thoroughness
+                3: EmotionalStability
+                4: Introversion
+                5: Altruism
+                6: Chaoticness
+                7: Neuroticism
+                -->

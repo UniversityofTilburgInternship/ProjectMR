@@ -600,7 +600,6 @@ public Person(List<Casanova.Prelude.Tuple<System.Int32, System.Int32>> Settings,
 
 Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 		UnityNpc = ___unity_npc00;
-		TimeToInteract = false;
 		PositionAvailable = false;
 		
 }
@@ -609,12 +608,6 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public UnityEngine.Vector3 CurrentActionPosition{  get { return UnityNpc.CurrentActionPosition; }
  }
 	public System.Int32 Id{  get { return UnityNpc.Id; }
- }
-	public System.Boolean Interacting{  get { return UnityNpc.Interacting; }
-  set{UnityNpc.Interacting = value; }
- }
-	public System.Boolean InteractionTarget{  get { return UnityNpc.InteractionTarget; }
-  set{UnityNpc.InteractionTarget = value; }
  }
 	public System.Boolean IsEventActor{  get { return UnityNpc.IsEventActor; }
   set{UnityNpc.IsEventActor = value; }
@@ -629,7 +622,6 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
   set{UnityNpc.Position = value; }
  }
 	public System.Boolean PositionAvailable;
-	public System.Boolean TimeToInteract;
 	public UnityNpc UnityNpc;
 	public List<System.Int32> actionIds;
 	public System.Boolean enabled{  get { return UnityNpc.enabled; }
@@ -662,9 +654,6 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public System.Single ___distanceToDestination40;
 	public System.Single count_down4;
 	public System.Single count_down5;
-	public System.Single count_down6;
-	public System.Single count_down8;
-	public System.Single count_down7;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -676,13 +665,6 @@ frame = World.frame;
 		this.Rule5(dt, world);
 		this.Rule6(dt, world);
 		this.Rule7(dt, world);
-		this.Rule8(dt, world);
-		this.Rule9(dt, world);
-		this.Rule10(dt, world);
-		this.Rule11(dt, world);
-		this.Rule12(dt, world);
-		this.Rule13(dt, world);
-		this.Rule14(dt, world);
 	}
 
 
@@ -953,7 +935,7 @@ return;
 	{
 
 	case -1:
-	if(!(InteractionTarget))
+	if(!(IsEventActor))
 	{
 
 	s6 = -1;
@@ -962,7 +944,7 @@ return;	}else
 
 	goto case 2;	}
 	case 2:
-	if(!(!(Interacting)))
+	if(!(!(IsEventActor)))
 	{
 
 	s6 = 2;
@@ -984,110 +966,10 @@ return;
 	{
 
 	case -1:
-	if(!(Interacting))
-	{
-
-	s7 = -1;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	if(!(!(Interacting)))
-	{
-
-	s7 = 3;
-return;	}else
-	{
-
-	goto case 2;	}
-	case 2:
-	UnityNpc.FreeInteractionTarget();
-	UnityNpc.UpdateCurrentNodesCollection();
-	actionIds = UnityNpc.ActionsToPerform;
-	PositionAvailable = false;
-	s7 = -1;
-return;	
-	default: return;}}
-	
-
-	int s8=-1;
-	public void Rule8(float dt, World world){ switch (s8)
-	{
-
-	case -1:
-	if(!(Interacting))
-	{
-
-	s8 = -1;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	UnityNpc.UpdateCurrentNodesCollection();
-	actionIds = UnityNpc.ActionsToPerform;
-	PositionAvailable = false;
-	s8 = 0;
-return;
-	case 0:
-	count_down6 = 2f;
-	goto case 1;
-	case 1:
-	if(((count_down6) > (0f)))
-	{
-
-	count_down6 = ((count_down6) - (dt));
-	s8 = 1;
-return;	}else
-	{
-
-	s8 = -1;
-return;	}	
-	default: return;}}
-	
-
-	int s9=-1;
-	public void Rule9(float dt, World world){ switch (s9)
-	{
-
-	case -1:
 	if(!(IsEventActor))
 	{
 
-	s9 = -1;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	if(!(!(IsEventActor)))
-	{
-
-	s9 = 3;
-return;	}else
-	{
-
-	goto case 2;	}
-	case 2:
-	UnityNpc.Unfreeze();
-	UnityNpc.UpdateCurrentNodesCollection();
-	actionIds = UnityNpc.ActionsToPerform;
-	PositionAvailable = false;
-	s9 = -1;
-return;	
-	default: return;}}
-	
-
-	int s10=-1;
-	public void Rule10(float dt, World world){ switch (s10)
-	{
-
-	case -1:
-	if(!(IsEventActor))
-	{
-
-	s10 = -1;
+	s7 = -1;
 return;	}else
 	{
 
@@ -1096,129 +978,7 @@ return;	}else
 	UnityNpc.UpdateCurrentNodesCollection();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
-	s10 = -1;
-return;	
-	default: return;}}
-	
-
-	int s11=-1;
-	public void Rule11(float dt, World world){ switch (s11)
-	{
-
-	case -1:
-	if(!(TimeToInteract))
-	{
-
-	s11 = -1;
-return;	}else
-	{
-
-	goto case 2;	}
-	case 2:
-	if(UnityNpc.InteractionAvailable())
-	{
-
-	goto case 0;	}else
-	{
-
-	goto case 1;	}
-	case 0:
-	Interacting = true;
-	s11 = 3;
-return;
-	case 3:
-	if(!(!(TimeToInteract)))
-	{
-
-	s11 = 3;
-return;	}else
-	{
-
-	s11 = -1;
-return;	}
-	case 1:
-	Interacting = false;
-	s11 = -1;
-return;	
-	default: return;}}
-	
-
-	int s12=-1;
-	public void Rule12(float dt, World world){ switch (s12)
-	{
-
-	case -1:
-	if(((TimeToInteract) == (false)))
-	{
-
-	goto case 7;	}else
-	{
-
-	goto case 8;	}
-	case 7:
-	Interacting = false;
-	s12 = -1;
-return;
-	case 8:
-	Interacting = Interacting;
-	s12 = -1;
-return;	
-	default: return;}}
-	
-
-	int s13=-1;
-	public void Rule13(float dt, World world){ switch (s13)
-	{
-
-	case -1:
-	TimeToInteract = false;
-	s13 = 4;
-return;
-	case 4:
-	count_down8 = 15f;
-	goto case 5;
-	case 5:
-	if(((count_down8) > (0f)))
-	{
-
-	count_down8 = ((count_down8) - (dt));
-	s13 = 5;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	TimeToInteract = true;
-	s13 = 1;
-return;
-	case 1:
-	count_down7 = 0.1f;
-	goto case 2;
-	case 2:
-	if(((count_down7) > (0f)))
-	{
-
-	count_down7 = ((count_down7) - (dt));
-	s13 = 2;
-return;	}else
-	{
-
-	goto case 0;	}
-	case 0:
-	TimeToInteract = false;
-	s13 = -1;
-return;	
-	default: return;}}
-	
-
-	int s14=-1;
-	public void Rule14(float dt, World world){ switch (s14)
-	{
-
-	case -1:
-	HelperFunctions.Log(((((("Npc with id = ") + (Id)) + (" has IsEventActor = ")) + (IsEventActor)) + (" and pos available = ")) + (PositionAvailable));
-	IsEventActor = IsEventActor;
-	s14 = -1;
+	s7 = -1;
 return;	
 	default: return;}}
 	
@@ -1228,4 +988,4 @@ return;
 
 
 }
-}                                                  
+}              

@@ -41,29 +41,6 @@ public class UnityNpc : MonoBehaviour
         }
     }
 
-
-    /* INTERACTION */
-
-    public bool InteractionTarget
-    {
-        get { return _npcObject.IsInteractionTarget;  }
-        set { _npcObject.IsInteractionTarget = value;  }
-    }
-
-    public bool Interacting { get; set; }
-
-    public bool InteractionAvailable()
-    {
-        return _npcObject.InteractionAvailable();
-    }
-
-    public void FreeInteractionTarget()
-    {
-        _npcObject.FreeInteractionTarget();
-    }
-
-    /* END INTERACTION */
-
     public void FreeEventActors()
     {
         var eventActors = Enumerable.Where(NpcObject.AllPersons, x => x.IsEventActor).ToList();
@@ -128,11 +105,6 @@ public class UnityNpc : MonoBehaviour
         return _npcObject.PlayAnimation(actionId);
     }
 
-    public void Unfreeze()
-    {
-        _npcObject.Unfreeze();
-    }
-
     public void RemoveClaimToAllPositions()
     {
         foreach (var action in _npcObject.CurrentNodesCollection)
@@ -143,18 +115,7 @@ public class UnityNpc : MonoBehaviour
 
     public void UpdateCurrentNodesCollection()
     {
-        if (Interacting)
-        {
-            _npcObject.CurrentNodesCollection = ActionsParser.Interactions;
-            _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionSender"));
-        }
-        else if (InteractionTarget)
-        {
-            _npcObject.CurrentNodesCollection = ActionsParser.Reactions;
-            if(_npcObject.InteractionSender != null)
-                _npcObject.ChangeActionPositions(_npcObject.GetVectorForInteraction("InteractionReceiver"));
-        }
-        else if (IsEventActor)
+        if (IsEventActor)
         {
             if(_npcObject.IsInEvent)
                 _npcObject.CurrentNodesCollection = GetNpcActionsForEventId(_npcObject.MyEvent.Id);
@@ -189,4 +150,4 @@ public class UnityNpc : MonoBehaviour
             : ActionsParser.PlayerEvents[eventId];
     }
 }
-                                                                                                                                                                                           
+                                                                                                                                                                                                                                                            

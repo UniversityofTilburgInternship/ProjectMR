@@ -138,3 +138,20 @@
         </personalities>
     </player>
 </players>
+
+        <!--
+        Personality trait order to be used with our actions in this xml file:
+        The traits in brackets are computed by subtracting the unbracketed 'sister' trait from 100.
+
+        extraversion
+        (introversion)
+
+        egoism
+        (altruism)
+
+        thoroughness
+        (chaoticness)
+
+        emotional stability
+        (neuroticism)
+        -->
