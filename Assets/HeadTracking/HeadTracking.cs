@@ -1,8 +1,8 @@
 ﻿﻿using UnityEngine;
 
 
-public class HeadTracking : MonoBehaviour {
-
+public class HeadTracking : MonoBehaviour
+{
     public float pupilOffCenter   = 0.0f;
     private Vector3 eyePosition = new Vector3(0.0f,1.25f,0.0f), disparity;
     private bool eyeTrackerAdded = false;

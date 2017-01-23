@@ -47,4 +47,4 @@ public class NpcMovementController : MonoBehaviour
             audio.Play();
         }
     }
-}                                                                                                                                                                          
+}                                                                                                                                                                                                                                                                                                                                                                                                                      

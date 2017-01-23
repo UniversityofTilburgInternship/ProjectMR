@@ -1,4 +1,5 @@
-﻿﻿﻿﻿using System.Runtime.InteropServices;
+﻿﻿﻿﻿﻿using System.Linq;
+    using System.Runtime.InteropServices;
  using UnityEngine;
 
 namespace Assets
@@ -14,24 +15,25 @@ namespace Assets
             return playerObject;
         }
 
-        public void TriggerPlayerEvent(EventObject eventObject)
+        public void TriggerPlayerEvent(int eventId)
         {
-            if (!EventController.ActiveEvents.ContainsKey(eventObject.Id))
-            {
-                EventController.ActiveEvents.Add(eventObject.Id, eventObject);
-                EventPlayer.PlayEventAmbience(eventObject);
+            var eventForId = EventController.PlayerEvents.First(x => x.Value.Id == eventId).Value;
 
-                Debug.Log("eventObject.NpcActionIds.Count = " + eventObject.NpcActionIds.Count);
+            if (!EventController.ActiveEvents.ContainsKey(eventId))
+            {
+                EventController.ActiveEvents.Add(eventId, eventForId);
+                EventPlayer.PlayEventAmbience(eventForId);
+
                 //Events that have npc's associated with them as actors have IsReady set by those actors.
-                if (eventObject.NpcActionIds.Count == 0)
-                    eventObject.IsReady = true;
+                if (eventForId.NpcActionIds.Count == 0)
+                    eventForId.IsReady = true;
             }
             else
             {
-                EventController.ActiveEvents.Remove(eventObject.Id);
-                eventObject.IsReady = false;
+                EventController.ActiveEvents.Remove(eventForId.Id);
+                eventForId.IsReady = false;
             }
         }
     }
 }
-                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                

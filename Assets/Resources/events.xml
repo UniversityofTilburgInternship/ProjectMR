@@ -3,7 +3,7 @@
         <id>0</id>
         <name>AlarmBell</name>
         <playercontrolled>true</playercontrolled>
-        <triggerkey>q</triggerkey>
+        <triggerkey>6</triggerkey>
         <radius>500</radius>
         <position>
             <x>30</x>
@@ -17,7 +17,8 @@
         <NpcAnimationActions>
         </NpcAnimationActions>
         <associatedreactions>
-            <id>2</id>
+            <id>8</id>
+            <id>9</id>
         </associatedreactions>
         <personalityMinimums>
             <minimum>

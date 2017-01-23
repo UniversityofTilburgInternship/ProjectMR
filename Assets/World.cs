@@ -15,18 +15,14 @@ public void Start()
 	{
 		AvatarGenerator ___avaGen00;
 		___avaGen00 = AvatarGenerator.Find();
-		UnityAction.SpawnActions();
-		UnityEventController.SpawnAllPlayerEvents();
-		eventController = new EventController();
+		derp = true;
 		Persons = (
 
 Enumerable.Empty<Person>()).ToList<Person>();
-		MainPlayer = new Player(eventController);
 		AvatarGen = ___avaGen00;
 		
 }
 		public AvatarGenerator AvatarGen;
-	public Player MainPlayer;
 	public List<Person> __Persons;
 	public List<Person> Persons{  get { return  __Persons; }
   set{ __Persons = value;
@@ -34,14 +30,7 @@ Enumerable.Empty<Person>()).ToList<Person>();
 }
 } }
  }
-	public EventController __eventController;
-	public EventController eventController{  get { return  __eventController; }
-  set{ __eventController = value;
- if(!value.JustEntered) __eventController = value; 
- else{ value.JustEntered = false;
-}
- }
- }
+	public System.Boolean derp;
 	public System.Int32 ___x00;
 	public System.Int32 counter20;
 	public Casanova.Prelude.Tuple<System.String,System.Collections.Generic.List<Casanova.Prelude.Tuple<System.Int32,System.Int32>>> ___parsedperson10;
@@ -52,13 +41,12 @@ System.DateTime init_time = System.DateTime.Now;
 	public void Update(float dt, World world) {
 var t = System.DateTime.Now;
 
-		MainPlayer.Update(dt, world);
 		for(int x0 = 0; x0 < Persons.Count; x0++) { 
 			Persons[x0].Update(dt, world);
 		}
-		eventController.Update(dt, world);
 		this.Rule0(dt, world);
 		this.Rule1(dt, world);
+		this.Rule2(dt, world);
 	}
 
 
@@ -176,164 +164,14 @@ return;	}
 	default: return;}}
 	
 
-
-
-
-
-}
-public class Player{
-public int frame;
-public bool JustEntered = true;
-private EventController controller;
-	public int ID;
-public Player(EventController controller)
-	{JustEntered = false;
- frame = World.frame;
-		UnityPlayer ___unity_player00;
-		___unity_player00 = UnityPlayer.Initialize();
-		triggeredEvents = (
-
-Enumerable.Empty<Event>()).ToList<Event>();
-		isTriggeringEvent = false;
-		eventController = controller;
-		UnityPlayer = ___unity_player00;
-		
-}
-		public UnityEngine.Vector3 Position{  get { return UnityPlayer.Position; }
- }
-	public UnityPlayer UnityPlayer;
-	public System.Boolean enabled{  get { return UnityPlayer.enabled; }
-  set{UnityPlayer.enabled = value; }
- }
-	public EventController eventController;
-	public UnityEngine.GameObject gameObject{  get { return UnityPlayer.gameObject; }
- }
-	public UnityEngine.HideFlags hideFlags{  get { return UnityPlayer.hideFlags; }
-  set{UnityPlayer.hideFlags = value; }
- }
-	public System.Boolean isActiveAndEnabled{  get { return UnityPlayer.isActiveAndEnabled; }
- }
-	public System.Boolean isTriggeringEvent;
-	public System.String name{  get { return UnityPlayer.name; }
-  set{UnityPlayer.name = value; }
- }
-	public System.String tag{  get { return UnityPlayer.tag; }
-  set{UnityPlayer.tag = value; }
- }
-	public UnityEngine.Transform transform{  get { return UnityPlayer.transform; }
- }
-	public List<Event> triggeredEvents;
-	public System.Boolean useGUILayout{  get { return UnityPlayer.useGUILayout; }
-  set{UnityPlayer.useGUILayout = value; }
- }
-	public Event ___event00;
-	public System.Int32 counter10;
-	public Event ___event11;
-	public System.Int32 counter11;
-	public void Update(float dt, World world) {
-frame = World.frame;
-
-		this.Rule0(dt, world);
-		this.Rule1(dt, world);
-		for(int x0 = 0; x0 < triggeredEvents.Count; x0++) { 
-			triggeredEvents[x0].Update(dt, world);
-		}
-	}
-
-
-
-
-
-	int s0=-1;
-	public void Rule0(float dt, World world){ switch (s0)
+	int s2=-1;
+	public void Rule2(float dt, World world){ switch (s2)
 	{
 
 	case -1:
-	
-	counter10 = -1;
-	if((((eventController.AllPlayerEvents).Count) == (0)))
-	{
-
-	s0 = -1;
-return;	}else
-	{
-
-	___event00 = (eventController.AllPlayerEvents)[0];
-	goto case 1;	}
-	case 1:
-	counter10 = ((counter10) + (1));
-	if((((((eventController.AllPlayerEvents).Count) == (counter10))) || (((counter10) > ((eventController.AllPlayerEvents).Count)))))
-	{
-
-	s0 = -1;
-return;	}else
-	{
-
-	___event00 = (eventController.AllPlayerEvents)[counter10];
-	goto case 2;	}
-	case 2:
-	if(UnityEngine.Input.GetKey(___event00.TriggerKey))
-	{
-
-	goto case 4;	}else
-	{
-
-	s0 = 1;
-return;	}
-	case 4:
-	HelperFunctions.Log("Triggered event! Now waiting for isready to be set elsewhere...");
-	UnityPlayer.TriggerPlayerEvent(___event00._eventObject);
-	triggeredEvents = new Cons<Event>(___event00, (triggeredEvents)).ToList<Event>();
-	s0 = 1;
-return;	
-	default: return;}}
-	
-
-	int s1=-1;
-	public void Rule1(float dt, World world){ switch (s1)
-	{
-
-	case -1:
-	
-	counter11 = -1;
-	if((((triggeredEvents).Count) == (0)))
-	{
-
-	s1 = -1;
-return;	}else
-	{
-
-	___event11 = (triggeredEvents)[0];
-	goto case 1;	}
-	case 1:
-	counter11 = ((counter11) + (1));
-	if((((((triggeredEvents).Count) == (counter11))) || (((counter11) > ((triggeredEvents).Count)))))
-	{
-
-	s1 = -1;
-return;	}else
-	{
-
-	___event11 = (triggeredEvents)[counter11];
-	goto case 2;	}
-	case 2:
-	if(UnityEventController.IsEventReady(___event11.Id))
-	{
-
-	goto case 4;	}else
-	{
-
-	s1 = 1;
-return;	}
-	case 4:
-	eventController.CurrentEvents = new Cons<Event>(___event11, (eventController.CurrentEvents)).ToList<Event>();
-	triggeredEvents = (
-
-(triggeredEvents).Select(__ContextSymbol7 => new { ___triggeredEvent10 = __ContextSymbol7 })
-.Where(__ContextSymbol8 => !(((__ContextSymbol8.___triggeredEvent10) == (___event11))))
-.Select(__ContextSymbol9 => __ContextSymbol9.___triggeredEvent10)
-.ToList<Event>()).ToList<Event>();
-	s1 = 1;
+	HelperFunctions.Log(derp);
+	derp = derp;
+	s2 = -1;
 return;	
 	default: return;}}
 	
@@ -347,14 +185,12 @@ public class Event{
 public int frame;
 public bool JustEntered = true;
 private System.String Type;
-private EventController controller;
 	public int ID;
-public Event(System.String Type, EventController controller)
+public Event(System.String Type)
 	{JustEntered = false;
  frame = World.frame;
 		UnityEvent ___unity_event00;
 		___unity_event00 = UnityEvent.SpawnRandomEvent(Type);
-		eventController = controller;
 		UnityEvent = ___unity_event00;
 		
 }
@@ -402,7 +238,6 @@ public Event(System.String Type, EventController controller)
 	public EventObject _eventObject{  get { return UnityEvent._eventObject; }
   set{UnityEvent._eventObject = value; }
  }
-	public EventController eventController;
 	public System.Single count_down1;
 	public void Update(float dt, World world) {
 frame = World.frame;
@@ -472,118 +307,6 @@ return;
 
 
 }
-public class EventController{
-public int frame;
-public bool JustEntered = true;
-	public int ID;
-public EventController()
-	{JustEntered = false;
- frame = World.frame;
-		UnityEventController = new UnityEventController();
-		CurrentEvents = (
-
-Enumerable.Empty<Event>()).ToList<Event>();
-		AllPlayerEvents = (
-
-Enumerable.Empty<Event>()).ToList<Event>();
-		
-}
-		public List<Event> AllPlayerEvents;
-	public List<Event> CurrentEvents;
-	public System.Collections.Generic.List<EventObject> PlayerEventsList{  get { return UnityEventController.PlayerEventsList; }
- }
-	public UnityEventController UnityEventController;
-	public System.Int32 ___x11;
-	public System.Int32 counter21;
-	public void Update(float dt, World world) {
-frame = World.frame;
-
-		this.Rule0(dt, world);
-		this.Rule1(dt, world);
-		for(int x0 = 0; x0 < AllPlayerEvents.Count; x0++) { 
-			AllPlayerEvents[x0].Update(dt, world);
-		}
-		for(int x0 = 0; x0 < CurrentEvents.Count; x0++) { 
-			CurrentEvents[x0].Update(dt, world);
-		}
-	}
-
-
-
-
-
-	int s0=-1;
-	public void Rule0(float dt, World world){ switch (s0)
-	{
-
-	case -1:
-	if(!(((CurrentEvents.Count) > (0))))
-	{
-
-	s0 = -1;
-return;	}else
-	{
-
-	goto case 0;	}
-	case 0:
-	CurrentEvents = (
-
-(CurrentEvents).Select(__ContextSymbol14 => new { ___event02 = __ContextSymbol14 })
-.Where(__ContextSymbol15 => !(__ContextSymbol15.___event02.IsDestroyed))
-.Select(__ContextSymbol16 => __ContextSymbol16.___event02)
-.ToList<Event>()).ToList<Event>();
-	s0 = -1;
-return;	
-	default: return;}}
-	
-
-	int s1=-1;
-	public void Rule1(float dt, World world){ switch (s1)
-	{
-
-	case -1:
-	
-	counter21 = -1;
-	if((((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count) == (0)))
-	{
-
-	goto case 0;	}else
-	{
-
-	___x11 = (Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>())[0];
-	goto case 2;	}
-	case 2:
-	counter21 = ((counter21) + (1));
-	if((((((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count) == (counter21))) || (((counter21) > ((Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>()).Count)))))
-	{
-
-	goto case 0;	}else
-	{
-
-	___x11 = (Enumerable.Range(0,((1) + (((((PlayerEventsList.Count) - (1))) - (0))))).ToList<System.Int32>())[counter21];
-	goto case 3;	}
-	case 3:
-	AllPlayerEvents = new Cons<Event>(new Event("playerEvent",this), (AllPlayerEvents)).ToList<Event>();
-	s1 = 2;
-return;
-	case 0:
-	if(!(false))
-	{
-
-	s1 = 0;
-return;	}else
-	{
-
-	s1 = -1;
-return;	}	
-	default: return;}}
-	
-
-
-
-
-
-}
 public class Person{
 public int frame;
 public bool JustEntered = true;
@@ -600,7 +323,6 @@ public Person(List<Casanova.Prelude.Tuple<System.Int32, System.Int32>> Settings,
 
 Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 		UnityNpc = ___unity_npc00;
-		TimeToInteract = false;
 		PositionAvailable = false;
 		
 }
@@ -609,12 +331,6 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public UnityEngine.Vector3 CurrentActionPosition{  get { return UnityNpc.CurrentActionPosition; }
  }
 	public System.Int32 Id{  get { return UnityNpc.Id; }
- }
-	public System.Boolean Interacting{  get { return UnityNpc.Interacting; }
-  set{UnityNpc.Interacting = value; }
- }
-	public System.Boolean InteractionTarget{  get { return UnityNpc.InteractionTarget; }
-  set{UnityNpc.InteractionTarget = value; }
  }
 	public System.Boolean IsEventActor{  get { return UnityNpc.IsEventActor; }
   set{UnityNpc.IsEventActor = value; }
@@ -629,7 +345,6 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
   set{UnityNpc.Position = value; }
  }
 	public System.Boolean PositionAvailable;
-	public System.Boolean TimeToInteract;
 	public UnityNpc UnityNpc;
 	public List<System.Int32> actionIds;
 	public System.Boolean enabled{  get { return UnityNpc.enabled; }
@@ -662,9 +377,6 @@ Enumerable.Empty<System.Int32>()).ToList<System.Int32>();
 	public System.Single ___distanceToDestination40;
 	public System.Single count_down4;
 	public System.Single count_down5;
-	public System.Single count_down6;
-	public System.Single count_down8;
-	public System.Single count_down7;
 	public void Update(float dt, World world) {
 frame = World.frame;
 
@@ -676,13 +388,6 @@ frame = World.frame;
 		this.Rule5(dt, world);
 		this.Rule6(dt, world);
 		this.Rule7(dt, world);
-		this.Rule8(dt, world);
-		this.Rule9(dt, world);
-		this.Rule10(dt, world);
-		this.Rule11(dt, world);
-		this.Rule12(dt, world);
-		this.Rule13(dt, world);
-		this.Rule14(dt, world);
 	}
 
 
@@ -841,9 +546,9 @@ return;
 	HelperFunctions.Log("else");
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol19 => new { ___id30 = __ContextSymbol19 })
-.Where(__ContextSymbol20 => !(((__ContextSymbol20.___id30) == (___actionToExecute30))))
-.Select(__ContextSymbol21 => __ContextSymbol21.___id30)
+(actionIds).Select(__ContextSymbol7 => new { ___id30 = __ContextSymbol7 })
+.Where(__ContextSymbol8 => !(((__ContextSymbol8.___id30) == (___actionToExecute30))))
+.Select(__ContextSymbol9 => __ContextSymbol9.___id30)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s3 = -1;
@@ -904,9 +609,9 @@ return;	}else
 	UnityNpc.RemoveClaimToPosition(___actionToExecute41);
 	actionIds = (
 
-(actionIds).Select(__ContextSymbol22 => new { ___id41 = __ContextSymbol22 })
-.Where(__ContextSymbol23 => !(((__ContextSymbol23.___id41) == (___actionToExecute41))))
-.Select(__ContextSymbol24 => __ContextSymbol24.___id41)
+(actionIds).Select(__ContextSymbol10 => new { ___id41 = __ContextSymbol10 })
+.Where(__ContextSymbol11 => !(((__ContextSymbol11.___id41) == (___actionToExecute41))))
+.Select(__ContextSymbol12 => __ContextSymbol12.___id41)
 .ToList<System.Int32>()).ToList<System.Int32>();
 	PositionAvailable = false;
 	s4 = 2;
@@ -953,7 +658,7 @@ return;
 	{
 
 	case -1:
-	if(!(InteractionTarget))
+	if(!(IsEventActor))
 	{
 
 	s6 = -1;
@@ -962,7 +667,7 @@ return;	}else
 
 	goto case 2;	}
 	case 2:
-	if(!(!(Interacting)))
+	if(!(!(IsEventActor)))
 	{
 
 	s6 = 2;
@@ -984,110 +689,10 @@ return;
 	{
 
 	case -1:
-	if(!(Interacting))
-	{
-
-	s7 = -1;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	if(!(!(Interacting)))
-	{
-
-	s7 = 3;
-return;	}else
-	{
-
-	goto case 2;	}
-	case 2:
-	UnityNpc.FreeInteractionTarget();
-	UnityNpc.UpdateCurrentNodesCollection();
-	actionIds = UnityNpc.ActionsToPerform;
-	PositionAvailable = false;
-	s7 = -1;
-return;	
-	default: return;}}
-	
-
-	int s8=-1;
-	public void Rule8(float dt, World world){ switch (s8)
-	{
-
-	case -1:
-	if(!(Interacting))
-	{
-
-	s8 = -1;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	UnityNpc.UpdateCurrentNodesCollection();
-	actionIds = UnityNpc.ActionsToPerform;
-	PositionAvailable = false;
-	s8 = 0;
-return;
-	case 0:
-	count_down6 = 2f;
-	goto case 1;
-	case 1:
-	if(((count_down6) > (0f)))
-	{
-
-	count_down6 = ((count_down6) - (dt));
-	s8 = 1;
-return;	}else
-	{
-
-	s8 = -1;
-return;	}	
-	default: return;}}
-	
-
-	int s9=-1;
-	public void Rule9(float dt, World world){ switch (s9)
-	{
-
-	case -1:
 	if(!(IsEventActor))
 	{
 
-	s9 = -1;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	if(!(!(IsEventActor)))
-	{
-
-	s9 = 3;
-return;	}else
-	{
-
-	goto case 2;	}
-	case 2:
-	UnityNpc.Unfreeze();
-	UnityNpc.UpdateCurrentNodesCollection();
-	actionIds = UnityNpc.ActionsToPerform;
-	PositionAvailable = false;
-	s9 = -1;
-return;	
-	default: return;}}
-	
-
-	int s10=-1;
-	public void Rule10(float dt, World world){ switch (s10)
-	{
-
-	case -1:
-	if(!(IsEventActor))
-	{
-
-	s10 = -1;
+	s7 = -1;
 return;	}else
 	{
 
@@ -1096,129 +701,7 @@ return;	}else
 	UnityNpc.UpdateCurrentNodesCollection();
 	actionIds = UnityNpc.ActionsToPerform;
 	PositionAvailable = false;
-	s10 = -1;
-return;	
-	default: return;}}
-	
-
-	int s11=-1;
-	public void Rule11(float dt, World world){ switch (s11)
-	{
-
-	case -1:
-	if(!(TimeToInteract))
-	{
-
-	s11 = -1;
-return;	}else
-	{
-
-	goto case 2;	}
-	case 2:
-	if(UnityNpc.InteractionAvailable())
-	{
-
-	goto case 0;	}else
-	{
-
-	goto case 1;	}
-	case 0:
-	Interacting = true;
-	s11 = 3;
-return;
-	case 3:
-	if(!(!(TimeToInteract)))
-	{
-
-	s11 = 3;
-return;	}else
-	{
-
-	s11 = -1;
-return;	}
-	case 1:
-	Interacting = false;
-	s11 = -1;
-return;	
-	default: return;}}
-	
-
-	int s12=-1;
-	public void Rule12(float dt, World world){ switch (s12)
-	{
-
-	case -1:
-	if(((TimeToInteract) == (false)))
-	{
-
-	goto case 7;	}else
-	{
-
-	goto case 8;	}
-	case 7:
-	Interacting = false;
-	s12 = -1;
-return;
-	case 8:
-	Interacting = Interacting;
-	s12 = -1;
-return;	
-	default: return;}}
-	
-
-	int s13=-1;
-	public void Rule13(float dt, World world){ switch (s13)
-	{
-
-	case -1:
-	TimeToInteract = false;
-	s13 = 4;
-return;
-	case 4:
-	count_down8 = 15f;
-	goto case 5;
-	case 5:
-	if(((count_down8) > (0f)))
-	{
-
-	count_down8 = ((count_down8) - (dt));
-	s13 = 5;
-return;	}else
-	{
-
-	goto case 3;	}
-	case 3:
-	TimeToInteract = true;
-	s13 = 1;
-return;
-	case 1:
-	count_down7 = 0.1f;
-	goto case 2;
-	case 2:
-	if(((count_down7) > (0f)))
-	{
-
-	count_down7 = ((count_down7) - (dt));
-	s13 = 2;
-return;	}else
-	{
-
-	goto case 0;	}
-	case 0:
-	TimeToInteract = false;
-	s13 = -1;
-return;	
-	default: return;}}
-	
-
-	int s14=-1;
-	public void Rule14(float dt, World world){ switch (s14)
-	{
-
-	case -1:
-	HelperFunctions.Log(((((("Npc with id = ") + (Id)) + (" has IsEventActor = ")) + (IsEventActor)) + (" and pos available = ")) + (PositionAvailable));
-	IsEventActor = IsEventActor;
-	s14 = -1;
+	s7 = -1;
 return;	
 	default: return;}}
 	
@@ -1228,4 +711,4 @@ return;
 
 
 }
-}     
+}                

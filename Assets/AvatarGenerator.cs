@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
 using System.Linq;
 using Casanova.Prelude;
 using UnityEngine;
@@ -31,6 +31,7 @@ public class AvatarGenerator : MonoBehaviour
 
     public static AvatarGenerator Find()
     {
+        Debug.Log("FIND");
         var avatarGenerator = GameObject.Find("AvatarGenerator").GetComponent<AvatarGenerator>();
         if (!avatarGenerator.AutoGenerateCharacters)
         {
@@ -54,4 +55,4 @@ public class AvatarGenerator : MonoBehaviour
         }
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

@@ -6,9 +6,11 @@ open UnityEngine
 worldEntity World = {
 AvatarGen : AvatarGenerator
 Persons : [Person]
-eventController : EventController
-MainPlayer : Player    
+derp : bool
 
+  rule derp =
+    HelperFunctions.Log(derp)
+    yield derp
 
   rule Persons =
     wait AvatarGen.AutoGenerateCharacters
@@ -20,7 +22,7 @@ MainPlayer : Player
         parsedperson.Item1)) :: Persons
     wait false
    
-  rule Persons =  
+  rule Persons =
     wait not AvatarGen.AutoGenerateCharacters
     for x in[0..AvatarGen.Amount - 1] do
       yield(Person.Create(
@@ -32,49 +34,15 @@ MainPlayer : Player
 
   Create() =
     let avaGen = AvatarGenerator.Find()
-    UnityAction.SpawnActions()
-    UnityEventController.SpawnAllPlayerEvents()
     {
       Persons = []
       AvatarGen = avaGen
-      eventController = new EventController()
-      MainPlayer = new Player(eventController)
+      derp = true
     }
-}
-
-entity Player = {
-inherit UnityPlayer
-ref eventController : EventController
-triggeredEvents : [Event]
-isTriggeringEvent : bool
-
-  rule eventController.CurrentEvents, triggeredEvents =
-    for event in triggeredEvents do
-      if (UnityEventController.IsEventReady(event.Id)) then
-        yield event :: eventController.CurrentEvents, [for triggeredEvent in triggeredEvents do
-                                                          where (not (triggeredEvent = event))
-                                                          select triggeredEvent]
-
-  rule triggeredEvents =
-    for event in eventController.AllPlayerEvents do
-      if (Input.GetKey(event.TriggerKey)) then
-          HelperFunctions.Log("Triggered event! Now waiting for isready to be set elsewhere...")
-          UnityPlayer.TriggerPlayerEvent(event._eventObject)
-          yield event :: triggeredEvents
-
-  Create(controller:EventController) =
-  let unity_player = UnityPlayer.Initialize()
-  {
-    UnityPlayer = unity_player
-    eventController = controller
-    triggeredEvents = []
-    isTriggeringEvent = false
-  }
 }
 
 entity Event = {
 inherit UnityEvent
-ref eventController : EventController
 
   rule Completeness =
     wait 2.5f
@@ -87,70 +55,19 @@ ref eventController : EventController
     else
       yield 0
 
-
-  Create(Type : string, controller:EventController) =
+  Create(Type : string) =
   let unity_event = UnityEvent.SpawnRandomEvent(Type)
   {
     UnityEvent = unity_event
-    eventController = controller
   }
 }
 
-
-entity EventController = {
-inherit UnityEventController
-CurrentEvents : [Event]
-AllPlayerEvents : [Event]
-
-  rule AllPlayerEvents =
-    for x in[0..PlayerEventsList.Count - 1] do
-      yield new Event("playerEvent", this) :: AllPlayerEvents
-    wait false
-
-  rule CurrentEvents =
-    wait (CurrentEvents.Count > 0)
-    yield [for event in CurrentEvents do
-            where(not event.IsDestroyed)
-            select(event)]
-
-  Create() =
-  {
-    AllPlayerEvents = []
-    CurrentEvents = []
-  }
-}
 
 entity Person = {
 inherit UnityNpc
 settings : [(int * int)]
 actionIds : [int]
 PositionAvailable : bool
-TimeToInteract : bool
-
-    rule IsEventActor =
-      HelperFunctions.Log("Npc with id = " + Id +  " has IsEventActor = " + IsEventActor + " and pos available = " + PositionAvailable)
-      yield IsEventActor
-
-    rule TimeToInteract =
-      yield false
-      wait 15.0f
-      yield true
-      wait 0.1f
-      yield false
-
-    rule Interacting =
-      if(TimeToInteract = false) then
-        yield false
-      else
-        yield Interacting
-
-    rule Interacting =
-      wait TimeToInteract
-      if(UnityNpc.InteractionAvailable()) then
-        yield true
-        wait not TimeToInteract
-      else
-        yield false
 
     rule actionIds, PositionAvailable =
       wait IsEventActor
@@ -160,26 +77,6 @@ TimeToInteract : bool
     rule actionIds, PositionAvailable =
       wait IsEventActor
       wait not IsEventActor
-      UnityNpc.Unfreeze()
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-
-    rule actionIds, PositionAvailable =
-      wait Interacting
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-      wait 2.0f
-
-    rule actionIds, PositionAvailable =
-      wait Interacting
-      wait not Interacting
-      UnityNpc.FreeInteractionTarget()
-      UnityNpc.UpdateCurrentNodesCollection()
-      yield UnityNpc.ActionsToPerform, false
-
-    rule actionIds, PositionAvailable =
-      wait InteractionTarget
-      wait not Interacting
       UnityNpc.UpdateCurrentNodesCollection()
       yield UnityNpc.ActionsToPerform, false
 
@@ -248,6 +145,5 @@ TimeToInteract : bool
         UnityNpc = unity_npc
         PositionAvailable = false
         actionIds = []
-        TimeToInteract = false
     }
 }
