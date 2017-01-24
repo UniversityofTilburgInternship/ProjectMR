@@ -45,14 +45,14 @@ public class ControllerButton : MonoBehaviour
 		}
 	}
 
-//    public void OnGUI()
-//    {
-//        for (int i = 0; i < 64; i++)
-//        {
-//            if(VRPN.vrpnButton(VRPNAddress, i))
-//                GUI.Label(new Rect(10, 10, 150, 100), "you have pressed button " + i);
-//        }
-//    }
+    //public void OnGUI()
+    //{
+    //    for (int i = 0; i < 64; i++)
+    //    {
+    //        if(VRPN.vrpnButton(VRPNAddress, i))
+    //            GUI.Label(new Rect(10, 10, 150, 100), "you have pressed button " + i);
+    //    }
+    //}
 	
 	protected void Update ()
 	{

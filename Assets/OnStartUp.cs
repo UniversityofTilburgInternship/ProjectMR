@@ -37,4 +37,4 @@ public class OnStartUp : MonoBehaviour
         playerObject.GetComponent<NavMeshObstacle>().radius = newNavMeshRadius;
         playerObject.GetComponent<FPSInputController>().enabled = playerObjectComponent.AllowMovement;
     }
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
