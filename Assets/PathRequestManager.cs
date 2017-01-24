@@ -54,5 +54,4 @@ public class PathRequestManager : MonoBehaviour
             Callback = callback;
         }
     }
-}
-                     
+}       

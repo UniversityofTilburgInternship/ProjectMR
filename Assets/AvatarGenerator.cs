@@ -54,4 +54,6 @@ public class AvatarGenerator : MonoBehaviour
             return new Tuple<int, int>(MinValue, MaxValue);
         }
     }
-}                       
+
+}
+       

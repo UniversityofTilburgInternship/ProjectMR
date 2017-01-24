@@ -57,6 +57,7 @@ public class NpcObject : MonoBehaviour
         npcObject.gameObject.AddComponent<AudioSource>();
         npcObject.gameObject.GetComponent<NavMeshAgent>().stoppingDistance = 2.2f;
         npcObject.gameObject.GetComponent<NavMeshAgent>().speed = 2.0f;
+        npcObject.gameObject.GetComponent<NavMeshAgent>().updateRotation = true;
         npcObject.gameObject.GetComponent<NavMeshAgent>().angularSpeed = 12.0f;
 
 
@@ -160,8 +161,9 @@ public class NpcObject : MonoBehaviour
         if (CurrentActionPosition != position)
         {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
+            
             agent.destination = position;
-           
+            transform.LookAt(position);
         }
     }
 
@@ -232,4 +234,6 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
 //        Animator.SetBool(animationName, false);
     }
+
 }                       
+       

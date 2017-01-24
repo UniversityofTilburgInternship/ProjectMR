@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿using UnityEngine;
+﻿﻿using UnityEngine;
 
 public class ActionObject : MonoBehaviour
 {
@@ -12,5 +12,4 @@ public class ActionObject : MonoBehaviour
         actionObject.gameObject.layer = 8;
         return actionObject;
     }
-}
-                       
+}       
