@@ -72,7 +72,7 @@ public class EventObject : MonoBehaviour
 
     IEnumerator UpdateCompleteness()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         Completeness += 10;
         StartCoroutine(UpdateCompleteness());
         Debug.Log("Completeness: " + Completeness);
@@ -90,4 +90,4 @@ public class EventObject : MonoBehaviour
         }
 
     }
-}                      
+}                       

@@ -161,7 +161,7 @@ public class NpcObject : MonoBehaviour
         {
             NavMeshAgent agent = GetComponent<NavMeshAgent>();
             agent.destination = position;
-            transform.LookAt(position);
+           
         }
     }
 
@@ -232,5 +232,4 @@ public class NpcObject : MonoBehaviour
         yield return new WaitForSeconds(time);
 //        Animator.SetBool(animationName, false);
     }
-}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+}                       

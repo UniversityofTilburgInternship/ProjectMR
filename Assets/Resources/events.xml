@@ -19,6 +19,9 @@
         <associatedreactions>
             <id>8</id>
             <id>9</id>
+            <id>10</id>
+            <id>11</id>
+            <id>12</id>
         </associatedreactions>
         <personalityMinimums>
             <minimum>
@@ -62,6 +65,9 @@
         </NpcAnimationActions>
         <associatedreactions>
             <id>1</id>
+            <id>4</id>
+            <id>5</id>
+            <id>6</id>
         </associatedreactions>
         <personalityMinimums>
             <minimum>
@@ -108,6 +114,9 @@
             <id>5</id>
             <id>6</id>
             <id>7</id>
+            <id>10</id>
+            <id>11</id>
+            <id>12</id>
         </associatedreactions>
         <personalityMinimums>
             <minimum>
@@ -151,6 +160,9 @@
         </NpcAnimationActions>
         <associatedreactions>
             <id>6</id>
+            <id>10</id>
+            <id>11</id>
+            <id>12</id>
         </associatedreactions>
         <personalityMinimums>
             <minimum>
