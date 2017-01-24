@@ -105,7 +105,7 @@ public class UnityEvent
 
     public void Destroy()
     {
-        _eventObject.Destroy();
+        _eventObject.DestroyEvent();
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           

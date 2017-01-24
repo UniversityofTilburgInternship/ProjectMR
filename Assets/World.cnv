@@ -53,7 +53,10 @@ inherit UnityEvent
         UnityEvent.Destroy()
         yield Completeness
     else
-      yield 0
+      HelperFunctions.Log("Completeness: " + Completeness)
+      yield Completeness + 10
+
+
 
   Create(Type : string) =
   let unity_event = UnityEvent.SpawnRandomEvent(Type)

@@ -1,4 +1,5 @@
-﻿﻿﻿﻿﻿﻿﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Assets;
 using Casanova.Prelude;
 using UnityEngine;
@@ -49,14 +50,44 @@ public class EventObject : MonoBehaviour
         return eventObject;
     }
 
-    public void Destroy()
+    void Start()
     {
-        Debug.Log("Destroyed event");
-        EventPlayer.RemoveAmbience(EventController.ActiveEvents[Id]);
-        EventController.ActiveEvents.Remove(Id);
 
-        if (!IsPlayerControlled)
-            Destroy(gameObject);
     }
-}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+
+
+    void Update()
+    {
+        if (Completeness >= 100)
+        {
+            StopAllCoroutines();
+            DestroyEvent();
+        }
+    }
+
+    public void TriggerEvent()
+    {
+        StartCoroutine(UpdateCompleteness());
+    }
+
+    IEnumerator UpdateCompleteness()
+    {
+        yield return new WaitForSeconds(1);
+        Completeness += 10;
+        StartCoroutine(UpdateCompleteness());
+        Debug.Log("Completeness: " + Completeness);
+    }
+
+    public void DestroyEvent()
+    {
+        Completeness = 0;
+        Debug.Log("Destroyed event");
+
+        if (EventController.ActiveEvents.ContainsKey(Id))
+        {
+            EventPlayer.RemoveAmbience(EventController.ActiveEvents[Id]);
+            EventController.ActiveEvents.Remove(Id);
+        }
+
+    }
+}  

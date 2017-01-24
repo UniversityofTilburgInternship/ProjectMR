@@ -40,6 +40,11 @@ public static class HelperFunctions
         Debug.Log(message);
     }
 
+    public static void LogGUI(object message)
+    {
+        DebugConsole.Log(message.ToString());
+    }
+
     public static List<int> removeInt(int value, List<int> list)
     {
         list.Remove(value);
@@ -75,4 +80,4 @@ public static class HelperFunctions
         return singlePersonalities;
     }
 }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             

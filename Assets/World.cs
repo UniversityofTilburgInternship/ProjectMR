@@ -256,13 +256,13 @@ frame = World.frame;
 
 	case -1:
 	count_down1 = 2.5f;
-	goto case 11;
-	case 11:
+	goto case 12;
+	case 12:
 	if(((count_down1) > (0f)))
 	{
 
 	count_down1 = ((count_down1) - (dt));
-	s0 = 11;
+	s0 = 12;
 return;	}else
 	{
 
@@ -295,7 +295,8 @@ return;	}
 	s0 = -1;
 return;
 	case 1:
-	Completeness = 0;
+	HelperFunctions.Log(("Completeness: ") + (Completeness));
+	Completeness = ((Completeness) + (10));
 	s0 = -1;
 return;	
 	default: return;}}
@@ -711,4 +712,4 @@ return;
 
 
 }
-}                
+}                   

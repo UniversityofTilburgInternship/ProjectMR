@@ -1,6 +1,6 @@
-﻿﻿﻿﻿﻿using System.Linq;
-    using System.Runtime.InteropServices;
- using UnityEngine;
+﻿using System.Linq;
+using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace Assets
 {
@@ -18,22 +18,24 @@ namespace Assets
         public void TriggerPlayerEvent(int eventId)
         {
             var eventForId = EventController.PlayerEvents.First(x => x.Value.Id == eventId).Value;
-
-            if (!EventController.ActiveEvents.ContainsKey(eventId))
+            if (!EventController.ActiveEvents.Any())
             {
-                EventController.ActiveEvents.Add(eventId, eventForId);
-                EventPlayer.PlayEventAmbience(eventForId);
+                if (!EventController.ActiveEvents.ContainsKey(eventId))
+                {
+                    EventController.ActiveEvents.Add(eventId, eventForId);
+                    EventPlayer.PlayEventAmbience(eventForId);
+                    EventController.PlayerEvents[eventId].TriggerEvent();
 
-                //Events that have npc's associated with them as actors have IsReady set by those actors.
-                if (eventForId.NpcActionIds.Count == 0)
-                    eventForId.IsReady = true;
-            }
-            else
-            {
-                EventController.ActiveEvents.Remove(eventForId.Id);
-                eventForId.IsReady = false;
+                    //Events that have npc's associated with them as actors have IsReady set by those actors.
+//                    if (eventForId.NpcActionIds.Count == 0)
+                        eventForId.IsReady = true;
+                }
+                else
+                {
+                    EventController.ActiveEvents.Remove(eventForId.Id);
+                    eventForId.IsReady = false;
+                }
             }
         }
     }
-}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                
+}                              

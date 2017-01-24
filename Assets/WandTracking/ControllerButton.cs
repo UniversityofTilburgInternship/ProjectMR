@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 /// <summary>
@@ -43,6 +44,15 @@ public class ControllerButton : MonoBehaviour
 			isDebug = false;
 		}
 	}
+
+//    public void OnGUI()
+//    {
+//        for (int i = 0; i < 64; i++)
+//        {
+//            if(VRPN.vrpnButton(VRPNAddress, i))
+//                GUI.Label(new Rect(10, 10, 150, 100), "you have pressed button " + i);
+//        }
+//    }
 	
 	protected void Update ()
 	{
@@ -64,36 +74,42 @@ public class ControllerButton : MonoBehaviour
 	/// Returns true if it is pressed and returns false if it is not pressed.
 	/// If the game is run from the editor it will react to a Left mouse click.
 	/// </summary>
-	public bool isPressed()
+	public int isPressed()
 	{
-	    Debug.Log("isPressed");
-		if(isDebug)
-		{
-		    Debug.Log("isDebug");
-			if(Input.GetMouseButton(0) == false)
-			{
-				isHoldingObject = false;
-			}
-
-			return Input.GetMouseButton(0);
-		}
-		else
-		{
-		    Debug.Log("!isDebug");
-			if(ClusterNetwork.isMasterOfCluster && !ClusterNetwork.isDisconnected)
-			{
-				ClusterInput.SetButton("WandButton",VRPN.vrpnButton(VRPNAddress,6));
-			}
-
-			if(ClusterInput.GetButton("WandButton"))//if(isButtonPressed == false)
-			{
-				isHoldingObject = false;
-			}
-
-			//return isButtonPressed;
-			return ClusterInput.GetButton("WandButton");
-		}
-	
+//	    Debug.Log("isPressed");
+//		if(isDebug)
+//		{
+//		    Debug.Log("isDebug");
+//			if(Input.GetMouseButton(0) == false)
+//			{
+//				isHoldingObject = false;
+//			}
+//
+//			return Input.GetMouseButton(0);
+//		}
+//		else
+//		{
+//		    Debug.Log("!isDebug");
+//			if(ClusterNetwork.isMasterOfCluster && !ClusterNetwork.isDisconnected)
+//			{
+//			    Debug.Log("button set");
+//				ClusterInput.SetButton("WandButton",VRPN.vrpnButton(VRPNAddress,6));
+//			}
+//
+//			if(ClusterInput.GetButton("WandButton"))//if(isButtonPressed == false)
+//			{
+//				isHoldingObject = false;
+//			}
+//
+//			//return isButtonPressed;
+//			return ClusterInput.GetButton("WandButton");
+//		}
+	    for (int i = 0; i < 64; i++)
+	    {
+	        if (VRPN.vrpnButton(VRPNAddress, i))
+	            return i;
+	    }
+	    return 0;
 	}
 
 	/// <summary>
