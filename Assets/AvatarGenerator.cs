@@ -56,4 +56,4 @@ public class AvatarGenerator : MonoBehaviour
     }
 
 }
-       
+           
